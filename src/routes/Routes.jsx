@@ -12,7 +12,7 @@ import Orders from "../pages/controlPanel/orders/Orders";
 import Products from "../pages/controlPanel/products/Products";
 import UserLayout from "../pages/userLayout/UserLayout";
 
-function Routes() {
+function RoutesComponent() {
   return (
     <BrowserRouter>
       <Routes>
@@ -37,4 +37,4 @@ function Routes() {
   );
 }
 
-export default Routes;
+export default RoutesComponent;
