@@ -1,0 +1,57 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Rokh font */
+@font-face {
+    font-family: rokh-bold;
+    src: url(./assets/fonts/rokh/RokhFaNum-Bold.ttf);
+}
+
+@font-face {
+    font-family: rokh-semibold;
+    src: url(./assets/fonts/rokh/RokhFaNum-SemiBold.ttf);
+}
+
+@font-face {
+    font-family: rokh-regular;
+    src: url(./assets/fonts/rokh/RokhFaNum-Regular.ttf);
+}
+
+/* iransans font */
+@font-face {
+    font-family: sans-bold;
+    src: url(./assets/fonts/iransans/IRANSansXFaNum-Bold.woff);
+}
+
+@font-face {
+    font-family: sans-semibold;
+    src: url(./assets/fonts/iransans/IRANSansXFaNum-SemiBold.woff);
+}
+
+@font-face {
+    font-family: sans-regular;
+    src: url(./assets/fonts/iransans/IRANSansXFaNum-Regular.woff);
+}
+
+* {
+    scroll-behavior: smooth;
+    font-family: sans-regular;
+}
+
+::-webkit-scrollbar {
+    width: 8px;
+}
+
+::-webkit-scrollbar-track {
+    background: #E8E8F4;
+}
+
+::-webkit-scrollbar-thumb {
+    background: #6c66a7;
+    border-radius: 1px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: #4B429F;
+}
