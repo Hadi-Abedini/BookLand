@@ -8,22 +8,22 @@ function ContactUs() {
         {textContent.contact_us_title}
       </span>
       <div className="flex gap-2">
+        <img src="src/assets/icons/location-icon.svg" alt="location" />
         <span className="text-white text-[16px] font-[sans-regular]">
           آدرس: {textContent.contact_us_addres}
         </span>
-        <img src="src/assets/icons/location-icon.svg" alt="location" />
       </div>
       <div className="flex gap-2 items-center">
+        <img src="src/assets/icons/phone-icon.svg" alt="phone" />
         <span className="text-white text-[16px] font-[sans-regular]">
           تلفن: {textContent.contact_us_phone}
         </span>
-        <img src="src/assets/icons/phone-icon.svg" alt="phone" />
       </div>
       <div className="flex gap-2 items-center">
+        <img src="src/assets/icons/mail-icon.svg" alt="mail" />
         <span className="text-white text-[16px] font-[sans-regular]">
           ایمیل: {textContent.contact_us_email}
         </span>
-        <img src="src/assets/icons/mail-icon.svg" alt="mail" />
       </div>
     </div>
   );
