@@ -1,5 +1,6 @@
 import React from "react";
 import ProductItem from "./ProductItem";
+import { Link } from "react-router-dom";
 function ProductList({ title, subtitle, books = [] }) {
   if (books.length)
     return (
@@ -9,9 +10,11 @@ function ProductList({ title, subtitle, books = [] }) {
           <span className="text-[#303842] text-[16px] font-[rokh-semibold] text-right">
             {subtitle}
           </span>
-          <span className=" text-[#303842] text-[22px] font-[rokh-bold] text-right">
+          <Link
+            to={"/categorie"}
+            className=" text-[#303842] text-[22px] font-[rokh-bold] text-right">
             {title}
-          </span>
+          </Link>
         </div>
         <div className="w-full overflow-x-scroll flex justify-between items-center gap-5">
           {books.map((book) => (
