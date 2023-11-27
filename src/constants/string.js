@@ -11,7 +11,17 @@ const textContent = {
     contact_us_addres: "تهران،خیابان ملاصدرا،کوچه گلدشت یکم پلاک19",
     contact_us_phone: "۰۲۱۸۸۲۳۸۵۴۱",
     contact_us_email: "info@bookland.com",
-    copyright: 'تمامی حقوق مادی و معنوی این وب سایت متعلق به "بوک لند" می باشد.'
+    copyright: 'تمامی حقوق مادی و معنوی این وب سایت متعلق به "بوک لند" می باشد.',
+    //infobox
+    info_title1: "ارسال رایگان",
+    info_title2: "پرداخت امن",
+    info_title3: "پشتیبانی ۲۴ ساعته",
+    info_sub_title1: "برای سفارشات بالای ۳۰۰ هزارتومان",
+    info_sub_title2: "درگاه پرداخت ایمن",
+    info_sub_title3: "پشتیبانی در هر ۲۴ ساعت روز",
+    info_icon1: "src/assets/icons/free-shipping-icon.svg",
+    info_icon2: "src/assets/icons/securitycard.svg",
+    info_icon3: "src/assets/icons/chat-icon.svg",
 }
 
 export default textContent;
