@@ -22,6 +22,11 @@ const textContent = {
     info_icon1: "src/assets/icons/free-shipping-icon.svg",
     info_icon2: "src/assets/icons/securitycard.svg",
     info_icon3: "src/assets/icons/chat-icon.svg",
+
+    // searchbox
+    search_title: "کتاب مورد نظر خود را سریعتر پیدا کنید",
+    search_option: ["انتخاب دسته بندی", "نام کتاب", "نام نویسنده", "ناشر / تولید کننده"],
+    search_submit_btn: "جستجو",
 }
 
 export default textContent;

@@ -1,12 +1,13 @@
 import React from "react";
 
-function SearchInput({ text }) {
+function SearchInput({ placeholder, id }) {
   return (
-    <button
-      type="submit"
-      className="w-1/4 bg-[#4B429F] rounded-lg py-3 text-white font-[yekan-regular]">
-      {text}
-    </button>
+    <input
+    type="text"
+    name={id}
+    className="w-full text-right font-[sans-regular] bg-[#E8E8F4] rounded-lg p-4 border-0 focus:border-0 focus:ring-0 placeholder:text-[#8F8F8F]"
+    placeholder={placeholder}
+  />
   );
 }
 
