@@ -1,4 +1,4 @@
-import React from "react";
+import { useState } from "react";
 
 import textContent from "../../constants/string";
 import SearchInput from "./SearchInput";
