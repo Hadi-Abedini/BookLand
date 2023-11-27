@@ -21,7 +21,7 @@ function RoutesComponent() {
           <Route path="cart" element={<Cart></Cart>}></Route>
           <Route path="categorie" element={<Categorie></Categorie>}></Route>
           <Route path="payment" element={<Payment></Payment>}></Route>
-          <Route path="/product/:id?" element={<Product></Product>}></Route>
+          <Route path="product/:id?" element={<Product></Product>}></Route>
         </Route>
         <Route path="login" element={<Login></Login>}></Route>
         <Route path="shipping" element={<Shipping></Shipping>}></Route>
