@@ -55,3 +55,9 @@
 ::-webkit-scrollbar-thumb:hover {
     background: #4B429F;
 }
+
+.active {
+    color: #4B429F;
+    font-size: large;
+    font-weight: 600;
+}
