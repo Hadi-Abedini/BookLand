@@ -19,7 +19,12 @@ function SearchForm() {
   const [slectedCategory, setSlectedCategory] = useState("");
   const [slectedPublisher, setSlectedPublisher] = useState("");
   return (
-    <form className="w-full flex flex-col justify-between items-center gap-10">
+    <form
+      onSubmit={(e) => {
+        e.preventDefault();
+        console.log("login");
+      }}
+      className="w-full flex flex-col justify-between items-center gap-10">
       <div className="w-full flex flex-row justify-between items-center gap-4">
         <SearchDropDownBtn
           id={"book-category"}
@@ -44,7 +49,7 @@ function SearchForm() {
           optionList={category}
         />
       </div>
-      <SearchBtn text={textContent.search_submit_btn}/>
+      <SearchBtn text={textContent.search_submit_btn} />
     </form>
   );
 }

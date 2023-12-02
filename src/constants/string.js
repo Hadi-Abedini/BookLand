@@ -27,6 +27,12 @@ const textContent = {
     search_title: "کتاب مورد نظر خود را سریعتر پیدا کنید",
     search_option: ["انتخاب دسته بندی", "نام کتاب", "نام نویسنده", "ناشر / تولید کننده"],
     search_submit_btn: "جستجو",
+
+    //login
+    login_title: "ورود به پنل مدیریت",
+    login_subtitle: "لطفا نام کاربری و رمز عبور خود را وارد کنید",
+    login_username: "نام کاربری",
+    login_password: "رمز عبور",
 }
 
 export default textContent;
