@@ -13,8 +13,10 @@ function SearchDropDownBtn({
       id={id}
       dismissOnClick={true}
       renderTrigger={() => (
-        <div className="w-full flex flex-row justify-between text-right font-[yekan-regular] bg-[#E8E8F4] rounded-lg p-4 border-0 focus:border-0 focus:ring-0">
-          <span className="text-[#8F8F8F]">{selectedOption || text}</span>
+        <div className="w-full flex flex-row justify-between text-right font-[sans-regular] bg-[#E8E8F4] rounded-lg p-4 border-0 focus:border-0 focus:ring-0">
+          <span className={selectedOption ? "text-black" : "text-[#8F8F8F]"}>
+            {selectedOption || text}
+          </span>
           <svg
             xmlns="http://www.w3.org/2000/svg"
             width="23"
@@ -33,7 +35,7 @@ function SearchDropDownBtn({
           </svg>
         </div>
       )}
-      className="text-right font-[yekan-regular]">
+      className="text-right font-[sans-regular]">
       {optionList.map((option) => (
         <Dropdown.Item
           key={Math.random()

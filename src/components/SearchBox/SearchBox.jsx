@@ -10,7 +10,7 @@ function SearchBox() {
           {textContent.search_title}
         </span>
       </div>
-      <SearchForm></SearchForm>
+      <SearchForm />
     </div>
   );
 }

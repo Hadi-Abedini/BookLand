@@ -7,10 +7,10 @@ import HeaderHomeBtn from "./HeaderHomeBtn";
 function Header() {
   return (
     <div className={`w-full flex justify-between px-6 py-3 bg-[#4B429F]`}>
-      <HeaderHomeBtn></HeaderHomeBtn>
+      <HeaderHomeBtn />
       <div className="flex items-center gap-4">
-        <HeaderCartBtn></HeaderCartBtn>
-        <HeaderLoginBtn></HeaderLoginBtn>
+        <HeaderCartBtn />
+        <HeaderLoginBtn />
       </div>
     </div>
   );

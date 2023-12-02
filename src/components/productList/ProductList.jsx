@@ -26,7 +26,8 @@ function ProductList({ title, subtitle, books = [] }) {
               title={book.title}
               writer={book.writer}
               price={book.price}
-              cover={book.image_src}></ProductItem>
+              cover={book.image_src}
+            />
           ))}
         </div>
       </div>

@@ -26,21 +26,25 @@ function SearchForm() {
           text={textContent.search_option[0]}
           selectedOption={slectedCategory}
           setSelectedOption={setSlectedCategory}
-          optionList={category}></SearchDropDownBtn>
+          optionList={category}
+        />
         <SearchInput
           id={"book_name"}
-          placeholder={textContent.search_option[1]}></SearchInput>
+          placeholder={textContent.search_option[1]}
+        />
         <SearchInput
           id={"writer_name"}
-          placeholder={textContent.search_option[2]}></SearchInput>
+          placeholder={textContent.search_option[2]}
+        />
         <SearchDropDownBtn
           id={"book-publisher"}
           text={textContent.search_option[3]}
           selectedOption={slectedPublisher}
           setSelectedOption={setSlectedPublisher}
-          optionList={category}></SearchDropDownBtn>
+          optionList={category}
+        />
       </div>
-      <SearchBtn text={textContent.search_submit_btn}></SearchBtn>
+      <SearchBtn text={textContent.search_submit_btn}/>
     </form>
   );
 }

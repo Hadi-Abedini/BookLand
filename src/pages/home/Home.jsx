@@ -63,16 +63,18 @@ function Home() {
         />
       </Link>
       <div className="w-full flex flex-col justify-center px-[8.25%] gap-10 py-10">
-        <HomeInfo></HomeInfo>
-        <SearchBox></SearchBox>
+        <HomeInfo />
+        <SearchBox />
         <ProductList
           title={"پرفروش ترین کتاب ها"}
           subtitle={"بهترین کتاب های دنیا"}
-          books={book}></ProductList>
+          books={book}
+        />
         <ProductList
           title={"ارزان ترین کتاب ها"}
           subtitle={"بهترین کتاب های دنیا"}
-          books={book}></ProductList>
+          books={book}
+        />
       </div>
     </div>
   );
