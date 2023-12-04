@@ -6,8 +6,9 @@ function AdminLayout() {
   return (
     <>
       <AdminHeader />
-      <div>AdminLayout</div>
-      <Outlet></Outlet>
+      <main>
+        <Outlet />
+      </main>
     </>
   );
 }

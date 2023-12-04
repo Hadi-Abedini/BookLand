@@ -9,7 +9,7 @@ function AdminHeader() {
         <span className="text-[#FF9619] text-[22px] font-[rokh-bold]">
           {textContent.header_title}
         </span>
-        <span className="text-[#F2F2F2] text-[11px] font-[rokh-bold]">
+        <span className="text-[#F2F2F2] text-[13px] font-[sans-bold]">
           ({textContent.adminHeader_title})
         </span>
       </Link>
