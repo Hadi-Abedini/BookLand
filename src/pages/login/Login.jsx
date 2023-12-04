@@ -1,7 +1,18 @@
 import React from "react";
-import textContent from "../../constants/string";
-import LoginInput from "../../components/login/loginInput/LoginInput";
+import { Formik, Field, Form, ErrorMessage } from "formik";
+import * as Yup from "yup";
 import { Link } from "react-router-dom";
+
+import textContent from "../../constants/string";
+
+const validationSchema = Yup.object().shape({
+  username: Yup.string()
+    .min(4, "نام کاربری باید حداقل 4 کاراکتر باشد")
+    .required("نام کاربری الزامی است"),
+  password: Yup.string()
+    .min(8, "رمز عبور باید حداقل 8 کاراکتر باشد")
+    .required("رمز عبور الزامی است"),
+});
 
 function Login() {
   return (
@@ -27,22 +38,39 @@ function Login() {
             {textContent.login_subtitle}
           </p>
         </div>
-        <form
-          onSubmit={() => {
-            console.log("login");
-          }}
-          className="flex flex-col justify-center items-center gap-3">
-          <LoginInput type={"text"} placeholder={textContent.login_username} />
-          <LoginInput
-            type={"password"}
-            placeholder={textContent.login_password}
-          />
-          <button
-            type="submit"
-            className={`w-full text-center text-base gap-2 bg-[#E5D1FA] p-2 mt-3 rounded-lg text-[#303842] font-[sans-semibold] `}>
-            ورود
-          </button>
-        </form>
+        <Formik
+          initialValues={{ username: "", password: "" }}
+          validationSchema={validationSchema}
+          onSubmit={(values, { setSubmitting }) => {
+            alert(JSON.stringify(values, null, 2));
+            setSubmitting(false);
+            window.location.href = '/control-panel';
+          }}>
+          {({ isSubmitting }) => (
+            <Form className="flex flex-col justify-center items-center gap-3">
+              <Field
+                type="text"
+                name="username"
+                className="w-full text-left text-sm font-[sans-regular] bg-[#E8E8F4] rounded-lg p-2 border-0 focus:border-0 focus:ring-0 placeholder:text-[#8F8F8F]"
+                placeholder="نام کاربری"
+              />
+              <ErrorMessage className="text-[12px] text-[#FF9619]" name="username" component="div" />
+              <Field
+                type="password"
+                name="password"
+                className="w-full text-left text-sm font-[sans-regular] bg-[#E8E8F4] rounded-lg p-2 border-0 focus:border-0 focus:ring-0 placeholder:text-[#8F8F8F]"
+                placeholder="رمز عبور"
+              />
+              <ErrorMessage className="text-[12px] text-[#FF9619]" name="password" component="div" />
+              <button
+                className="w-full text-center text-base gap-2 bg-[#E5D1FA] p-2 mt-3 rounded-lg text-[#303842] font-[sans-semibold] "
+                type="submit"
+                disabled={isSubmitting}>
+                ورود
+              </button>
+            </Form>
+          )}
+        </Formik>
       </div>
     </div>
   );
