@@ -7,6 +7,7 @@ import textContent from "../../constants/string";
 
 const validationSchema = Yup.object().shape({
   username: Yup.string()
+    .matches(/^[a-zA-Z]/, "نام کاربری باید با یک حرف شروع شود")
     .min(4, "نام کاربری باید حداقل 4 کاراکتر باشد")
     .required("نام کاربری الزامی است"),
   password: Yup.string()
@@ -44,7 +45,7 @@ function Login() {
           onSubmit={(values, { setSubmitting }) => {
             alert(JSON.stringify(values, null, 2));
             setSubmitting(false);
-            window.location.href = '/control-panel';
+            window.location.href = "/control-panel";
           }}>
           {({ isSubmitting }) => (
             <Form className="flex flex-col justify-center items-center gap-3">
@@ -54,14 +55,22 @@ function Login() {
                 className="w-full text-left placeholder:text-right text-sm font-[sans-regular] bg-[#E8E8F4] rounded-lg p-2 border-0 focus:border-0 focus:ring-0 placeholder:text-[#8F8F8F]"
                 placeholder="نام کاربری"
               />
-              <ErrorMessage className="text-[12px] text-[#FF9619]" name="username" component="div" />
+              <ErrorMessage
+                className="text-[12px] text-[#FF9619]"
+                name="username"
+                component="div"
+              />
               <Field
                 type="password"
                 name="password"
                 className="w-full text-left placeholder:text-right text-sm font-[sans-regular] bg-[#E8E8F4] rounded-lg p-2 border-0 focus:border-0 focus:ring-0 placeholder:text-[#8F8F8F]"
                 placeholder="رمز عبور"
               />
-              <ErrorMessage className="text-[12px] text-[#FF9619]" name="password" component="div" />
+              <ErrorMessage
+                className="text-[12px] text-[#FF9619]"
+                name="password"
+                component="div"
+              />
               <button
                 className="w-full text-center text-base gap-2 bg-[#E5D1FA] p-2 mt-3 rounded-lg text-[#303842] font-[sans-semibold] "
                 type="submit"
