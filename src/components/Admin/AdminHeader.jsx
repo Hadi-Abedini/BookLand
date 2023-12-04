@@ -14,7 +14,7 @@ function AdminHeader() {
         </span>
       </Link>
 
-      <div className="flex items-center gap-4">
+      <div className="flex items-center">
         <ul className="w-full flex justify-evenly gap-3">
           <li>
             <NavLink
