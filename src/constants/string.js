@@ -34,10 +34,11 @@ const textContent = {
     login_username: "نام کاربری",
     login_password: "رمز عبور",
     login_btn: "ورود",
-    
+
     //adminHeader
     adminHeader_title: "پنل مدیرت",
     adminHeader_navbar: ["کالاها", "موجودی و قیمت ها", "سفارش ها"],
+    adminHeader_logout: ["خروج"],
 
 
 }
