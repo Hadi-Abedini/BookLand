@@ -33,6 +33,13 @@ const textContent = {
     login_subtitle: "لطفا نام کاربری و رمز عبور خود را وارد کنید",
     login_username: "نام کاربری",
     login_password: "رمز عبور",
+    login_btn: "ورود",
+    
+    //adminHeader
+    adminHeader_title: "پنل مدیرت",
+    adminHeader_navbar: ["کالاها", "موجودی و قیمت ها", "سفارش ها"],
+
+
 }
 
 export default textContent;

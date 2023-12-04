@@ -57,7 +57,7 @@
 }
 
 .active {
-    color: #4B429F;
-    font-size: large;
-    font-weight: 600;
+    background-color: #d0aaf8;
+    color: white;
+    font-family: sans-bold;
 }

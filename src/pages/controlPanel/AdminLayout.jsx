@@ -1,14 +1,11 @@
 import React from "react";
-import { NavLink, Outlet } from "react-router-dom";
+import { Outlet } from "react-router-dom";
+import AdminHeader from "../../components/Admin/AdminHeader";
 
 function AdminLayout() {
   return (
     <>
-      <ul className="flex justify-evenly">
-        <NavLink to={"/control-panel/products"}>products</NavLink>
-        <NavLink to={"/control-panel/inventory"}>inventory</NavLink>
-        <NavLink to={"/control-panel/order"}>order</NavLink>
-      </ul>
+      <AdminHeader />
       <div>AdminLayout</div>
       <Outlet></Outlet>
     </>

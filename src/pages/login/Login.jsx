@@ -45,7 +45,7 @@ function Login() {
           onSubmit={(values, { setSubmitting }) => {
             alert(JSON.stringify(values, null, 2));
             setSubmitting(false);
-            window.location.href = "/control-panel";
+            window.location.href = "/control-panel/order";
           }}>
           {({ isSubmitting }) => (
             <Form className="flex flex-col justify-center items-center gap-3">

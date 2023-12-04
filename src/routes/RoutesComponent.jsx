@@ -85,7 +85,7 @@ const routes = createBrowserRouter([
         index: true,
         element: (
           <React.Suspense fallback={<>...</>}>
-            <Products></Products>
+            <Orders></Orders>
           </React.Suspense>
         ),
       },
