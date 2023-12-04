@@ -51,14 +51,14 @@ function Login() {
               <Field
                 type="text"
                 name="username"
-                className="w-full text-left text-sm font-[sans-regular] bg-[#E8E8F4] rounded-lg p-2 border-0 focus:border-0 focus:ring-0 placeholder:text-[#8F8F8F]"
+                className="w-full text-left placeholder:text-right text-sm font-[sans-regular] bg-[#E8E8F4] rounded-lg p-2 border-0 focus:border-0 focus:ring-0 placeholder:text-[#8F8F8F]"
                 placeholder="نام کاربری"
               />
               <ErrorMessage className="text-[12px] text-[#FF9619]" name="username" component="div" />
               <Field
                 type="password"
                 name="password"
-                className="w-full text-left text-sm font-[sans-regular] bg-[#E8E8F4] rounded-lg p-2 border-0 focus:border-0 focus:ring-0 placeholder:text-[#8F8F8F]"
+                className="w-full text-left placeholder:text-right text-sm font-[sans-regular] bg-[#E8E8F4] rounded-lg p-2 border-0 focus:border-0 focus:ring-0 placeholder:text-[#8F8F8F]"
                 placeholder="رمز عبور"
               />
               <ErrorMessage className="text-[12px] text-[#FF9619]" name="password" component="div" />
