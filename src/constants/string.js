@@ -40,6 +40,11 @@ const textContent = {
     adminHeader_navbar: ["کالاها", "موجودی و قیمت ها", "سفارش ها"],
     adminHeader_logout: ["خروج"],
 
+    //orders
+    orders_title: "مدیریت سفارش ها",
+    orders_checkbox: ["سفارش های تحویل شده", "سفارش های در انتظار ارسال"],
+    orders_table_header: ["نام کاربر", "مجموع مبلغ", "زمان ثبت سفارش"]
+
 
 }
 

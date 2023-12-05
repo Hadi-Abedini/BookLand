@@ -37,6 +37,12 @@
 * {
     scroll-behavior: smooth;
     font-family: sans-regular;
+    -webkit-user-select: none;
+    /* Safari */
+    -ms-user-select: none;
+    /* IE 10 and IE 11 */
+    user-select: none;
+    /* Standard syntax */
 }
 
 ::-webkit-scrollbar {
@@ -60,4 +66,20 @@
     background-color: #d0aaf8;
     color: white;
     font-family: sans-bold;
+}
+
+input[type="radio"] {
+    /* تغییر رنگ پس زمینه */
+    background-color: #d0aaf8;
+
+    /* تغییر رنگ دکمه */
+    border-color: #d0aaf8;
+}
+
+input[type="radio"]:checked {
+    /* تغییر رنگ پس زمینه */
+    background-color: #4B429F;
+
+    /* تغییر رنگ دکمه */
+    border-color: #4B429F;
 }
