@@ -9,7 +9,7 @@ import addCommasToNumber from "../../../utils/AddCommasToNumber";
 
 function Orders() {
   const [data, setData] = useState([]);
-  const [sortingModel, setSortingModel] = useState("createdAt");
+  const [sortingModel, setSortingModel] = useState("-createdAt");
   const [ordersStatus, setOrdersStatus] = useState("finish");
   const columns = [
     {
