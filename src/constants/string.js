@@ -52,6 +52,11 @@ const textContent = {
     products_editBtn: "ویرایش",
     products_deleteBtn: "حذف",
 
+    //inventory
+    inventory_title: "مدیریت موجودی و قیمت ها",
+    inventory_table_header: ["کالا", "قیمت", "موجودی"],
+    inventory_saveBtn: "ذخیره",
+
 
 }
 

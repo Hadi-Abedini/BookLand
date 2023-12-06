@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+
 import AdminTable from "../../../components/Admin/AdminTable";
 import textContent from "../../../constants/string";
 import getAllProduct from "../../../Api/GetAllProduct";
@@ -78,7 +79,7 @@ function Products() {
             alert("add");
           }}
           className="px-6 py-2 text-sm bg-[#4B429F] text-white rounded-lg">
-          افزودن کالا
+           {textContent.products_addBtn}
         </button>
       </div>
       <AdminTable columns={columns} data={data} />
