@@ -1,6 +1,5 @@
 import React, { useEffect } from "react";
 import { useTable, usePagination } from "react-table";
-// import { Pagination } from "flowbite-react";
 import Pagination from "../Pagination/Pagination";
 
 function AdminTable({ columns, data }) {
@@ -24,7 +23,7 @@ function AdminTable({ columns, data }) {
       columns,
       data,
     },
-    usePagination // افزودن hook صفحه‌بندی
+    usePagination
   );
   useEffect(() => {
     setPageSize(5);
