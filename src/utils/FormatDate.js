@@ -1,13 +1,6 @@
 function formatDateString(inputString) {
-    const dateObject = new Date(inputString);
-
-    const year = dateObject.getFullYear();
-    const month = dateObject.getMonth() + 1;
-    const day = dateObject.getDate();
-
-    const formattedDate = `${year}/${month}/${day}`;
-
-    return formattedDate;
+    const dateObject = new Date(inputString).toLocaleDateString('fa-IR');
+    return dateObject;
 }
-
 export default formatDateString
+

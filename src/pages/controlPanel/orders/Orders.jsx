@@ -1,4 +1,4 @@
-import React, {useState, useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import { Label, Radio } from "flowbite-react";
 
 import AdminTable from "../../../components/Admin/AdminTable";
@@ -9,6 +9,7 @@ import addCommasToNumber from "../../../utils/AddCommasToNumber";
 
 function Orders() {
   const [data, setData] = useState([]);
+  const [sortingModel, setSortingModel] = useState("createdAt");
   const [ordersStatus, setOrdersStatus] = useState("finish");
   const columns = [
     {
@@ -20,7 +21,18 @@ function Orders() {
       accessor: "col2",
     },
     {
-      Header: textContent.orders_table_header[2],
+      Header: (
+        <button
+          onClick={() => {
+            sortingModel === "createdAt"
+              ? setSortingModel("-createdAt")
+              : setSortingModel("createdAt");
+          }}
+          className="flex items-center gap-1">
+          <i className="fa fa-caret-down"></i>
+          <span>{textContent.orders_table_header[2]}</span>
+        </button>
+      ),
       accessor: "col3",
     },
     {
@@ -32,7 +44,7 @@ function Orders() {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const temp = await getAllOrder();
+        const temp = await getAllOrder(sortingModel);
         const result =
           ordersStatus === "finish"
             ? temp.filter((order) => order.deliveryStatus)
@@ -60,7 +72,7 @@ function Orders() {
     };
 
     fetchData();
-  }, [ordersStatus]);
+  }, [ordersStatus, sortingModel]);
 
   const handleRadioChange = (e) => {
     setOrdersStatus(e.target.value);

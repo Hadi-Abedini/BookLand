@@ -1,12 +1,15 @@
 import axios from "axios";
 
-const getAllOrder = async () => {
+const getAllOrder = async (sort = "-createdAt") => {
     try {
-        const response = await axios.get("http://localhost:8000/api/orders");
+        const response = await axios.get("http://localhost:8000/api/orders", {
+            params: {
+                sort:sort
+            },
+        });
 
         if (response.status === 200) {
             const orders = response.data.data.orders;
-            console.log(orders);
             await Promise.all(
                 orders.map(async (order) => {
                     const userResponse = await axios.get(`http://localhost:8000/api/users/${order.user}`);
