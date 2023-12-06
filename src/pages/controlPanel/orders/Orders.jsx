@@ -4,6 +4,7 @@ import textContent from "../../../constants/string";
 import { Label, Radio } from "flowbite-react";
 import getAllOrder from "../../../Api/GetAllOrder";
 import formatDateString from "../../../utils/FormatDate";
+import addCommasToNumber from "../../../utils/AddCommasToNumber";
 
 function Orders() {
   const [data, setData] = useState([]);
@@ -38,7 +39,7 @@ function Orders() {
         setData(
           result.map((order) => ({
             col1: order.userName,
-            col2: order.totalPrice,
+            col2: addCommasToNumber(order.totalPrice),
             col3: formatDateString(order.createdAt),
             col4: (
               <button
