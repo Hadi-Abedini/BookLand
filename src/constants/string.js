@@ -43,7 +43,14 @@ const textContent = {
     //orders
     orders_title: "مدیریت سفارش ها",
     orders_checkbox: ["سفارش های تحویل شده", "سفارش های در انتظار ارسال"],
-    orders_table_header: ["نام کاربر", "مجموع مبلغ", "زمان ثبت سفارش"]
+    orders_table_header: ["نام کاربر", "مجموع مبلغ", "زمان ثبت سفارش"],
+
+    //products
+    products_title: "مدیریت کالاها",
+    products_table_header: ["تصویر", "نام کالا", "دسته بندی"],
+    products_addBtn: "افزودن کالا",
+    products_editBtn: "ویرایش",
+    products_deleteBtn: "حذف",
 
 
 }

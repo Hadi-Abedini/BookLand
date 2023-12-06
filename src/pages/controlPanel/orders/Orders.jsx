@@ -2,22 +2,20 @@ import React, { useMemo, useState } from "react";
 import AdminTable from "../../../components/Admin/AdminTable";
 import textContent from "../../../constants/string";
 import { Label, Radio } from "flowbite-react";
-import Pagination from "../../../components/Pagination/Pagination";
-import { useLocation } from "react-router";
 
 function Orders() {
   const columns = useMemo(
     () => [
       {
-        Header: "نام کاربر",
+        Header: textContent.orders_table_header[0],
         accessor: "col1",
       },
       {
-        Header: "مجموع مبلغ",
+        Header: textContent.orders_table_header[1],
         accessor: "col2",
       },
       {
-        Header: "زمان ثبت سفارش",
+        Header: textContent.orders_table_header[2],
         accessor: "col3",
       },
       {
