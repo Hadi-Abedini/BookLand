@@ -27,6 +27,37 @@ const textContent = {
     search_title: "کتاب مورد نظر خود را سریعتر پیدا کنید",
     search_option: ["انتخاب دسته بندی", "نام کتاب", "نام نویسنده", "ناشر / تولید کننده"],
     search_submit_btn: "جستجو",
+
+    //login
+    login_title: "ورود به پنل مدیریت",
+    login_subtitle: "لطفا نام کاربری و رمز عبور خود را وارد کنید",
+    login_username: "نام کاربری",
+    login_password: "رمز عبور",
+    login_btn: "ورود",
+
+    //adminHeader
+    adminHeader_title: "پنل مدیرت",
+    adminHeader_navbar: ["کالاها", "موجودی و قیمت ها", "سفارش ها"],
+    adminHeader_logout: ["خروج"],
+
+    //orders
+    orders_title: "مدیریت سفارش ها",
+    orders_checkbox: ["سفارش های تحویل شده", "سفارش های در انتظار ارسال"],
+    orders_table_header: ["نام کاربر", "مجموع مبلغ", "زمان ثبت سفارش"],
+
+    //products
+    products_title: "مدیریت کالاها",
+    products_table_header: ["تصویر", "نام کالا", "دسته بندی"],
+    products_addBtn: "افزودن کالا",
+    products_editBtn: "ویرایش",
+    products_deleteBtn: "حذف",
+
+    //inventory
+    inventory_title: "مدیریت موجودی و قیمت ها",
+    inventory_table_header: ["کالا", "قیمت", "موجودی"],
+    inventory_saveBtn: "ذخیره",
+
+
 }
 
 export default textContent;
