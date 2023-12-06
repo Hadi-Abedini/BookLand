@@ -1,241 +1,69 @@
-import React, { useMemo, useState } from "react";
+import React, { useMemo, useState, useEffect } from "react";
 import AdminTable from "../../../components/Admin/AdminTable";
 import textContent from "../../../constants/string";
 import { Label, Radio } from "flowbite-react";
+import getAllOrder from "../../../Api/GetAllOrder";
+import formatDateString from "../../../utils/FormatDate";
 
 function Orders() {
-  const columns = useMemo(
-    () => [
-      {
-        Header: textContent.orders_table_header[0],
-        accessor: "col1",
-      },
-      {
-        Header: textContent.orders_table_header[1],
-        accessor: "col2",
-      },
-      {
-        Header: textContent.orders_table_header[2],
-        accessor: "col3",
-      },
-      {
-        Header: "",
-        accessor: "col4",
-      },
-    ],
-    []
-  );
-
-  const finish = useMemo(
-    () => [
-      {
-        col1: "1اکبر زمانی",
-        col2: "920,000",
-        col3: "1399/1/5",
-        col4: (
-          <button
-            onClick={() => {
-              alert("click");
-            }}
-            className="text-blue-700">
-            برسی سفارش
-          </button>
-        ),
-      },
-      {
-        col1: "2اکبر زمانی",
-        col2: "920,000",
-        col3: "1399/1/5",
-        col4: (
-          <button
-            onClick={() => {
-              alert("click");
-            }}
-            className="text-blue-700">
-            برسی سفارش
-          </button>
-        ),
-      },
-      {
-        col1: "3اکبر زمانی",
-        col2: "920,000",
-        col3: "1399/1/5",
-        col4: (
-          <button
-            onClick={() => {
-              alert("click");
-            }}
-            className="text-blue-700">
-            برسی سفارش
-          </button>
-        ),
-      },
-      {
-        col1: "4اکبر زمانی",
-        col2: "920,000",
-        col3: "1399/1/5",
-        col4: (
-          <button
-            onClick={() => {
-              alert("click");
-            }}
-            className="text-blue-700">
-            برسی سفارش
-          </button>
-        ),
-      },
-      {
-        col1: "5اکبر زمانی",
-        col2: "920,000",
-        col3: "1399/1/5",
-        col4: (
-          <button
-            onClick={() => {
-              alert("click");
-            }}
-            className="text-blue-700">
-            برسی سفارش
-          </button>
-        ),
-      },
-      {
-        col1: "6اکبر زمانی",
-        col2: "920,000",
-        col3: "1399/1/5",
-        col4: (
-          <button
-            onClick={() => {
-              alert("click");
-            }}
-            className="text-blue-700">
-            برسی سفارش
-          </button>
-        ),
-      },
-      {
-        col1: "7اکبر زمانی",
-        col2: "920,000",
-        col3: "1399/1/5",
-        col4: (
-          <button
-            onClick={() => {
-              alert("click");
-            }}
-            className="text-blue-700">
-            برسی سفارش
-          </button>
-        ),
-      },
-      {
-        col1: "8اکبر زمانی",
-        col2: "920,000",
-        col3: "1399/1/5",
-        col4: (
-          <button
-            onClick={() => {
-              alert("click");
-            }}
-            className="text-blue-700">
-            برسی سفارش
-          </button>
-        ),
-      },
-      {
-        col1: "9اکبر زمانی",
-        col2: "920,000",
-        col3: "1399/1/5",
-        col4: (
-          <button
-            onClick={() => {
-              alert("click");
-            }}
-            className="text-blue-700">
-            برسی سفارش
-          </button>
-        ),
-      },
-      {
-        col1: "10اکبر زمانی",
-        col2: "920,000",
-        col3: "1399/1/5",
-        col4: (
-          <button
-            onClick={() => {
-              alert("click");
-            }}
-            className="text-blue-700">
-            برسی سفارش
-          </button>
-        ),
-      },
-      {
-        col1: "11اکبر زمانی",
-        col2: "920,000",
-        col3: "1399/1/5",
-        col4: (
-          <button
-            onClick={() => {
-              alert("click");
-            }}
-            className="text-blue-700">
-            برسی سفارش
-          </button>
-        ),
-      },
-      {
-        col1: "12اکبر زمانی",
-        col2: "920,000",
-        col3: "1399/1/5",
-        col4: (
-          <button
-            onClick={() => {
-              alert("click");
-            }}
-            className="text-blue-700">
-            برسی سفارش
-          </button>
-        ),
-      },
-    ],
-    []
-  );
-  const wait = useMemo(
-    () => [
-      {
-        col1: "1اکبر زمانی",
-        col2: "920,000",
-        col3: "1399/1/5",
-        col4: (
-          <button
-            onClick={() => {
-              alert("click");
-            }}
-            className="text-blue-700">
-            برسی سفارش
-          </button>
-        ),
-      },
-      {
-        col1: "2اکبر زمانی",
-        col2: "920,000",
-        col3: "1399/1/5",
-        col4: (
-          <button
-            onClick={() => {
-              alert("click");
-            }}
-            className="text-blue-700">
-            برسی سفارش
-          </button>
-        ),
-      },
-    ],
-    []
-  );
+  const [data, setData] = useState([]);
   const [ordersStatus, setOrdersStatus] = useState("finish");
+  const columns = [
+    {
+      Header: textContent.orders_table_header[0],
+      accessor: "col1",
+    },
+    {
+      Header: textContent.orders_table_header[1],
+      accessor: "col2",
+    },
+    {
+      Header: textContent.orders_table_header[2],
+      accessor: "col3",
+    },
+    {
+      Header: "",
+      accessor: "col4",
+    },
+  ];
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const temp = await getAllOrder();
+        const result =
+          ordersStatus === "finish"
+            ? temp.filter((order) => order.deliveryStatus)
+            : temp.filter((order) => order.deliveryStatus === false);
+        setData(
+          result.map((order) => ({
+            col1: order.userName,
+            col2: order.totalPrice,
+            col3: formatDateString(order.createdAt),
+            col4: (
+              <button
+                value={order._id}
+                onClick={(e) => {
+                  alert(e.target.value);
+                }}
+                className="text-blue-700">
+                برسی سفارش
+              </button>
+            ),
+          }))
+        );
+      } catch (error) {
+        console.error("Error fetching data:", error.message);
+      }
+    };
+
+    fetchData();
+  }, [ordersStatus]);
+
   const handleRadioChange = (e) => {
     setOrdersStatus(e.target.value);
   };
+
   return (
     <div className="w-1/2 flex flex-col gap-6">
       <div className="w-full flex justify-between">
@@ -266,10 +94,7 @@ function Orders() {
           </div>
         </fieldset>
       </div>
-      <AdminTable
-        columns={columns}
-        data={ordersStatus === "finish" ? finish : wait}
-      />
+      <AdminTable columns={columns} data={data} />
     </div>
   );
 }
