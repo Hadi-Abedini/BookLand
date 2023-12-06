@@ -1,4 +1,4 @@
-import React, { useMemo, useState, useEffect } from "react";
+import React, {useState, useEffect } from "react";
 import AdminTable from "../../../components/Admin/AdminTable";
 import textContent from "../../../constants/string";
 import { Label, Radio } from "flowbite-react";
