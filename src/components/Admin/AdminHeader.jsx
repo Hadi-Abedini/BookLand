@@ -5,17 +5,17 @@ function AdminHeader() {
   return (
     <div
       className={`w-full text-white flex justify-between items-center px-6 py-3 bg-[#4B429F]`}>
-      <div className="flex items-center gap-1">
-        <span className="text-[#FF9619] text-[22px] font-[rokh-bold]">
+      <div className="w-fit flex items-center gap-1">
+        <span className="w-fit text-[#FF9619] text-[22px] font-[rokh-bold]">
           {textContent.header_title}
         </span>
-        <span className="text-[#F2F2F2] text-[13px] font-[sans-bold]">
+        <span className="w-fit text-[#F2F2F2] text-[13px] font-[sans-bold]">
           ({textContent.adminHeader_title})
         </span>
       </div>
 
-      <div className="flex items-center">
-        <ul className="w-full flex justify-between items-center gap-3">
+      <div className="w-fit flex items-center">
+        <ul className="w-full flex justify-center  items-center gap-3">
           <li>
             <NavLink
               className={

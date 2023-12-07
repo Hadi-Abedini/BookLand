@@ -33,7 +33,7 @@ function AdminTable({ columns, data }) {
             <tr {...headerGroup.getHeaderGroupProps()}>
               {headerGroup.headers.map((column) => (
                 <th
-                  className="w-1/4 text-right text-white font-[sans-semibold] bg-[#4B429F] p-3"
+                  className=" text-right text-white font-[sans-semibold] bg-[#4B429F] p-3"
                   {...column.getHeaderProps()}>
                   {column.render("Header")}
                 </th>
@@ -52,7 +52,7 @@ function AdminTable({ columns, data }) {
                 {...row.getRowProps()}>
                 {row.cells.map((cell) => {
                   return (
-                    <td className="w-1/4 p-3" {...cell.getCellProps()}>
+                    <td className="p-3" {...cell.getCellProps()}>
                       {cell.render("Cell")}
                     </td>
                   );
