@@ -40,7 +40,7 @@ function Inventory() {
     fetchData();
   }, []);
   return (
-    <div className="w-1/2 h-full flex flex-col gap-6">
+    <div className="w-1/2 flex flex-col gap-6">
       <div className="w-full flex justify-between">
         <span className="text-2xl font-[rokh-bold]">
           {textContent.inventory_title}

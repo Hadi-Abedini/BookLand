@@ -9,15 +9,10 @@ function AdminTable({ columns, data }) {
     headerGroups,
     page,
     prepareRow,
-    canPreviousPage,
-    canNextPage,
     pageOptions,
-    pageCount,
     gotoPage,
-    nextPage,
-    previousPage,
     setPageSize,
-    state: { pageIndex, pageSize },
+    state: { pageIndex },
   } = useTable(
     {
       columns,

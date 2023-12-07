@@ -11,7 +11,7 @@ function Pagination({ currentPage, totalPages, onPageChange, url }) {
           className={`${
             i === currentPage
               ? "bg-[#4B429F] text-white"
-              : "hover:outline hover:outline-2 hover:outline-[#4B429F]"
+              : "hover:outline hover:outline-2  hover:outline-[#4B429F]"
           } flex justify-center items-center w-9 h-9 rounded-full`}
           key={i}
           value={i}

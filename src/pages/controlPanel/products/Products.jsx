@@ -32,7 +32,7 @@ function Products() {
           result.map((product) => ({
             col1: (
               <img
-                className="w-9"
+                className="w-7"
                 src={`http://localhost:8000/images/products/images/${product.images}`}
                 alt="image"
               />
@@ -69,7 +69,7 @@ function Products() {
     fetchData();
   }, []);
   return (
-    <div className="w-1/2 h-full flex flex-col gap-6">
+    <div className="w-1/2 flex flex-col gap-6">
       <div className="w-full flex justify-between">
         <span className="text-2xl font-[rokh-bold]">
           {textContent.products_title}
