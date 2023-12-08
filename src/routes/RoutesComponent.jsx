@@ -1,5 +1,6 @@
 import React from "react";
 import { createBrowserRouter } from "react-router-dom";
+import { Helmet } from "react-helmet";
 
 import Home from "../pages/home/Home";
 import Cart from "../pages/cart/Cart";
@@ -23,6 +24,9 @@ const routes = createBrowserRouter([
         index: true,
         element: (
           <React.Suspense fallback={<>...</>}>
+            <Helmet>
+              <title>home</title>
+            </Helmet>
             <Home></Home>
           </React.Suspense>
         ),
@@ -31,6 +35,9 @@ const routes = createBrowserRouter([
         path: "cart",
         element: (
           <React.Suspense fallback={<>...</>}>
+            <Helmet>
+              <title>cart</title>
+            </Helmet>
             <Cart></Cart>
           </React.Suspense>
         ),
@@ -39,6 +46,9 @@ const routes = createBrowserRouter([
         path: "categorie",
         element: (
           <React.Suspense fallback={<>...</>}>
+            <Helmet>
+              <title>categorie</title>
+            </Helmet>
             <Categorie></Categorie>
           </React.Suspense>
         ),
@@ -55,6 +65,9 @@ const routes = createBrowserRouter([
         path: "product/:id",
         element: (
           <React.Suspense fallback={<>...</>}>
+            <Helmet>
+              <title>product</title>
+            </Helmet>
             <Product></Product>
           </React.Suspense>
         ),
@@ -65,6 +78,9 @@ const routes = createBrowserRouter([
     path: "login",
     element: (
       <React.Suspense fallback={<>...</>}>
+        <Helmet>
+          <title>login</title>
+        </Helmet>
         <Login></Login>
       </React.Suspense>
     ),
@@ -85,6 +101,9 @@ const routes = createBrowserRouter([
         index: true,
         element: (
           <React.Suspense fallback={<>...</>}>
+            <Helmet>
+              <title>control-panel</title>
+            </Helmet>
             <Orders></Orders>
           </React.Suspense>
         ),
@@ -93,6 +112,9 @@ const routes = createBrowserRouter([
         path: "products",
         element: (
           <React.Suspense fallback={<>...</>}>
+            <Helmet>
+              <title>control-panel</title>
+            </Helmet>
             <Products></Products>
           </React.Suspense>
         ),
@@ -101,6 +123,9 @@ const routes = createBrowserRouter([
         path: "inventory",
         element: (
           <React.Suspense fallback={<>...</>}>
+            <Helmet>
+              <title>control-panel</title>
+            </Helmet>
             <Inventory></Inventory>
           </React.Suspense>
         ),
@@ -109,6 +134,9 @@ const routes = createBrowserRouter([
         path: "order",
         element: (
           <React.Suspense fallback={<>...</>}>
+            <Helmet>
+              <title>control-panel</title>
+            </Helmet>
             <Orders></Orders>
           </React.Suspense>
         ),
