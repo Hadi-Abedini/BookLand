@@ -4,9 +4,12 @@ import AdminTable from "../../../components/Admin/AdminTable";
 import textContent from "../../../constants/string";
 import getAllProduct from "../../../Api/GetAllProduct";
 import addCommasToNumber from "../../../utils/AddCommasToNumber";
+import Pagination from "../../../components/Pagination/Pagination";
 
 function Inventory() {
   const [data, setData] = useState([]);
+  const [page, setPage] = useState({});
+
   const columns = [
     {
       Header: textContent.inventory_table_header[0],
@@ -22,23 +25,27 @@ function Inventory() {
     },
   ];
   useEffect(() => {
-    const fetchData = async () => {
+    const fetchData = async (currentPage) => {
       try {
-        const result = await getAllProduct();
+        const result = await getAllProduct(5, currentPage);
         setData(
-          result.map((product) => ({
+          result.data.data.products.map((product) => ({
             col1: product.name,
             col2: addCommasToNumber(product.price),
             col3: product.quantity,
           }))
         );
+        setPage({
+          currentPage: result.data.page,
+          totalPage: result.data.total_pages,
+        });
       } catch (error) {
         console.error("Error fetching data:", error.message);
       }
     };
 
-    fetchData();
-  }, []);
+    fetchData(page.currentPage);
+  }, [page.currentPage]);
   return (
     <div className="w-1/2 flex flex-col gap-6">
       <div className="w-full flex justify-between">
@@ -54,6 +61,11 @@ function Inventory() {
         </button>
       </div>
       <AdminTable columns={columns} data={data} />
+      <Pagination
+        currentPage={page.currentPage}
+        totalPages={page.totalPage}
+        setPage={setPage}
+      />
     </div>
   );
 }

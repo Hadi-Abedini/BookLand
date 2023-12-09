@@ -6,11 +6,13 @@ import textContent from "../../../constants/string";
 import getAllOrder from "../../../Api/GetAllOrder";
 import formatDateString from "../../../utils/FormatDate";
 import addCommasToNumber from "../../../utils/AddCommasToNumber";
+import Pagination from "../../../components/Pagination/Pagination";
 
 function Orders() {
   const [data, setData] = useState([]);
   const [sortingModel, setSortingModel] = useState("-createdAt");
-  const [ordersStatus, setOrdersStatus] = useState("finish");
+  const [ordersStatus, setOrdersStatus] = useState(true);
+  const [page, setPage] = useState({});
   const columns = [
     {
       Header: textContent.orders_table_header[0],
@@ -42,16 +44,19 @@ function Orders() {
   ];
 
   useEffect(() => {
-    const fetchData = async () => {
+    const fetchData = async (currentPage) => {
       try {
-        const temp = await getAllOrder(sortingModel);
-        const result =
-          ordersStatus === "finish"
-            ? temp.filter((order) => order.deliveryStatus)
-            : temp.filter((order) => order.deliveryStatus === false);
+        const temp = await getAllOrder(
+          sortingModel,
+          ordersStatus,
+          5,
+          currentPage
+        );
+        const result = temp.data.data.orders;
+        // console.log(result[0]);
         setData(
           result.map((order) => ({
-            col1: order.userName,
+            col1: `${order.user.firstname} ${order.user.lastname}`,
             col2: addCommasToNumber(order.totalPrice),
             col3: formatDateString(order.createdAt),
             col4: (
@@ -66,16 +71,23 @@ function Orders() {
             ),
           }))
         );
+        setPage({
+          currentPage: temp.data.page,
+          totalPage: temp.data.total_pages,
+        });
       } catch (error) {
         console.error("Error fetching data:", error.message);
       }
     };
-
-    fetchData();
-  }, [ordersStatus, sortingModel]);
+    fetchData(page.currentPage);
+  }, [ordersStatus, sortingModel, page.currentPage]);
 
   const handleRadioChange = (e) => {
     setOrdersStatus(e.target.value);
+    setPage({
+      totalPage: page.totalPage,
+      currentPage: 1,
+    });
   };
 
   return (
@@ -91,7 +103,7 @@ function Orders() {
               className="focus:ring-[#4B429F]"
               id="finish"
               name="order_status"
-              value="finish"
+              value={true}
               onChange={handleRadioChange}
               defaultChecked
             />
@@ -102,13 +114,18 @@ function Orders() {
               className="focus:ring-[#4B429F]"
               id="wait"
               name="order_status"
-              value="wait"
+              value={false}
               onChange={handleRadioChange}
             />
           </div>
         </fieldset>
       </div>
       <AdminTable columns={columns} data={data} />
+      <Pagination
+        currentPage={page.currentPage}
+        totalPages={page.totalPage}
+        setPage={setPage}
+      />
     </div>
   );
 }

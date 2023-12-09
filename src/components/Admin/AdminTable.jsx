@@ -1,6 +1,5 @@
-import React, { useEffect } from "react";
+import React from "react";
 import { useTable, usePagination } from "react-table";
-import Pagination from "../Pagination/Pagination";
 
 function AdminTable({ columns, data }) {
   const {
@@ -9,10 +8,6 @@ function AdminTable({ columns, data }) {
     headerGroups,
     page,
     prepareRow,
-    pageOptions,
-    gotoPage,
-    setPageSize,
-    state: { pageIndex },
   } = useTable(
     {
       columns,
@@ -20,9 +15,6 @@ function AdminTable({ columns, data }) {
     },
     usePagination
   );
-  useEffect(() => {
-    setPageSize(5);
-  }, [setPageSize]);
   
 
   return (
@@ -62,14 +54,6 @@ function AdminTable({ columns, data }) {
           })}
         </tbody>
       </table>
-      <Pagination
-        currentPage={pageIndex + 1}
-        totalPages={pageOptions.length}
-        url={"http://localhost:5173/control-panel/order"}
-        onPageChange={(e) => {
-          gotoPage(e - 1);
-        }}
-      />
     </div>
   );
 }
