@@ -47,7 +47,7 @@ function Inventory() {
     fetchData(page.currentPage);
   }, [page.currentPage]);
   return (
-    <div className="w-1/2 flex flex-col gap-6">
+    <div className="w-3/5 flex flex-col gap-6">
       <div className="w-full flex justify-between">
         <span className="text-2xl font-[rokh-bold]">
           {textContent.inventory_title}

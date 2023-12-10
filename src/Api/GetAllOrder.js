@@ -13,7 +13,6 @@ const getAllOrder = async (sort = "-createdAt", deliveryStatus = true, limit = 5
 
         if (response.status === 200) {
             const orders = response;
-            console.log(orders);
             return orders;
         } else {
             console.error("Error fetching data:", response.statusText);

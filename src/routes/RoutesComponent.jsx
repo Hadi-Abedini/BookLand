@@ -1,5 +1,5 @@
 import React from "react";
-import { createBrowserRouter } from "react-router-dom";
+import { createBrowserRouter, useNavigate } from "react-router-dom";
 import { Helmet } from "react-helmet";
 
 import Home from "../pages/home/Home";
@@ -14,6 +14,21 @@ import Inventory from "../pages/controlPanel/inventory/Inventory";
 import Orders from "../pages/controlPanel/orders/Orders";
 import Products from "../pages/controlPanel/products/Products";
 import UserLayout from "../pages/userLayout/UserLayout";
+
+const isAuthenticated = true;
+const PrivateRoute = ({ element, path, children }) => {
+  const navigate = useNavigate();
+
+  React.useEffect(() => {
+    if (!isAuthenticated) {
+      navigate("/login");
+    }
+  }, [isAuthenticated, navigate]);
+
+  return (
+    <React.Suspense fallback={<>...</>}>{element || children}</React.Suspense>
+  );
+};
 
 const routes = createBrowserRouter([
   {
@@ -95,7 +110,7 @@ const routes = createBrowserRouter([
   },
   {
     path: "/control-panel",
-    element: <AdminLayout></AdminLayout>,
+    element: <PrivateRoute element={<AdminLayout></AdminLayout>} />,
     children: [
       {
         index: true,
