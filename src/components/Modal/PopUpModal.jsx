@@ -17,7 +17,7 @@ function PopUpModal({ id, name }) {
     },
     onSuccess: () => {
       queryClient.invalidateQueries({
-        queryKey: ["product"],
+        queryKey: ["products"],
       });
     },
   });

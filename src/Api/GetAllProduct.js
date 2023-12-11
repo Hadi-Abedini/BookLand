@@ -1,12 +1,12 @@
 import axios from "axios";
 
-const getAllProduct = async (limit = 5, page = 1) => {
+const getAllProduct = async (page) => {
   try {
     const response = await axios.get("http://localhost:8000/api/products", {
       params: {
         fields: '-rating,-createdAt,-updatedAt',
         sort: 'price',
-        limit: limit,
+        limit: 4,
         page: page
       },
     });

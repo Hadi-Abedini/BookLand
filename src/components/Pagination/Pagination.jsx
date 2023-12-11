@@ -16,10 +16,7 @@ function Pagination({ currentPage, totalPages, setPage }) {
           value={i}
           onClick={(e) => {
             const newPage = parseInt(e.target.value, 10);
-            setPage({
-              totalPages: totalPages,
-              currentPage: newPage,
-            });
+            setPage(newPage);
           }}>
           {i}
         </button>
@@ -28,26 +25,26 @@ function Pagination({ currentPage, totalPages, setPage }) {
     return aTags;
   };
 
-  if(totalPages>1){
+  if (totalPages > 1) {
     return (
-    <div className="w-full  items-center flex justify-evenly">
-      <ChangePage
-        currentPage={currentPage}
-        totalPages={totalPages}
-        step={-1}
-        setPage={setPage}
-        text={"قبلی"}
-      />
-      <div className="flex gap-3">{generateATags()}</div>
-      <ChangePage
-        currentPage={currentPage}
-        totalPages={totalPages}
-        step={+1}
-        setPage={setPage}
-        text={"بعدی"}
-      />
-    </div>
-  );
+      <div className="w-full  items-center flex justify-evenly">
+        <ChangePage
+          currentPage={currentPage}
+          totalPages={totalPages}
+          step={-1}
+          setPage={setPage}
+          text={"قبلی"}
+        />
+        <div className="flex gap-3">{generateATags()}</div>
+        <ChangePage
+          currentPage={currentPage}
+          totalPages={totalPages}
+          step={+1}
+          setPage={setPage}
+          text={"بعدی"}
+        />
+      </div>
+    );
   }
 }
 

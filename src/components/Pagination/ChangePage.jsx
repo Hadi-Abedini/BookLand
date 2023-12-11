@@ -6,9 +6,7 @@ function ChangePage({ currentPage, totalPages, setPage, step, text }) {
       className="text-[#4B429F] hover:text-[#7869ff] "
       onClick={() => {
         const newPage = currentPage + step;
-        newPage >= 1 && newPage <= totalPages
-          ? setPage({ currentPage: newPage, totalPages: totalPages })
-          : "";
+        newPage >= 1 && newPage <= totalPages ? setPage(newPage) : "";
       }}>
       {text}
     </button>

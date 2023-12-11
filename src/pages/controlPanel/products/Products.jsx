@@ -9,9 +9,7 @@ import PopUpModal from "../../../components/Modal/PopUpModal";
 import { useQuery } from "@tanstack/react-query";
 
 function Products() {
-  const [page, setPage] = useState({ currentPage: 1, totalPage: 1 });
-  let totallPages;
-  const [rerender, setRerender] = useState(false);
+  const [page, setPage] = useState(1);
   const columns = [
     {
       Header: textContent.products_table_header[0],
@@ -35,12 +33,13 @@ function Products() {
     data: products,
     error,
   } = useQuery({
-    queryKey: ["product"],
-    queryFn: () => getAllProduct(5, page.currentPage),
+    queryKey: ["products", { page }],
+    queryFn: () => getAllProduct(page),
   });
   if (isLoading) {
     return <Spinner color="purple" aria-label="Purple spinner example" />;
   }
+  const totallPages = products.data.total_pages;
   const data = products.data.data.products.map((product) => ({
     col1: (
       <img
@@ -61,16 +60,10 @@ function Products() {
           className="text-blue-700">
           {textContent.products_editBtn}
         </button>
-        <PopUpModal
-          name={product.name}
-          id={product._id}
-          SetRerender={setRerender}
-          rerender={rerender}
-        />
+        <PopUpModal name={product.name} id={product._id} />
       </div>
     ),
   }));
-  console.log(products.data.page);
 
   return (
     <div className="w-3/5 flex flex-col gap-6">
@@ -88,8 +81,8 @@ function Products() {
       </div>
       <AdminTable columns={columns} data={data} />
       <Pagination
-        currentPage={page.currentPage}
-        totalPages={page.totalPage}
+        currentPage={page}
+        totalPages={totallPages}
         setPage={setPage}
       />
     </div>

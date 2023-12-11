@@ -7,7 +7,7 @@ import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
 const queryClient = new QueryClient({
   defaultOptions: {
     queries: {
-      staleTime: 60 * 1000,
+      staleTime: 100,
     },
   },
 });
@@ -18,7 +18,7 @@ function AdminLayout() {
       <main className="w-full h-full flex justify-center items-center">
         <QueryClientProvider client={queryClient}>
           <ReactQueryDevtools initialIsOpen={false} />
-          <Outlet/>
+          <Outlet />
         </QueryClientProvider>
       </main>
     </div>
