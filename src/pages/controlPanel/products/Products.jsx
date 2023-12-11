@@ -4,55 +4,12 @@ import AdminTable from "../../../components/Admin/AdminTable";
 import textContent from "../../../constants/string";
 import getAllProduct from "../../../Api/GetAllProduct";
 import Pagination from "../../../components/Pagination/Pagination";
-
-const fetchData = async (currentPage) => {
-  try {
-    const result = await getAllProduct(currentPage);
-    setData(
-      result.data.data.products.map((product) => ({
-        col1: (
-          <img
-            className="w-7"
-            src={`http://localhost:8000/images/products/images/${product.images}`}
-            alt="image"
-          />
-        ),
-        col2: product.name,
-        col3: `${product.category.name}/${product.subcategory.name}`,
-        col4: (
-          <div className="flex gap-2">
-            <button
-              value={product._id}
-              onClick={(e) => {
-                alert(e.target.value);
-              }}
-              className="text-blue-700">
-              {textContent.products_editBtn}
-            </button>
-            <button
-              value={product._id}
-              onClick={(e) => {
-                alert(e.target.value);
-              }}
-              className="text-blue-700">
-              {textContent.products_deleteBtn}
-            </button>
-          </div>
-        ),
-      }))
-    );
-    setPage({
-      currentPage: result.page,
-      totalPage: result.data.total_pages,
-    });
-  } catch (error) {
-    console.error("Error fetching data:", error.message);
-  }
-};
+import PopUpModal from "../../../components/Modal/PopUpModal";
 
 function Products() {
   const [data, setData] = useState([]);
   const [page, setPage] = useState({});
+  const [rerender, setRerender] = useState(false);
   const columns = [
     {
       Header: textContent.products_table_header[0],
@@ -95,14 +52,12 @@ function Products() {
                 className="text-blue-700">
                 {textContent.products_editBtn}
               </button>
-              <button
-                value={product._id}
-                onClick={(e) => {
-                  alert(e.target.value);
-                }}
-                className="text-blue-700">
-                {textContent.products_deleteBtn}
-              </button>
+              <PopUpModal
+                name={product.name}
+                id={product._id}
+                SetRerender={setRerender}
+                rerender={rerender}
+              />
             </div>
           ),
         }))
@@ -117,7 +72,7 @@ function Products() {
   };
   useEffect(() => {
     fetchData(page.currentPage);
-  }, [page.currentPage]);
+  }, [page.currentPage, rerender]);
   return (
     <div className="w-3/5 flex flex-col gap-6">
       <div className="w-full flex justify-between">
