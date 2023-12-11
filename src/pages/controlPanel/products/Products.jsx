@@ -7,6 +7,7 @@ import getAllProduct from "../../../Api/GetAllProduct";
 import Pagination from "../../../components/Pagination/Pagination";
 import PopUpModal from "../../../components/Modal/PopUpModal";
 import { useQuery } from "@tanstack/react-query";
+import DefulltModal from "../../../components/Modal/DefulltModal";
 
 function Products() {
   const [page, setPage] = useState(1);
@@ -71,13 +72,7 @@ function Products() {
         <span className="text-2xl font-[rokh-bold]">
           {textContent.products_title}
         </span>
-        <button
-          onClick={() => {
-            alert("add");
-          }}
-          className="px-6 py-2 text-sm bg-[#4B429F] text-white rounded-lg">
-          {textContent.products_addBtn}
-        </button>
+        <DefulltModal title={textContent.products_addBtn}></DefulltModal>
       </div>
       <AdminTable columns={columns} data={data} />
       <Pagination

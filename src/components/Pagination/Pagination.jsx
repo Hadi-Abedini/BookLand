@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import ChangePage from "./ChangePage";
 
 function Pagination({ currentPage, totalPages, setPage }) {

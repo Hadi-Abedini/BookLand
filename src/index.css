@@ -80,3 +80,17 @@ input[type="radio"]:checked {
     /* تغییر رنگ دکمه */
     border-color: #4B429F;
 }
+.ql-picker-label {
+    cursor: pointer;
+    display: inline-block;
+    height: 100%;
+    padding-left: 8px;
+    padding-right: 2px;
+    position: relative;
+    width: 100%;
+    direction: initial;
+  }
+  /* .ql-editor {
+    direction: rtl;
+    text-align: right;
+  } */

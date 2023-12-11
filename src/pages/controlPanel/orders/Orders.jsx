@@ -2,7 +2,6 @@ import React, { useState, useEffect } from "react";
 import { Label, Radio } from "flowbite-react";
 import { useQuery } from "@tanstack/react-query";
 import { Spinner } from "flowbite-react";
-import { useQueryClient } from "@tanstack/react-query";
 
 import AdminTable from "../../../components/Admin/AdminTable";
 import textContent from "../../../constants/string";

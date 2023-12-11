@@ -2,21 +2,18 @@ import React from "react";
 import { useTable, usePagination } from "react-table";
 
 function AdminTable({ columns, data }) {
-  const {
-    getTableProps,
-    getTableBodyProps,
-    headerGroups,
-    page,
-    prepareRow,
-  } = useTable(
-    {
-      columns,
-      data,
-    },
-    usePagination
-  );
-  
+  const { getTableProps, getTableBodyProps, headerGroups, page, prepareRow } =
+    useTable(
+      {
+        columns,
+        data,
+      },
+      usePagination
+    );
 
+  if (data.length===0) {
+    return <p className="w-full h-52 flex flex-col items-center justify-center text-center text-2xl">داده ای جهت نمایش وجود ندارد</p>;
+  }
   return (
     <div className="flex flex-col items-center gap-5">
       <table className="w-full p-3" {...getTableProps()}>

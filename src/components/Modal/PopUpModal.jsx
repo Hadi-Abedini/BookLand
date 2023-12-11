@@ -5,25 +5,27 @@ import textContent from "../../constants/string";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import deleteProductById from "../../Api/DeleteProductByID";
 
-const notify = () => toast.success(".محصول با موفقیت حذف شد");
+const notifySuccess = () => toast.success(".محصول با موفقیت حذف شد");
+const notifyUnsuccess = () => toast.error(".حذف محصول با مشکل مواحه شد");
 
 function PopUpModal({ id, name }) {
   const [openModal, setOpenModal] = useState(false);
   const queryClient = useQueryClient();
-  const { isSuccess, mutate } = useMutation({
+  const { mutate } = useMutation({
     mutationFn: (id) => {
       deleteProductById(id);
       setOpenModal(false);
     },
     onSuccess: () => {
+      notifySuccess();
       queryClient.invalidateQueries({
         queryKey: ["products"],
       });
     },
+    onError: () => {
+      notifyUnsuccess();
+    },
   });
-  if (isSuccess) {
-    notify();
-  }
   return (
     <>
       <button className="text-blue-700" onClick={() => setOpenModal(true)}>
