@@ -1,20 +1,29 @@
 import { Modal } from "flowbite-react";
 import React, { useState } from "react";
+import toast, { Toaster } from "react-hot-toast";
 import textContent from "../../constants/string";
-import DeleteProductById from "../../Api/DeleteProductByID";
+import { useMutation, useQueryClient } from "@tanstack/react-query";
+import deleteProductById from "../../Api/DeleteProductByID";
 
-function PopUpModal({ id, name, SetRerender, rerender }) {
+const notify = () => toast.success(".محصول با موفقیت حذف شد");
+
+function PopUpModal({ id, name }) {
   const [openModal, setOpenModal] = useState(false);
-  const handleDelete = async () => {
-    try {
-      await DeleteProductById(id);
+  const queryClient = useQueryClient();
+  const { isSuccess, mutate } = useMutation({
+    mutationFn: (id) => {
+      deleteProductById(id);
       setOpenModal(false);
-      SetRerender(!rerender);
-    } catch (error) {
-      console.error("Error deleting product:", error);
-    }
-  };
-
+    },
+    onSuccess: () => {
+      queryClient.invalidateQueries({
+        queryKey: ["product"],
+      });
+    },
+  });
+  if (isSuccess) {
+    notify();
+  }
   return (
     <>
       <button className="text-blue-700" onClick={() => setOpenModal(true)}>
@@ -35,7 +44,7 @@ function PopUpModal({ id, name, SetRerender, rerender }) {
             <div className="flex justify-center gap-4">
               <button
                 className="px-7 py-2 rounded-lg text-white bg-[#4B429F] "
-                onClick={handleDelete}>
+                onClick={() => mutate(id)}>
                 بله
               </button>
               <button
@@ -43,10 +52,12 @@ function PopUpModal({ id, name, SetRerender, rerender }) {
                 onClick={() => setOpenModal(false)}>
                 خیر
               </button>
+              <Toaster />
             </div>
           </div>
         </Modal.Body>
       </Modal>
+      <Toaster position="top-right" reverseOrder={false} />
     </>
   );
 }

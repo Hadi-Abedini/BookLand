@@ -33,7 +33,7 @@ const PrivateRoute = ({ element, path, children }) => {
 const routes = createBrowserRouter([
   {
     path: "/",
-    element: <UserLayout></UserLayout>,
+    element: <UserLayout/>,
     children: [
       {
         index: true,
@@ -42,7 +42,7 @@ const routes = createBrowserRouter([
             <Helmet>
               <title>home</title>
             </Helmet>
-            <Home></Home>
+            <Home/>
           </React.Suspense>
         ),
       },
@@ -53,7 +53,7 @@ const routes = createBrowserRouter([
             <Helmet>
               <title>cart</title>
             </Helmet>
-            <Cart></Cart>
+            <Cart/>
           </React.Suspense>
         ),
       },
@@ -64,7 +64,7 @@ const routes = createBrowserRouter([
             <Helmet>
               <title>categorie</title>
             </Helmet>
-            <Categorie></Categorie>
+            <Categorie/>
           </React.Suspense>
         ),
       },
@@ -72,7 +72,7 @@ const routes = createBrowserRouter([
         path: "payment",
         element: (
           <React.Suspense fallback={<>...</>}>
-            <Payment></Payment>
+            <Payment/>
           </React.Suspense>
         ),
       },
@@ -83,7 +83,7 @@ const routes = createBrowserRouter([
             <Helmet>
               <title>product</title>
             </Helmet>
-            <Product></Product>
+            <Product/>
           </React.Suspense>
         ),
       },
@@ -96,7 +96,7 @@ const routes = createBrowserRouter([
         <Helmet>
           <title>login</title>
         </Helmet>
-        <Login></Login>
+        <Login/>
       </React.Suspense>
     ),
   },
@@ -104,13 +104,13 @@ const routes = createBrowserRouter([
     path: "shipping",
     element: (
       <React.Suspense fallback={<>...</>}>
-        <Shipping></Shipping>
+        <Shipping/>
       </React.Suspense>
     ),
   },
   {
     path: "/control-panel",
-    element: <PrivateRoute element={<AdminLayout></AdminLayout>} />,
+    element: <PrivateRoute element={<AdminLayout/>} />,
     children: [
       {
         index: true,
@@ -119,7 +119,7 @@ const routes = createBrowserRouter([
             <Helmet>
               <title>control-panel</title>
             </Helmet>
-            <Orders></Orders>
+            <Orders/>
           </React.Suspense>
         ),
       },
@@ -130,7 +130,7 @@ const routes = createBrowserRouter([
             <Helmet>
               <title>control-panel</title>
             </Helmet>
-            <Products></Products>
+            <Products/>
           </React.Suspense>
         ),
       },
@@ -141,7 +141,7 @@ const routes = createBrowserRouter([
             <Helmet>
               <title>control-panel</title>
             </Helmet>
-            <Inventory></Inventory>
+            <Inventory/>
           </React.Suspense>
         ),
       },
@@ -152,7 +152,7 @@ const routes = createBrowserRouter([
             <Helmet>
               <title>control-panel</title>
             </Helmet>
-            <Orders></Orders>
+            <Orders/>
           </React.Suspense>
         ),
       },
