@@ -1,41 +1,48 @@
 import { Modal, Spinner } from "flowbite-react";
 import { useState, useEffect } from "react";
 import ReactQuill from "react-quill";
-import { useQuery } from "@tanstack/react-query";
+import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import "react-quill/dist/quill.snow.css";
 import "../../index.css";
 import SearchDropDownBtn from "../SearchBox/SearchDropDownBtn";
 import SearchInput from "../SearchBox/SearchInput";
 import GetAllCategorie from "../../Api/GetAllCategorie";
 import GetAllSubcategoriesByCategoriesId from "../../Api/GetAllSubcategoriesByCategoriesId";
+import AddNewProduct from "../../Api/AddNewProduct";
+import toast from "react-hot-toast";
+
+const notifySuccess = () => toast.success(".محصول با موفقیت حذف شد");
+const notifyUnsuccess = () => toast.error(".حذف محصول با مشکل مواحه شد");
 
 function DefulltModal({ title }) {
   const [openModal, setOpenModal] = useState(false);
   const [subcategories, setSubcategories] = useState([]);
+  const queryClient = useQueryClient();
 
   const [formValues, setFormValues] = useState({
-    file: null,
-    bookName: "",
-    bookCategory: "",
-    bookSubcategory: "",
+    images: null,
+    name: "",
+    category: "",
+    subcategory: "",
     description: "",
+    writer: "",
+    publisher: "",
+    price: "",
+    quantity: "",
+    rating: 3.6,
   });
 
-  const {
-    isLoading,
-    data: categories,
-    error: categoriesError,
-  } = useQuery({
+  const { isLoading, data: categories } = useQuery({
     queryKey: ["categories"],
     queryFn: GetAllCategorie,
   });
 
   useEffect(() => {
-    if (formValues.bookCategory) {
+    if (formValues.category) {
       const fetchData = async () => {
         try {
           const data = await GetAllSubcategoriesByCategoriesId(
-            formValues.bookCategory
+            formValues.category
           );
           setSubcategories(data.data.data.subcategories);
         } catch (error) {
@@ -44,12 +51,12 @@ function DefulltModal({ title }) {
       };
       fetchData();
     }
-  }, [formValues.bookCategory]);
+  }, [formValues.category]);
 
   const handleFileChange = (e) => {
     setFormValues({
       ...formValues,
-      file: e.target.files[0],
+      images: e.target.files[0],
     });
   };
 
@@ -60,16 +67,53 @@ function DefulltModal({ title }) {
     });
   };
 
+  const { mutate } = useMutation({
+    mutationFn: (formData) => {
+      AddNewProduct(formData);
+      queryClient.invalidateQueries({
+        queryKey: ["products"],
+      });
+      setOpenModal(false);
+    },
+    onSuccess: () => {
+      notifySuccess();
+      queryClient.invalidateQueries({
+        queryKey: ["products"],
+      });
+      setFormValues({
+        images: null,
+        name: "",
+        category: "",
+        subcategory: "",
+        description: "",
+        writer: "",
+        publisher: "",
+        price: "",
+        quantity: "",
+        rating: 3.6,
+      });
+    },
+    onError: () => {
+      notifyUnsuccess();
+    },
+  });
+
   const handleSubmit = (e) => {
     e.preventDefault();
-    setFormValues({
-      file: null,
-      bookName: "",
-      bookCategory: "",
-      bookSubcategory: "",
-      description: "",
-    });
-    setOpenModal(false);
+
+    const formData = new FormData();
+    formData.append("images", formValues.images);
+    formData.append("name", formValues.name);
+    formData.append("publisher", formValues.publisher);
+    formData.append("writer", formValues.writer);
+    formData.append("category", formValues.category);
+    formData.append("subcategory", formValues.subcategory);
+    formData.append("quantity", formValues.quantity);
+    formData.append("price", formValues.price);
+    formData.append("rating", 3.6);
+    formData.append("description", formValues.description);
+
+    mutate(formData);
   };
 
   if (isLoading) {
@@ -93,52 +137,96 @@ function DefulltModal({ title }) {
         <Modal.Body>
           <form
             onSubmit={handleSubmit}
-            className="flex flex-col items-center gap-3"
+            className="flex flex-col items-center gap-3 text-xs"
             action="">
             <div className="w-full flex flex-col gap-1">
               <span>تصویر کالا:</span>
               <input
-                className="block w-full text-sm bg-[#E8E8F4] text-gray-900 border border-gray-300 rounded-lg cursor-pointer dark:text-gray-400 focus:outline-none dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400"
-                name="file"
+                className="block w-full text-[13px] bg-[#E8E8F4]  rounded-lg cursor-pointer dark:text-gray-400 focus:outline-none"
+                name="images"
                 type="file"
                 accept=".jpg,.png"
                 onChange={handleFileChange}
                 required
               />
             </div>
-            <div className="w-full flex flex-col gap-1">
-              <span>نام کالا:</span>
-              <SearchInput
-                id={"book-name"}
-                placeholder={"نام کتاب"}
-                onChange={(e) => handleInputChange("bookName", e.target.value)}
-              />
+            <div className="w-full flex gap-3">
+              <div className="w-full flex flex-col gap-1">
+                <span>نام کالا:</span>
+                <SearchInput
+                  id={"name"}
+                  placeholder={"نام کتاب"}
+                  onChange={(e) => handleInputChange("name", e.target.value)}
+                />
+              </div>
+              <div className="w-full flex flex-col gap-1">
+                <span>نویسنده:</span>
+                <SearchInput
+                  id={"writer"}
+                  placeholder={"نویسنده"}
+                  onChange={(e) => handleInputChange("writer", e.target.value)}
+                />
+              </div>
+              <div className="w-full flex flex-col gap-1">
+                <span>ناشر:</span>
+                <SearchInput
+                  id={"publisher"}
+                  placeholder={"ناشر"}
+                  onChange={(e) =>
+                    handleInputChange("publisher", e.target.value)
+                  }
+                />
+              </div>
             </div>
-            <div className="w-full flex flex-col gap-1">
-              <span>دسته بندی:</span>
-              <SearchDropDownBtn
-                key={"catgorie"}
-                text={"انتخاب دسته بندی"}
-                id={"book-category"}
-                optionList={categories.data.data.categories}
-                onChange={(e) =>
-                  handleInputChange("bookCategory", e.target.value)
-                }
-              />
-            </div>
-            <div className="w-full flex flex-col gap-1">
-              <span>دسته بندی:</span>
-              <SearchDropDownBtn
-                key={"subcatgorie"}
-                text={"انتخاب زیردسته بندی"}
-                id={"book-subcategory"}
-                optionList={subcategories}
-                onChange={(e) =>
-                  handleInputChange("bookSubcategory", e.target.value)
-                }
-              />
-            </div>
+            <div className="w-full flex gap-3">
+              <div className="w-full flex flex-col gap-1">
+                <span>قیمت:</span>
+                <SearchInput
+                  id={"price"}
+                  placeholder={"قیمت (ریال)"}
+                  type="number"
+                  onChange={(e) => handleInputChange("price", e.target.value)}
+                />
+              </div>
 
+              <div className="w-full flex flex-col gap-1">
+                <span>تعداد:</span>
+                <SearchInput
+                  id={"quantity"}
+                  type="number"
+                  placeholder={"تعداد کتاب"}
+                  onChange={(e) =>
+                    handleInputChange("quantity", e.target.value)
+                  }
+                />
+              </div>
+            </div>
+            <div className="w-full flex gap-3">
+              <div className="w-full flex flex-col gap-1">
+                <span>دسته بندی:</span>
+                <SearchDropDownBtn
+                  key={"catgorie"}
+                  text={"دسته بندی"}
+                  id={"category"}
+                  optionList={categories.data.data.categories}
+                  onChange={(e) =>
+                    handleInputChange("category", e.target.value)
+                  }
+                />
+              </div>
+              <div className="w-full flex flex-col gap-1">
+                <span>زیردسته بندی:</span>
+                <SearchDropDownBtn
+                  key={"subcatgorie"}
+                  text={"زیردسته بندی"}
+                  id={"subcategory"}
+                  optionList={subcategories}
+                  onChange={(e) =>
+                    handleInputChange("subcategory", e.target.value)
+                  }
+                />
+              </div>
+            </div>
             <div className="w-full flex flex-col gap-1">
               <span>توضیحات:</span>
               <ReactQuill
