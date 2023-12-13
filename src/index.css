@@ -90,7 +90,6 @@ input[type="radio"]:checked {
     width: 100%;
     direction: initial;
   }
-  /* .ql-editor {
-    direction: rtl;
-    text-align: right;
-  } */
+ .ql-container{
+    height: fit-content;
+ }
