@@ -6,19 +6,24 @@ import "react-quill/dist/quill.snow.css";
 import "../../index.css";
 import SearchDropDownBtn from "../SearchBox/SearchDropDownBtn";
 import SearchInput from "../SearchBox/SearchInput";
-import GetAllCategorie from "../../Api/GetAllCategorie";
-import GetAllSubcategoriesByCategoriesId from "../../Api/GetAllSubcategoriesByCategoriesId";
 import AddNewProduct from "../../Api/AddNewProduct";
 import toast from "react-hot-toast";
+import getAllCategorie from "../../Api/GetAllCategorie";
+import getAllSubcategoriesByCategoriesId from "../../Api/GetAllSubcategoriesByCategoriesId";
 
 const notifySuccess = () => toast.success(".محصول با موفقیت حذف شد");
 const notifyUnsuccess = () => toast.error(".حذف محصول با مشکل مواحه شد");
 
-function DefulltModal({ title }) {
+function DefulltModal({ title, id }) {
   const [openModal, setOpenModal] = useState(false);
   const [subcategories, setSubcategories] = useState([]);
   const queryClient = useQueryClient();
-
+  const { data: products } =
+    id ??
+    useQuery({
+      queryKey: ["products"],
+      queryFn: () => getAllProduct(),
+    });
   const [formValues, setFormValues] = useState({
     images: null,
     name: "",
@@ -34,14 +39,14 @@ function DefulltModal({ title }) {
 
   const { isLoading, data: categories } = useQuery({
     queryKey: ["categories"],
-    queryFn: GetAllCategorie,
+    queryFn: getAllCategorie,
   });
 
   useEffect(() => {
     if (formValues.category) {
       const fetchData = async () => {
         try {
-          const data = await GetAllSubcategoriesByCategoriesId(
+          const data = await getAllSubcategoriesByCategoriesId(
             formValues.category
           );
           setSubcategories(data.data.data.subcategories);
@@ -123,7 +128,7 @@ function DefulltModal({ title }) {
   return (
     <>
       <button
-        className="px-6 py-2 text-sm bg-[#4B429F] text-white rounded-lg"
+        className="text-blue-700"
         onClick={() => setOpenModal(true)}>
         {title}
       </button>

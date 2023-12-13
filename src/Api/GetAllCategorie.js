@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const GetAllCategorie = async () => {
+const getAllCategorie = async () => {
     try {
         const response = await axios.get("http://localhost:8000/api/categories");
 
@@ -17,4 +17,4 @@ const GetAllCategorie = async () => {
     }
 };
 
-export default GetAllCategorie;
+export default getAllCategorie;

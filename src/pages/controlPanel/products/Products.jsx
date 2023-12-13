@@ -1,13 +1,13 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { Spinner } from "flowbite-react";
 
 import AdminTable from "../../../components/Admin/AdminTable";
 import textContent from "../../../constants/string";
 import getAllProduct from "../../../Api/GetAllProduct";
 import Pagination from "../../../components/Pagination/Pagination";
-import PopUpModal from "../../../components/Modal/PopUpModal";
+import PopUpModal from "../../../components/Modal/DeleteModal";
 import { useQuery } from "@tanstack/react-query";
-import DefulltModal from "../../../components/Modal/DefulltModal";
+import DefulltModal from "../../../components/Modal/AddModal";
 
 function Products() {
   const [page, setPage] = useState(1);

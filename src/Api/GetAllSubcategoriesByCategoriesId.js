@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const GetAllSubcategoriesByCategoriesId = async (categoriesId) => {
+const getAllSubcategoriesByCategoriesId = async (categoriesId) => {
     try {
         const response = await axios.get("http://localhost:8000/api/subcategories", {
             params: {
@@ -21,4 +21,4 @@ const GetAllSubcategoriesByCategoriesId = async (categoriesId) => {
     }
 };
 
-export default GetAllSubcategoriesByCategoriesId;
+export default getAllSubcategoriesByCategoriesId;

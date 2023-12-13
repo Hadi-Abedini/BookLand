@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const AddNewProduct = async (formData) => {
+const addNewProduct = async (formData) => {
     try {
         const response = await axios.post(`http://localhost:8000/api/products`, formData, {
             headers: {
@@ -20,4 +20,4 @@ const AddNewProduct = async (formData) => {
     }
 };
 
-export default AddNewProduct;
+export default addNewProduct;
