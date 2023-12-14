@@ -10,8 +10,6 @@ import SearchDropDownBtn from "../SearchBox/SearchDropDownBtn";
 import getAllCategorie from "../../Api/GetAllCategorie";
 import getAllSubcategoriesByCategoriesId from "../../Api/GetAllSubcategoriesByCategoriesId";
 import getProductById from "../../Api/GetProductById";
-import urlToFile from "../../utils/dowloadImage";
-import addNewProduct from "../../Api/AddNewProduct";
 import editProductById from "../../Api/EditProductById";
 
 function EditProductModal({ id }) {
@@ -22,6 +20,7 @@ function EditProductModal({ id }) {
   const queryClient = useQueryClient();
 
   const [formValues, setFormValues] = useState({
+    id: id,
     images: null,
     name: "",
     category: "",
@@ -55,6 +54,7 @@ function EditProductModal({ id }) {
             formValues.category
           );
           setSubcategories(data.data.data.subcategories);
+          console.log(formValues.category);
         } catch (error) {
           console.error("Error loading subcategories:", error);
         }
@@ -63,23 +63,19 @@ function EditProductModal({ id }) {
     }
     if (product) {
       const temp = product.data.data.product;
-      urlToFile(
-        `http://localhost:8000/images/products/images/${temp.images[0]}`,
-        temp.images[0]
-      ).then((file) =>
-        setFormValues({
-          images: file,
-          name: temp.name,
-          category: temp.category._id,
-          subcategory: temp.subcategory._id,
-          description: temp.description,
-          writer: temp.writer,
-          publisher: temp.publisher,
-          price: temp.price,
-          quantity: temp.quantity,
-          rating: temp.rating,
-        })
-      );
+
+      setFormValues({
+        images: null,
+        name: temp.name,
+        category: temp.category._id,
+        subcategory: temp.subcategory._id,
+        description: temp.description,
+        writer: temp.writer,
+        publisher: temp.publisher,
+        price: temp.price,
+        quantity: temp.quantity,
+        rating: temp.rating,
+      });
     }
   }, [formValues.category, product]);
 
@@ -98,28 +94,28 @@ function EditProductModal({ id }) {
   };
 
   const { mutate } = useMutation({
-    mutationFn: (formData, id) => {
-      console.log(formValues);
+    mutationKey: "editProductMutation",
+    mutationFn: (formData) => {
       editProductById(formData, id);
       setOpenModal(false);
     },
     onSuccess: () => {
-      notifySuccess();
+      // notifySuccess();
       queryClient.invalidateQueries({
         queryKey: ["products"],
       });
-      //   setFormValues({
-      //     images: temp.images[0],
-      //     name: temp.name,
-      //     category: temp.category._id,
-      //     subcategory: temp.subcategory._id,
-      //     description: temp.description,
-      //     writer: temp.writer,
-      //     publisher: temp.publisher,
-      //     price: temp.price,
-      //     quantity: temp.quantity,
-      //     rating: temp.rating,
-      //   });
+      setFormValues({
+        images: null,
+        name: "",
+        category: "",
+        subcategory: "",
+        description: "",
+        writer: "",
+        publisher: "",
+        price: "",
+        quantity: "",
+        rating: 3.6,
+      });
     },
     onError: () => {
       notifyUnsuccess();
@@ -130,18 +126,17 @@ function EditProductModal({ id }) {
     e.preventDefault();
 
     const formData = new FormData();
-    // formData.append("images", formValues.images);
+    formData.append("images", formValues.images);
     formData.append("name", formValues.name);
-    // formData.append("publisher", formValues.publisher);
-    // formData.append("writer", formValues.writer);
-    formData.append("category", formValues.category);
+    formData.append("publisher", formValues.publisher);
+    formData.append("writer", formValues.writer);
+    // formData.append("category", formValues.category);
     // formData.append("subcategory", formValues.subcategory);
-    // formData.append("quantity", formValues.quantity);
-    // formData.append("price", formValues.price);
+    formData.append("quantity", formValues.quantity);
+    formData.append("price", formValues.price);
     // formData.append("rating", 3.6);
-    // formData.append("description", formValues.description);
-
-    mutate(formData, id);
+    formData.append("description", formValues.description);
+    mutate(formData);
   };
 
   if (isLoading) {
@@ -245,7 +240,7 @@ function EditProductModal({ id }) {
                   value={formValues.category}
                   text={"دسته بندی"}
                   id={"category"}
-                  optionList={categories.data.data.categories}
+                  optionList={categories?.data?.data?.categories || []}
                   onChange={(e) =>
                     handleInputChange("category", e.target.value)
                   }

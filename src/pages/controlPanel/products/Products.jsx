@@ -45,7 +45,7 @@ function Products() {
   const data = products.data.data.products.map((product) => ({
     col1: (
       <img
-        className="w-7"
+        className="w-7 h-[41.44px]"
         src={`http://localhost:8000/images/products/images/${product.images}`}
         alt="product-image"
       />
@@ -54,7 +54,7 @@ function Products() {
     col3: `${product.category.name}/${product.subcategory.name}`,
     col4: (
       <div className="flex gap-2">
-        <EditProductModal id={product._id}/>
+        <EditProductModal id={product._id} />
         <PopUpModal name={product.name} id={product._id} />
       </div>
     ),

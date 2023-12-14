@@ -7,12 +7,8 @@ const editProductById = async (formData, productId) => {
                 'Content-Type': 'multipart/form-data',
             },
         });
-
         if (response.status === 200) {
-            console.log(response.data);
-        } else {
-            console.error("Error editing product:", response.data);
-            throw new Error("Failed to edit product");
+            return response.data;
         }
     } catch (error) {
         console.error(error.message);
