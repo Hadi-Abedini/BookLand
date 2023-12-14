@@ -8,6 +8,7 @@ import Pagination from "../../../components/Pagination/Pagination";
 import PopUpModal from "../../../components/Modal/DeleteModal";
 import { useQuery } from "@tanstack/react-query";
 import DefulltModal from "../../../components/Modal/AddModal";
+import EditProductModal from "../../../components/Modal/EditProductModal";
 
 function Products() {
   const [page, setPage] = useState(1);
@@ -53,14 +54,7 @@ function Products() {
     col3: `${product.category.name}/${product.subcategory.name}`,
     col4: (
       <div className="flex gap-2">
-        <button
-          value={product._id}
-          onClick={(e) => {
-            alert(e.target.value);
-          }}
-          className="text-blue-700">
-          {textContent.products_editBtn}
-        </button>
+        <EditProductModal id={product._id}/>
         <PopUpModal name={product.name} id={product._id} />
       </div>
     ),

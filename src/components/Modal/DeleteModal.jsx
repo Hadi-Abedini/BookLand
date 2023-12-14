@@ -54,7 +54,6 @@ function PopUpModal({ id, name }) {
                 onClick={() => setOpenModal(false)}>
                 خیر
               </button>
-              <Toaster />
             </div>
           </div>
         </Modal.Body>
