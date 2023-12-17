@@ -2,29 +2,23 @@ import React, { useState, useEffect } from "react";
 import { Modal, Spinner } from "flowbite-react";
 import { useQueryClient, useQuery, useMutation } from "@tanstack/react-query";
 import ReactQuill from "react-quill";
+import "react-quill/dist/quill.snow.css";
 import "../../index.css";
 
 import textContent from "../../constants/string";
 import SearchInput from "../SearchBox/SearchInput";
-import SearchDropDownBtn from "../SearchBox/SearchDropDownBtn";
-import getAllCategorie from "../../Api/GetAllCategorie";
-import getAllSubcategoriesByCategoriesId from "../../Api/GetAllSubcategoriesByCategoriesId";
 import getProductById from "../../Api/GetProductById";
 import editProductById from "../../Api/EditProductById";
 
 function EditProductModal({ id }) {
   const [openModal, setOpenModal] = useState(false);
-  const [subcategories, setSubcategories] = useState([]);
   const [productID, setProductID] = useState();
 
   const queryClient = useQueryClient();
 
   const [formValues, setFormValues] = useState({
-    id: id,
     images: null,
     name: "",
-    category: "",
-    subcategory: "",
     description: "",
     writer: "",
     publisher: "",
@@ -32,12 +26,7 @@ function EditProductModal({ id }) {
     quantity: "",
     rating: 3.6,
   });
-
-  const { isLoading, data: categories } = useQuery({
-    queryKey: ["categories"],
-    queryFn: getAllCategorie,
-  });
-  const { data: product } = useQuery({
+  const { data: product,isLoading } = useQuery({
     queryKey: ["product", productID],
     queryFn: () => {
       if (openModal) {
@@ -47,20 +36,6 @@ function EditProductModal({ id }) {
   });
 
   useEffect(() => {
-    if (formValues.category) {
-      const fetchData = async () => {
-        try {
-          const data = await getAllSubcategoriesByCategoriesId(
-            formValues.category
-          );
-          setSubcategories(data.data.data.subcategories);
-          console.log(formValues.category);
-        } catch (error) {
-          console.error("Error loading subcategories:", error);
-        }
-      };
-      fetchData();
-    }
     if (product) {
       const temp = product.data.data.product;
 
@@ -107,8 +82,6 @@ function EditProductModal({ id }) {
       setFormValues({
         images: null,
         name: "",
-        category: "",
-        subcategory: "",
         description: "",
         writer: "",
         publisher: "",
@@ -130,8 +103,6 @@ function EditProductModal({ id }) {
     formData.append("name", formValues.name);
     formData.append("publisher", formValues.publisher);
     formData.append("writer", formValues.writer);
-    // formData.append("category", formValues.category);
-    // formData.append("subcategory", formValues.subcategory);
     formData.append("quantity", formValues.quantity);
     formData.append("price", formValues.price);
     // formData.append("rating", 3.6);
@@ -228,34 +199,6 @@ function EditProductModal({ id }) {
                   placeholder={"تعداد کتاب"}
                   onChange={(e) =>
                     handleInputChange("quantity", e.target.value)
-                  }
-                />
-              </div>
-            </div>
-            <div className="w-full flex gap-3">
-              <div className="w-full flex flex-col gap-1">
-                <span>دسته بندی:</span>
-                <SearchDropDownBtn
-                  key={"catgorie"}
-                  value={formValues.category}
-                  text={"دسته بندی"}
-                  id={"category"}
-                  optionList={categories?.data?.data?.categories || []}
-                  onChange={(e) =>
-                    handleInputChange("category", e.target.value)
-                  }
-                />
-              </div>
-              <div className="w-full flex flex-col gap-1">
-                <span>زیردسته بندی:</span>
-                <SearchDropDownBtn
-                  key={"subcatgorie"}
-                  value={formValues.subcategory}
-                  text={"زیردسته بندی"}
-                  id={"subcategory"}
-                  optionList={subcategories}
-                  onChange={(e) =>
-                    handleInputChange("subcategory", e.target.value)
                   }
                 />
               </div>
