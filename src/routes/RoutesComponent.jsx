@@ -77,7 +77,7 @@ const routes = createBrowserRouter([
         ),
       },
       {
-        path: "product/:id",
+        path: "product/:productID",
         element: (
           <React.Suspense fallback={<>...</>}>
             <Helmet>
