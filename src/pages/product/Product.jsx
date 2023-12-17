@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { useParams } from "react-router-dom";
 import { useQuery } from "@tanstack/react-query";
 import parse from "html-react-parser";
-import { Rating, Spinner, Tooltip, Button } from "flowbite-react";
+import { Rating, Spinner, Tooltip } from "flowbite-react";
 import { Breadcrumb } from "flowbite-react";
 import { HiHome } from "react-icons/hi";
 import "react-quill/dist/quill.snow.css";
@@ -43,7 +43,7 @@ function Product() {
           </Breadcrumb.Item>
           <Breadcrumb.Item>{productInfo.name}</Breadcrumb.Item>
         </Breadcrumb>
-        <div className="w-full pt-7 flex justify-around">
+        <div className="w-full pt-7 flex gap-7 mb-4">
           <img
             className="w-[200px] h-[324px]"
             src={`http://localhost:8000/images/products/images/${productInfo.images}`}
@@ -91,10 +91,11 @@ function Product() {
               </span>
             </div>
           </div>
-          <p className="w-[50%] leading-[26px] text-sm">
+        </div>
+        
+        <p className="w-full leading-8 text-sm">
             {parse(product.data.data.product.description)}
           </p>
-        </div>
       </div>
     );
   }

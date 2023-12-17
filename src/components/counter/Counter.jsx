@@ -4,7 +4,6 @@ function Counter({ count, setCount, max }) {
   return (
     <div class="flex flex-col">
       <label
-        for="custom-input-number"
         className="w-full text-gray-700 text-sm font-semibold">
         تعداد:
       </label>
