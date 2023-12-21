@@ -44,15 +44,9 @@ function Products() {
   });
 
   useEffect(() => {
-    if (isSuccess) {
-      if (products.data.data.products.length === 0) {
-        if (page > 1) {
-          setPage(page - 1);
-          queryClient.invalidateQueries({
-            queryKey: ["products", { page }],
-          });
-        }
-      }
+    if (isSuccess && !products.data.data.products.length && page > 1) {
+      setPage(page - 1);
+      queryClient.invalidateQueries(["products", { page }]);
     }
   }, [products]);
 
