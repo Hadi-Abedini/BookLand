@@ -71,8 +71,7 @@ function Home() {
   });
   if (isLoading) {
     return <Spinner color="purple" aria-label="Purple spinner example" />;
-  }
-  else if (isSuccess && categoriesFetch) {
+  } else if (isSuccess && categoriesFetch) {
     return (
       <div className="h-full w-full flex flex-col bg-[#E8E8F4]">
         <Link to={"categorie"}>
@@ -88,15 +87,16 @@ function Home() {
             const temp = products.data.data.products.filter(
               (product) => product.category._id === category._id
             );
-            console.log(temp);
-            return (
-              <ProductList
-                key={category._id}
-                title={category.name}
-                subtitle={"temp.subcategory.name"}
-                books={temp}
-              />
-            );
+            if (temp.length > 4) {
+              return (
+                <ProductList
+                  key={category._id}
+                  title={category.name}
+                  subtitle={"temp.subcategory.name"}
+                  books={temp}
+                />
+              );
+            }
           })}
         </div>
       </div>

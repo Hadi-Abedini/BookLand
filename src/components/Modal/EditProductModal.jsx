@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { Modal, Spinner } from "flowbite-react";
 import { useQueryClient, useQuery, useMutation } from "@tanstack/react-query";
+import toast from "react-hot-toast";
 import ReactQuill from "react-quill";
 import "react-quill/dist/quill.snow.css";
 import "../../index.css";
@@ -9,6 +10,11 @@ import textContent from "../../constants/string";
 import SearchInput from "../SearchBox/SearchInput";
 import getProductById from "../../Api/GetProductById";
 import editProductById from "../../Api/EditProductById";
+
+
+
+const notifySuccess = () => toast.success(".محصول با موفقیت ویرایش شد");
+const notifyUnsuccess = () => toast.error(".ویرایش محصول با مشکل مواجه شد");
 
 function EditProductModal({ id }) {
   const [openModal, setOpenModal] = useState(false);
@@ -26,7 +32,7 @@ function EditProductModal({ id }) {
     quantity: "",
     rating: 3.6,
   });
-  const { data: product,isLoading } = useQuery({
+  const { data: product, isLoading } = useQuery({
     queryKey: ["product", productID],
     queryFn: () => {
       if (openModal) {
@@ -75,7 +81,7 @@ function EditProductModal({ id }) {
       setOpenModal(false);
     },
     onSuccess: () => {
-      // notifySuccess();
+      notifySuccess();
       queryClient.invalidateQueries({
         queryKey: ["products"],
       });
@@ -99,13 +105,14 @@ function EditProductModal({ id }) {
     e.preventDefault();
 
     const formData = new FormData();
-    formData.append("images", formValues.images);
+    if (formValues.images !== null) {
+      formData.append("images", formValues.images);
+    }
     formData.append("name", formValues.name);
     formData.append("publisher", formValues.publisher);
     formData.append("writer", formValues.writer);
     formData.append("quantity", formValues.quantity);
     formData.append("price", formValues.price);
-    // formData.append("rating", 3.6);
     formData.append("description", formValues.description);
     mutate(formData);
   };
@@ -143,8 +150,6 @@ function EditProductModal({ id }) {
                 type="file"
                 accept=".jpg,.png"
                 onChange={handleFileChange}
-                // defaultValue={formValues.images}
-                required
               />
             </div>
             <div className="w-full flex gap-3">
