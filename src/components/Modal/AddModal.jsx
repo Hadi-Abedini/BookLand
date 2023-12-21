@@ -96,7 +96,6 @@ function DefulltModal({ title }) {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-
     const formData = new FormData();
     formData.append("images", formValues.images);
     formData.append("name", formValues.name);
