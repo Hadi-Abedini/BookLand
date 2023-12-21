@@ -1,22 +1,18 @@
 import axios from "axios";
 
-const getAllOrder = async (sort = "-createdAt") => {
+const getAllOrder = async (sort = "-createdAt", deliveryStatus = true, limit = 5, page = 1) => {
     try {
         const response = await axios.get("http://localhost:8000/api/orders", {
             params: {
-                sort:sort
+                sort: sort,
+                limit: limit,
+                page: page,
+                deliveryStatus: deliveryStatus
             },
         });
 
         if (response.status === 200) {
-            const orders = response.data.data.orders;
-            await Promise.all(
-                orders.map(async (order) => {
-                    const userResponse = await axios.get(`http://localhost:8000/api/users/${order.user}`);
-                    order.userName = `${userResponse.data.data.user.firstname} ${userResponse.data.data.user.lastname}`;
-                })
-            );
-
+            const orders = response;
             return orders;
         } else {
             console.error("Error fetching data:", response.statusText);

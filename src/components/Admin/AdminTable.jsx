@@ -1,35 +1,19 @@
-import React, { useEffect } from "react";
+import React from "react";
 import { useTable, usePagination } from "react-table";
-import Pagination from "../Pagination/Pagination";
 
 function AdminTable({ columns, data }) {
-  const {
-    getTableProps,
-    getTableBodyProps,
-    headerGroups,
-    page,
-    prepareRow,
-    canPreviousPage,
-    canNextPage,
-    pageOptions,
-    pageCount,
-    gotoPage,
-    nextPage,
-    previousPage,
-    setPageSize,
-    state: { pageIndex, pageSize },
-  } = useTable(
-    {
-      columns,
-      data,
-    },
-    usePagination
-  );
-  useEffect(() => {
-    setPageSize(5);
-  }, [setPageSize]);
-  
+  const { getTableProps, getTableBodyProps, headerGroups, page, prepareRow } =
+    useTable(
+      {
+        columns,
+        data,
+      },
+      usePagination
+    );
 
+  if (data.length===0) {
+    return <p className="w-full h-52 flex flex-col items-center justify-center text-center text-2xl">داده ای جهت نمایش وجود ندارد</p>;
+  }
   return (
     <div className="flex flex-col items-center gap-5">
       <table className="w-full p-3" {...getTableProps()}>
@@ -38,7 +22,7 @@ function AdminTable({ columns, data }) {
             <tr {...headerGroup.getHeaderGroupProps()}>
               {headerGroup.headers.map((column) => (
                 <th
-                  className="w-1/4 text-right text-white font-[sans-semibold] bg-[#4B429F] p-3"
+                  className=" text-right text-white font-[sans-semibold] bg-[#4B429F] p-3"
                   {...column.getHeaderProps()}>
                   {column.render("Header")}
                 </th>
@@ -57,7 +41,7 @@ function AdminTable({ columns, data }) {
                 {...row.getRowProps()}>
                 {row.cells.map((cell) => {
                   return (
-                    <td className="w-1/4 p-3" {...cell.getCellProps()}>
+                    <td className="p-3" {...cell.getCellProps()}>
                       {cell.render("Cell")}
                     </td>
                   );
@@ -67,14 +51,6 @@ function AdminTable({ columns, data }) {
           })}
         </tbody>
       </table>
-      <Pagination
-        currentPage={pageIndex + 1}
-        totalPages={pageOptions.length}
-        url={"http://localhost:5173/control-panel/order"}
-        onPageChange={(e) => {
-          gotoPage(e - 1);
-        }}
-      />
     </div>
   );
 }

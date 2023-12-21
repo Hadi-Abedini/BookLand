@@ -21,7 +21,6 @@ function SearchForm() {
   return (
     <form
       onSubmit={(e) => {
-        e.preventDefault();
         console.log("login");
       }}
       className="w-full flex flex-col justify-between items-center gap-10">

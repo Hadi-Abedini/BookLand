@@ -1,27 +1,20 @@
 import axios from "axios";
 
-const getAllProduct = async () => {
+const getAllProduct = async (page = 1, limit = 4, filter = undefined, filterID = undefined) => {
+  const url = filter ? `http://localhost:8000/api/products?${filter}=${filterID}` : `http://localhost:8000/api/products`;
   try {
-    const response = await axios.get("http://localhost:8000/api/products", {
+    const response = await axios.get(url, {
       params: {
-        fields: '-rating,-createdAt,-updatedAt,-__v',
+        fields: '-rating,-createdAt,-updatedAt',
         sort: 'price',
-        'quantity[gte]': 8,
+        limit: limit,
+        page: page,
       },
     });
 
     if (response.status === 200) {
-      const products = response.data.data.products;
-      
-      await Promise.all(
-        products.map(async (product) => {
-          const categoryResponse = await axios.get(`http://localhost:8000/api/categories/${product.category}`);
-          product.categoryName = categoryResponse.data.data.category.name;
+      const products = response;
 
-          const subcategoryResponse = await axios.get(`http://localhost:8000/api/subcategories/${product.subcategory}`);
-          product.subcategoryName = subcategoryResponse.data.data.subcategory.name;
-        })
-      );
 
       return products;
     } else {

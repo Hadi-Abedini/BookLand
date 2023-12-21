@@ -1,5 +1,6 @@
 import React from "react";
-import { createBrowserRouter } from "react-router-dom";
+import { createBrowserRouter, useNavigate } from "react-router-dom";
+import { Helmet } from "react-helmet";
 
 import Home from "../pages/home/Home";
 import Cart from "../pages/cart/Cart";
@@ -14,16 +15,34 @@ import Orders from "../pages/controlPanel/orders/Orders";
 import Products from "../pages/controlPanel/products/Products";
 import UserLayout from "../pages/userLayout/UserLayout";
 
+const isAuthenticated = true;
+const PrivateRoute = ({ element, path, children }) => {
+  const navigate = useNavigate();
+
+  React.useEffect(() => {
+    if (!isAuthenticated) {
+      navigate("/login");
+    }
+  }, [isAuthenticated, navigate]);
+
+  return (
+    <React.Suspense fallback={<>...</>}>{element || children}</React.Suspense>
+  );
+};
+
 const routes = createBrowserRouter([
   {
     path: "/",
-    element: <UserLayout></UserLayout>,
+    element: <UserLayout />,
     children: [
       {
         index: true,
         element: (
           <React.Suspense fallback={<>...</>}>
-            <Home></Home>
+            <Helmet>
+              <title>home</title>
+            </Helmet>
+            <Home />
           </React.Suspense>
         ),
       },
@@ -31,15 +50,21 @@ const routes = createBrowserRouter([
         path: "cart",
         element: (
           <React.Suspense fallback={<>...</>}>
-            <Cart></Cart>
+            <Helmet>
+              <title>cart</title>
+            </Helmet>
+            <Cart />
           </React.Suspense>
         ),
       },
       {
-        path: "categorie",
+        path: "categorie/:ID?/:type",
         element: (
           <React.Suspense fallback={<>...</>}>
-            <Categorie></Categorie>
+            <Helmet>
+              <title>categorie</title>
+            </Helmet>
+            <Categorie />
           </React.Suspense>
         ),
       },
@@ -47,15 +72,18 @@ const routes = createBrowserRouter([
         path: "payment",
         element: (
           <React.Suspense fallback={<>...</>}>
-            <Payment></Payment>
+            <Payment />
           </React.Suspense>
         ),
       },
       {
-        path: "product/:id",
+        path: "product/:productID",
         element: (
           <React.Suspense fallback={<>...</>}>
-            <Product></Product>
+            <Helmet>
+              <title>product</title>
+            </Helmet>
+            <Product />
           </React.Suspense>
         ),
       },
@@ -65,7 +93,10 @@ const routes = createBrowserRouter([
     path: "login",
     element: (
       <React.Suspense fallback={<>...</>}>
-        <Login></Login>
+        <Helmet>
+          <title>login</title>
+        </Helmet>
+        <Login />
       </React.Suspense>
     ),
   },
@@ -73,19 +104,22 @@ const routes = createBrowserRouter([
     path: "shipping",
     element: (
       <React.Suspense fallback={<>...</>}>
-        <Shipping></Shipping>
+        <Shipping />
       </React.Suspense>
     ),
   },
   {
     path: "/control-panel",
-    element: <AdminLayout></AdminLayout>,
+    element: <PrivateRoute element={<AdminLayout />} />,
     children: [
       {
         index: true,
         element: (
           <React.Suspense fallback={<>...</>}>
-            <Orders></Orders>
+            <Helmet>
+              <title>control-panel</title>
+            </Helmet>
+            <Orders />
           </React.Suspense>
         ),
       },
@@ -93,7 +127,10 @@ const routes = createBrowserRouter([
         path: "products",
         element: (
           <React.Suspense fallback={<>...</>}>
-            <Products></Products>
+            <Helmet>
+              <title>control-panel</title>
+            </Helmet>
+            <Products />
           </React.Suspense>
         ),
       },
@@ -101,7 +138,10 @@ const routes = createBrowserRouter([
         path: "inventory",
         element: (
           <React.Suspense fallback={<>...</>}>
-            <Inventory></Inventory>
+            <Helmet>
+              <title>control-panel</title>
+            </Helmet>
+            <Inventory />
           </React.Suspense>
         ),
       },
@@ -109,7 +149,10 @@ const routes = createBrowserRouter([
         path: "order",
         element: (
           <React.Suspense fallback={<>...</>}>
-            <Orders></Orders>
+            <Helmet>
+              <title>control-panel</title>
+            </Helmet>
+            <Orders />
           </React.Suspense>
         ),
       },
