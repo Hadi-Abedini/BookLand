@@ -40,7 +40,7 @@ function Categorie() {
 
   return (
     <div className="h-full w-full flex gap-8 px-8 py-10 bg-[#E8E8F4]">
-      <div className="w-1/4 flex gap-1 flex-col p-4 bg-white">
+      <div className="w-1/4 flex gap-1 flex-col rounded-lg p-4 bg-white">
         {categories.data.data.categories.map((category) => {
           return (
             <div key={category._id + "1"} className="flex flex-col">
@@ -77,7 +77,7 @@ function Categorie() {
             books={data}
           />
         ) : (
-          <span>چیزی برای نمایش وجود ندارد</span>
+          <span className="text-lg">چیزی برای نمایش وجود ندارد</span>
         )}
       </div>
     </div>
