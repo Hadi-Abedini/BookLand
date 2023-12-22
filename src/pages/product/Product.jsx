@@ -35,10 +35,12 @@ function Product() {
           <Breadcrumb.Item href="/" icon={HiHome}>
             خانه
           </Breadcrumb.Item>
-          <Breadcrumb.Item href="/categorie">
+          <Breadcrumb.Item
+            href={`/categorie/${productInfo.category._id}/category`}>
             {productInfo.category.name}
           </Breadcrumb.Item>
-          <Breadcrumb.Item href={`/categorie/${productInfo.subcategory._id}`}>
+          <Breadcrumb.Item
+            href={`/categorie/${productInfo.subcategory._id}/subcategory`}>
             {productInfo.subcategory.name}
           </Breadcrumb.Item>
           <Breadcrumb.Item>{productInfo.name}</Breadcrumb.Item>
@@ -87,15 +89,15 @@ function Product() {
                 </button>
               </Tooltip>
               <span className="">
-                {addCommasToNumber(productInfo.price * count)}ریال 
+                {addCommasToNumber(productInfo.price * count)}ریال
               </span>
             </div>
           </div>
         </div>
-        
+
         <p className="w-full leading-8 text-sm">
-            {parse(product.data.data.product.description)}
-          </p>
+          {parse(product.data.data.product.description)}
+        </p>
       </div>
     );
   }
