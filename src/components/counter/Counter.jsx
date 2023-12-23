@@ -2,7 +2,7 @@ import React from "react";
 
 function Counter({ count, setCount, max }) {
   return (
-    <div class="flex flex-col">
+    <div className="flex flex-col">
       <label
         className="w-full text-gray-700 text-sm font-semibold">
         تعداد:
@@ -27,7 +27,7 @@ function Counter({ count, setCount, max }) {
             }
           }}
           className=" bg-gray-300 text-gray-600 hover:text-gray-700 hover:bg-gray-400 py-1 px-3 rounded-l cursor-pointer outline-none">
-          <span class="m-auto text-2xl font-thin">-</span>
+          <span className="m-auto text-2xl font-thin">-</span>
         </button>
       </div>
     </div>

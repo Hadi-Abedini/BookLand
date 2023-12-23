@@ -12,7 +12,7 @@ import getAllCategorie from "../../Api/GetAllCategorie";
 import getAllSubcategoriesByCategoriesId from "../../Api/GetAllSubcategoriesByCategoriesId";
 
 const notifySuccess = () => toast.success(".محصول با موفقیت افزوده شد");
-const notifyUnsuccess = () => toast.error(".افزودن محصول با مشکل مواحه شد");
+const notifyUnsuccess = () => toast.error(".افزودن محصول با مشکل مواجه شد");
 
 function DefulltModal({ title }) {
   const [openModal, setOpenModal] = useState(false);

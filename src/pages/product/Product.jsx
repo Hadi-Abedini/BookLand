@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import { useParams } from "react-router-dom";
 import { useQuery } from "@tanstack/react-query";
 import parse from "html-react-parser";
@@ -11,11 +11,16 @@ import getProductById from "../../Api/GetProductById";
 import "react-quill/dist/quill.snow.css";
 import addCommasToNumber from "../../utils/AddCommasToNumber";
 import Counter from "../../components/counter/Counter";
+import CartContext from "../../Context/CartContext";
+import toast, { Toaster } from "react-hot-toast";
+const notifySuccess = () =>
+  toast.success("محصول با موفقیت به سبد خرید افزوده شد.");
 
 function Product() {
+  const { cart, setCart } = useContext(CartContext);
+  const { productID } = useParams();
   const [count, setCount] = useState(1);
 
-  const { productID } = useParams();
   const {
     isLoading,
     isSuccess,
@@ -24,8 +29,9 @@ function Product() {
     queryKey: ["product", productID],
     queryFn: () => getProductById(productID),
   });
+
   if (isLoading) {
-    <Spinner color="purple" aria-label="Purple spinner example" />;
+    return <Spinner color="purple" aria-label="Purple spinner example" />;
   }
   if (isSuccess) {
     const productInfo = product.data.data.product;
@@ -84,7 +90,28 @@ function Product() {
             />
             <div className="w-full flex items-center gap-4 justify-between">
               <Tooltip content="افزودن به سبد خرید">
-                <button className="flex flex-col items-center px-6 py-2 text-sm bg-[#4B429F] text-white rounded-lg">
+                <button
+                  onClick={() => {
+                    const temp = [...cart];
+                    const existingProductIndex = temp.findIndex(
+                      (item) => item.productId === productInfo._id
+                    );
+
+                    if (existingProductIndex !== -1) {
+                      temp[existingProductIndex].count = count;
+                    } else {
+                      temp.push({
+                        productId: productInfo._id,
+                        name: productInfo.name,
+                        price: productInfo.price,
+                        count: count,
+                      });
+                    }
+
+                    setCart(temp);
+                    notifySuccess();
+                  }}
+                  className="flex flex-col items-center px-6 py-2 text-sm bg-[#4B429F] text-white rounded-lg">
                   <span>افزودن</span>
                 </button>
               </Tooltip>
@@ -98,6 +125,7 @@ function Product() {
         <p className="w-full leading-8 text-sm">
           {parse(product.data.data.product.description)}
         </p>
+        <Toaster position="top-left" reverseOrder={false} />
       </div>
     );
   }
