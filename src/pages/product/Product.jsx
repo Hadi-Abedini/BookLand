@@ -101,7 +101,6 @@ function Product() {
       </div>
     );
   }
-  return <>fcvds</>;
 }
 
 export default Product;
