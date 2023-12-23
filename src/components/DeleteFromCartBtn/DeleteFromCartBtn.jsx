@@ -19,7 +19,7 @@ function DeleteFromCartBtn({ productID }) {
 
   return (
     <>
-      <button className="text-blue-700" onClick={() => setOpenModal(true)}>
+      <button className="text-blue-700 hover:underline" onClick={() => setOpenModal(true)}>
         {textContent.products_deleteBtn}
       </button>
       <Modal

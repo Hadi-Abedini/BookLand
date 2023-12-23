@@ -123,7 +123,7 @@ function EditProductModal({ id }) {
   return (
     <>
       <button
-        className="text-blue-700"
+        className="text-blue-700 hover:underline" 
         onClick={() => {
           setProductID(id);
           setOpenModal(true);

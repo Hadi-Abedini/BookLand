@@ -35,7 +35,7 @@ function Cart() {
 
   const slicedData = cart.slice(startIndex, endIndex);
   const data = slicedData.map((item) => ({
-    col1: <Link to={`/product/${item.productId}`}>{item.name}</Link>,
+    col1: <Link to={`/product/${item.productId}`} className="text-blue-700 hover:underline">{item.name}</Link>,
     col2: addCommasToNumber(item.price),
     col3: item.count,
     col4: <DeleteFromCartBtn productID={item.productId} />,
