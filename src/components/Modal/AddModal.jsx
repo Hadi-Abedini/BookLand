@@ -1,7 +1,7 @@
 import { Modal, Spinner } from "flowbite-react";
 import { useState, useEffect } from "react";
 import ReactQuill from "react-quill";
-import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
+import { QueryClient, useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import "react-quill/dist/quill.snow.css";
 import "../../index.css";
 import SearchDropDownBtn from "../SearchBox/SearchDropDownBtn";
@@ -17,7 +17,7 @@ const notifyUnsuccess = () => toast.error(".افزودن محصول با مشک�
 function DefulltModal({ title }) {
   const [openModal, setOpenModal] = useState(false);
   const [subcategories, setSubcategories] = useState([]);
-  const queryClient = useQueryClient();
+
   const [formValues, setFormValues] = useState({
     images: null,
     name: "",
@@ -73,8 +73,8 @@ function DefulltModal({ title }) {
     },
     onSuccess: () => {
       notifySuccess();
-      queryClient.invalidateQueries({
-        queryKey: ["products"],
+      QueryClient.invalidateQueries({
+        queryKey: ["products", { page }],
       });
       setFormValues({
         images: null,

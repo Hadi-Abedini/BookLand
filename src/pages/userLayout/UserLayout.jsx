@@ -28,7 +28,6 @@ function UserLayout() {
         <Header />
         <main>
           <QueryClientProvider client={queryClient}>
-            <ReactQueryDevtools initialIsOpen={false} />
             <Outlet />
           </QueryClientProvider>
         </main>

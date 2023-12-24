@@ -2,7 +2,7 @@ import { Modal } from "flowbite-react";
 import React, { useState } from "react";
 import toast, { Toaster } from "react-hot-toast";
 import textContent from "../../constants/string";
-import { useMutation, useQueryClient } from "@tanstack/react-query";
+import { QueryClient, useMutation, useQueryClient } from "@tanstack/react-query";
 import deleteProductById from "../../Api/DeleteProductByID";
 
 const notifySuccess = () => toast.success(".محصول با موفقیت حذف شد");
@@ -10,7 +10,7 @@ const notifyUnsuccess = () => toast.error(".حذف محصول با مشکل مو
 
 function PopUpModal({ id, name }) {
   const [openModal, setOpenModal] = useState(false);
-  const queryClient = useQueryClient();
+
   const { mutate } = useMutation({
     mutationFn: (id) => {
       deleteProductById(id);
@@ -18,8 +18,8 @@ function PopUpModal({ id, name }) {
     },
     onSuccess: () => {
       notifySuccess();
-      queryClient.invalidateQueries({
-        queryKey: ["products"],
+      QueryClient.invalidateQueries({
+        queryKey: ["products", { page }],
       });
     },
     onError: () => {

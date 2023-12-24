@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { Modal, Spinner } from "flowbite-react";
-import { useQueryClient, useQuery, useMutation } from "@tanstack/react-query";
+import { useQueryClient, useQuery, useMutation, QueryClient } from "@tanstack/react-query";
 import toast from "react-hot-toast";
 import ReactQuill from "react-quill";
 import "react-quill/dist/quill.snow.css";
@@ -17,8 +17,6 @@ const notifyUnsuccess = () => toast.error(".ویرایش محصول با مشک�
 function EditProductModal({ id }) {
   const [openModal, setOpenModal] = useState(false);
   const [productID, setProductID] = useState();
-
-  const queryClient = useQueryClient();
 
   const [formValues, setFormValues] = useState({
     images: null,
@@ -80,8 +78,8 @@ function EditProductModal({ id }) {
     },
     onSuccess: () => {
       notifySuccess();
-      queryClient.invalidateQueries({
-        queryKey: ["products"],
+      QueryClient.invalidateQueries({
+        queryKey: ["products", { page }],
       });
       setFormValues({
         images: null,

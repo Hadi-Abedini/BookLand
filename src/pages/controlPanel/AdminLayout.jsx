@@ -17,7 +17,6 @@ function AdminLayout() {
       <AdminHeader />
       <main className="w-full h-full flex justify-center items-center">
         <QueryClientProvider client={queryClient}>
-          <ReactQueryDevtools initialIsOpen={false} />
           <Outlet />
         </QueryClientProvider>
       </main>
