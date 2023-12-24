@@ -105,9 +105,9 @@ function Product() {
                         name: productInfo.name,
                         price: productInfo.price,
                         count: count,
+                        image: productInfo.images,
                       });
                     }
-
                     setCart(temp);
                     notifySuccess();
                   }}

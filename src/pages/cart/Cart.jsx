@@ -16,39 +16,49 @@ function Cart() {
 
   const columns = [
     {
-      Header: "کالا",
+      Header: "تصویر",
       accessor: "col1",
     },
     {
-      Header: "قیمت",
+      Header: "کالا",
       accessor: "col2",
     },
     {
-      Header: "تعداد",
+      Header: "قیمت",
       accessor: "col3",
     },
     {
-      Header: "",
+      Header: "تعداد",
       accessor: "col4",
+    },
+    {
+      Header: "",
+      accessor: "col5",
     },
   ];
 
   const slicedData = cart.slice(startIndex, endIndex);
   const data = slicedData.map((item) => ({
     col1: (
+      <img
+        className="w-7 h-[41.44px]"
+        src={`http://localhost:8000/images/products/images/${item.image}`}
+        alt="product-image"
+      />
+    ),
+    col2: (
       <Link
         to={`/product/${item.productId}`}
         className="text-blue-700 hover:underline">
         {item.name}
       </Link>
     ),
-    col2: addCommasToNumber(item.price),
-    col3: item.count,
-    col4: <DeleteFromCartBtn productID={item.productId} />,
+    col3: addCommasToNumber(item.price),
+    col4: item.count,
+    col5: <DeleteFromCartBtn productID={item.productId} />,
   }));
-
   return (
-    <div className="flex flex-col gap-20 w-full h-[80vh] justify-center items-center">
+    <div className="flex flex-col gap-10 w-full h-[80vh] justify-center items-center">
       <div className="w-3/5 flex flex-col gap-6">
         <div className="w-full flex justify-between">
           <span className="text-2xl font-[rokh-bold]">سبد خرید</span>

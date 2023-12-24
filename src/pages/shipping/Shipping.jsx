@@ -7,8 +7,9 @@ import DatePickerInput from "../../components/SearchBox/DatePickerInput";
 
 function Shipping() {
   return (
-    <div className="p-7">
-      <span>نهایی کردن خرید</span>
+    <div className="p-7 flex flex-col gap-5">
+      <span className="text-2xl font-[rokh-bold] ">نهایی کردن خرید</span>
+
       <form className="flex flex-col gap-3">
         <div className="flex gap-4">
           <div className="w-1/5 flex flex-col gap-1">
