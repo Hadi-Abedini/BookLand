@@ -69,10 +69,13 @@ const routes = createBrowserRouter([
         ),
       },
       {
-        path: "payment",
+        path: "shipping",
         element: (
           <React.Suspense fallback={<>...</>}>
-            <Payment />
+             <Helmet>
+              <title>shipping</title>
+            </Helmet>
+            <Shipping />
           </React.Suspense>
         ),
       },
@@ -101,10 +104,10 @@ const routes = createBrowserRouter([
     ),
   },
   {
-    path: "shipping",
+    path: "payment",
     element: (
       <React.Suspense fallback={<>...</>}>
-        <Shipping />
+        <Payment />
       </React.Suspense>
     ),
   },

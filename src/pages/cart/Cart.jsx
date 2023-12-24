@@ -35,7 +35,13 @@ function Cart() {
 
   const slicedData = cart.slice(startIndex, endIndex);
   const data = slicedData.map((item) => ({
-    col1: <Link to={`/product/${item.productId}`} className="text-blue-700 hover:underline">{item.name}</Link>,
+    col1: (
+      <Link
+        to={`/product/${item.productId}`}
+        className="text-blue-700 hover:underline">
+        {item.name}
+      </Link>
+    ),
     col2: addCommasToNumber(item.price),
     col3: item.count,
     col4: <DeleteFromCartBtn productID={item.productId} />,
@@ -54,19 +60,24 @@ function Cart() {
           setPage={setPage}
         />
       </div>
-      <div className="w-3/5 flex items-center justify-between">
-        <p className="">
-          جمع:{" "}
-          <span className="text-lg font-[sans-semibold]">
-            {addCommasToNumber(
-              cart.reduce((prev, curr) => prev + curr.price * curr.count, 0)
-            )} ریال
-          </span>
-        </p>
-        <button className="w-fit flex items-center gap-2 bg-[#E5D1FA] px-4 py-2 rounded-lg ">
-          نهایی کردن خرید
-        </button>
-      </div>
+      {cart.length > 0 && (
+        <div className="w-3/5 flex items-center justify-between">
+          <p className="">
+            جمع:{" "}
+            <span className="text-lg font-[sans-semibold]">
+              {addCommasToNumber(
+                cart.reduce((prev, curr) => prev + curr.price * curr.count, 0)
+              )}{" "}
+              ریال
+            </span>
+          </p>
+          <Link
+            to={"/shipping"}
+            className="w-fit flex items-center gap-2 bg-[#4B429F] text-white hover:bg-[#E5D1FA] hover:text-black px-4 py-2 rounded-lg ">
+            نهایی کردن خرید
+          </Link>
+        </div>
+      )}
     </div>
   );
 }
