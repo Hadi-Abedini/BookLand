@@ -14,6 +14,7 @@ import Inventory from "../pages/controlPanel/inventory/Inventory";
 import Orders from "../pages/controlPanel/orders/Orders";
 import Products from "../pages/controlPanel/products/Products";
 import UserLayout from "../pages/userLayout/UserLayout";
+import PaymentStatus from "../pages/payment/PaymentStatus";
 
 const isAuthenticated = true;
 const PrivateRoute = ({ element, path, children }) => {
@@ -108,6 +109,14 @@ const routes = createBrowserRouter([
     element: (
       <React.Suspense fallback={<>...</>}>
         <Payment />
+      </React.Suspense>
+    ),
+  },
+  {
+    path: "payment-status/:status",
+    element: (
+      <React.Suspense fallback={<>...</>}>
+        <PaymentStatus />
       </React.Suspense>
     ),
   },

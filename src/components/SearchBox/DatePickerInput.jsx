@@ -7,6 +7,7 @@ function DatePickerInput({ onFocus, value, onChange }) {
       onFocus={onFocus}
       value={value}
       onChange={onChange}
+      placeholder="تاریخ ارسال"
       required
     />
   );

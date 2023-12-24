@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import SearchInput from "../../components/SearchBox/SearchInput";
 import persian from "react-date-object/calendars/persian";
 import persian_fa from "react-date-object/locales/persian_fa";
@@ -6,11 +6,31 @@ import DatePicker from "react-multi-date-picker";
 import DatePickerInput from "../../components/SearchBox/DatePickerInput";
 
 function Shipping() {
+  const [formValues, setFormValues] = useState({
+    firstName: "",
+    lastName: "",
+    address: "",
+    phone: "",
+    date: null,
+  });
+
+  const handleInputChange = (field, value) => {
+    setFormValues({
+      ...formValues,
+      [field]: value,
+    });
+  };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    window.location.href = `/payment`;
+  };
+
   return (
     <div className="p-7 flex flex-col gap-5">
       <span className="text-2xl font-[rokh-bold] ">نهایی کردن خرید</span>
 
-      <form className="flex flex-col gap-3">
+      <form onSubmit={handleSubmit} className="flex flex-col gap-3">
         <div className="flex gap-4">
           <div className="w-1/5 flex flex-col gap-1">
             <span>نام:</span>
@@ -56,9 +76,15 @@ function Shipping() {
             calendar={persian}
             locale={persian_fa}
             calendarPosition="bottom-right"
-            value={new Date()}
+            placeholder="تاریخ ارسال"
+            onChange={(date) => handleInputChange("date", date)}
           />
         </div>
+        <button
+          className="w-fit flex items-center gap-2 bg-[#4B429F] text-white hover:bg-[#E5D1FA] hover:text-black px-4 py-2 rounded-lg "
+          type="submit">
+          ثبت
+        </button>
       </form>
     </div>
   );

@@ -83,42 +83,48 @@ function Product() {
                 </span>
               </p>
             </div>
-            <Counter
-              max={productInfo.quantity}
-              count={count}
-              setCount={setCount}
-            />
-            <div className="w-full flex items-center gap-4 justify-between">
-              <Tooltip content="افزودن به سبد خرید">
-                <button
-                  onClick={() => {
-                    const temp = [...cart];
-                    const existingProductIndex = temp.findIndex(
-                      (item) => item.productId === productInfo._id
-                    );
+            {productInfo.quantity > 0 ? (
+              <>
+                <Counter
+                  max={productInfo.quantity}
+                  count={count}
+                  setCount={setCount}
+                />
+                <div className="w-full flex items-center gap-4 justify-between">
+                  <Tooltip content="افزودن به سبد خرید">
+                    <button
+                      onClick={() => {
+                        const temp = [...cart];
+                        const existingProductIndex = temp.findIndex(
+                          (item) => item.productId === productInfo._id
+                        );
 
-                    if (existingProductIndex !== -1) {
-                      temp[existingProductIndex].count = count;
-                    } else {
-                      temp.push({
-                        productId: productInfo._id,
-                        name: productInfo.name,
-                        price: productInfo.price,
-                        count: count,
-                        image: productInfo.images,
-                      });
-                    }
-                    setCart(temp);
-                    notifySuccess();
-                  }}
-                  className="flex flex-col items-center px-6 py-2 text-sm bg-[#4B429F] text-white rounded-lg">
-                  <span>افزودن</span>
-                </button>
-              </Tooltip>
-              <span className="">
-                {addCommasToNumber(productInfo.price * count)}ریال
-              </span>
-            </div>
+                        if (existingProductIndex !== -1) {
+                          temp[existingProductIndex].count = count;
+                        } else {
+                          temp.push({
+                            productId: productInfo._id,
+                            name: productInfo.name,
+                            price: productInfo.price,
+                            count: count,
+                            image: productInfo.images,
+                          });
+                        }
+                        setCart(temp);
+                        notifySuccess();
+                      }}
+                      className="flex flex-col items-center px-6 py-2 text-sm bg-[#4B429F] text-white rounded-lg">
+                      <span>افزودن</span>
+                    </button>
+                  </Tooltip>
+                  <span className="">
+                    {addCommasToNumber(productInfo.price * count)}ریال
+                  </span>
+                </div>
+              </>
+            ) : (
+              <p>ناموجود</p>
+            )}
           </div>
         </div>
 
