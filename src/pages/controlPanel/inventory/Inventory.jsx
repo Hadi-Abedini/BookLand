@@ -92,7 +92,7 @@ function Inventory() {
                     productId: change.id,
                   });
                 });
-                window.location.href = '/control-panel/inventory';
+                window.location.reload();
               }
             }}
             className="px-6 py-2 text-sm bg-[#4B429F] text-white rounded-lg">

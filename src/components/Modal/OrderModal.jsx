@@ -1,6 +1,6 @@
-import { useQuery } from "@tanstack/react-query";
+import { QueryClient, useMutation, useQuery } from "@tanstack/react-query";
 import { Modal, Spinner } from "flowbite-react";
-import { useState, useEffect } from "react";
+import { useState } from "react";
 
 import toast from "react-hot-toast";
 import getOrderById from "../../Api/GetOrderById";
@@ -9,6 +9,7 @@ import formatDateString from "../../utils/FormatDate";
 import AdminTable from "../Admin/AdminTable";
 import addCommasToNumber from "../../utils/AddCommasToNumber";
 import { Link } from "react-router-dom";
+import editOrderById from "../../Api/EditOrderById";
 
 const notifySuccess = () => toast.success(".محصول با موفقیت افزوده شد");
 const notifyUnsuccess = () => toast.error(".افزودن محصول با مشکل مواجه شد");
@@ -29,7 +30,6 @@ const columns = [
 
 function OrderModal({ orderId }) {
   const [openModal, setOpenModal] = useState(false);
-  const [products, setProducts] = useState([]);
 
   const {
     data: order,
@@ -55,16 +55,37 @@ function OrderModal({ orderId }) {
     },
   });
 
+  const { mutate } = useMutation({
+    mutationKey: "editProductMutation",
+    mutationFn: (data) => {
+      editOrderById(data, orderId);
+      setOpenModal(false);
+      window.location.reload();
+    },
+    onSuccess: () => {
+      QueryClient.invalidateQueries({
+        queryKey: ["orders",{ page, sortingModel, orderStatus }],
+      });
+    },
+  });
+
+  const handleDelivery = () => {
+    const temp = {
+      deliveryStatus: true,
+    };
+    mutate(temp);
+  };
+
   if (isLoading || userLoading) {
     return <Spinner color="purple" aria-label="Purple spinner example" />;
   }
   const temp =
     isSuccess && openModal && userSuccess
       ? order.data.data.order.products.map((item) => ({
-          name: item.product.name,
-          id: item.product._id,
-          price: item.product.price,
-          count: item.count,
+          name: item?.product?.name,
+          id: item?.product?._id,
+          price: item?.product?.price,
+          count: item?.count,
         }))
       : [];
 
@@ -78,7 +99,7 @@ function OrderModal({ orderId }) {
               {product.name}
             </Link>
           ),
-          col2: addCommasToNumber(product.price),
+          col2: addCommasToNumber(product.price ? product.price : 0),
           col3: product.count,
         }))
       : [];
@@ -133,12 +154,16 @@ function OrderModal({ orderId }) {
               </div>
               <AdminTable columns={columns} data={data} />
               {!order.data.data.order.deliveryStatus ? (
-                <button className="w-fit bg-[#4B429F] py-3 px-5 rounded-lg text-white hover:bg-purple-500">تحویل شد</button>
+                <button
+                  onClick={handleDelivery}
+                  className="w-fit bg-[#4B429F] py-3 px-5 rounded-lg text-white hover:bg-purple-500">
+                  تحویل شد
+                </button>
               ) : (
                 <p className="font-[sans-semibold]">
                   زمان تحویل:{" "}
                   <span className="text-sm">
-                  {formatDateString(order.data.data.order.deliveryDate)}
+                    {formatDateString(order.data.data.order.deliveryDate)}
                   </span>
                 </p>
               )}
