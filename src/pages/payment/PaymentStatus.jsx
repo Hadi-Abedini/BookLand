@@ -16,7 +16,7 @@ function PaymentStatus() {
         class="fa fa-exclamation-circle"
         style={{ fontSize: 100 + "px", color: "red" }}></i>
 
-      <p className="text-lg">پرداخت با موفقیت انجام نشد سفارش شما در انتظار پرداخت است</p>
+      <p className="text-lg">پرداخت با شکست مواجه شد سفارش شما در انتظار پرداخت است</p>
     </div>
   );
 }
