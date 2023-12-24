@@ -15,7 +15,7 @@ function AdminTable({ columns, data }) {
     return <p className="w-full h-52 flex flex-col items-center justify-center text-center text-2xl">داده ای جهت نمایش وجود ندارد</p>;
   }
   return (
-    <div className="flex flex-col items-center gap-5">
+    <div className="w-full flex flex-col items-center gap-5">
       <table className="w-full p-3" {...getTableProps()}>
         <thead className="w-full ">
           {headerGroups.map((headerGroup) => (

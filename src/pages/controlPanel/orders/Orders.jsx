@@ -9,6 +9,7 @@ import getAllOrder from "../../../Api/GetAllOrder";
 import formatDateString from "../../../utils/FormatDate";
 import addCommasToNumber from "../../../utils/AddCommasToNumber";
 import Pagination from "../../../components/Pagination/Pagination";
+import OrderModal from "../../../components/Modal/OrderModal";
 
 function Orders() {
   const [sortingModel, setSortingModel] = useState("-createdAt");
@@ -61,14 +62,7 @@ function Orders() {
     col2: addCommasToNumber(order.totalPrice),
     col3: formatDateString(order.createdAt),
     col4: (
-      <button
-        value={order._id}
-        onClick={(e) => {
-          alert(e.target.value);
-        }}
-        className="text-blue-700">
-        برسی سفارش
-      </button>
+      <OrderModal orderId={order._id} />
     ),
   }));
   const handleRadioChange = (e) => {

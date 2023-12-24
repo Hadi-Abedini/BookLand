@@ -123,7 +123,7 @@ function DefulltModal({ title }) {
         {title}
       </button>
       <Modal size={"xl"} show={openModal} onClose={() => setOpenModal(false)}>
-        <div className="flex items-start justify-between rounded-t border-b p-5">
+        <div className="flex items-center justify-between rounded-t border-b p-5">
           <h3 className="text-xl font-medium text-gray-900 dark:text-white">
             افزودن کالا
           </h3>

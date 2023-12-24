@@ -5,9 +5,6 @@ import addOrder from "../../Api/AddOrder";
 function PayBtn() {
   const { mutate } = useMutation({
     mutationFn: (data) => addOrder(data),
-    onSuccess: () => {
-      console.log("Order added successfully");
-    },
   });
 
   const handlePayment = () => {
@@ -24,6 +21,7 @@ function PayBtn() {
 
     mutate(data);
     localStorage.removeItem("cart");
+    window.location.href = `/payment-status/success`;
   };
   return (
     <button

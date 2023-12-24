@@ -11,8 +11,6 @@ import SearchInput from "../SearchBox/SearchInput";
 import getProductById from "../../Api/GetProductById";
 import editProductById from "../../Api/EditProductById";
 
-
-
 const notifySuccess = () => toast.success(".محصول با موفقیت ویرایش شد");
 const notifyUnsuccess = () => toast.error(".ویرایش محصول با مشکل مواجه شد");
 
@@ -123,7 +121,7 @@ function EditProductModal({ id }) {
   return (
     <>
       <button
-        className="text-blue-700 hover:underline" 
+        className="text-blue-700 hover:underline"
         onClick={() => {
           setProductID(id);
           setOpenModal(true);
@@ -131,7 +129,7 @@ function EditProductModal({ id }) {
         {textContent.products_editBtn}
       </button>
       <Modal size={"xl"} show={openModal} onClose={() => setOpenModal(false)}>
-        <div className="flex items-start justify-between rounded-t border-b p-5">
+        <div className="flex items-center justify-between rounded-t border-b p-5">
           <h3 className="text-xl font-medium text-gray-900 dark:text-white">
             افزودن کالا
           </h3>
