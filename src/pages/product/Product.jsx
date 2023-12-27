@@ -131,7 +131,7 @@ function Product() {
         <p className="w-full leading-8 text-sm">
           {parse(product.data.data.product.description)}
         </p>
-        <Toaster position="top-left" reverseOrder={false} />
+        <Toaster position="top-right" reverseOrder={false} />
       </div>
     );
   }
