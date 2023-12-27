@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { Modal, Spinner } from "flowbite-react";
-import { useQueryClient, useQuery, useMutation } from "@tanstack/react-query";
+import { useQueryClient, useQuery, useMutation, QueryClient } from "@tanstack/react-query";
 import toast from "react-hot-toast";
 import ReactQuill from "react-quill";
 import "react-quill/dist/quill.snow.css";
@@ -11,16 +11,12 @@ import SearchInput from "../SearchBox/SearchInput";
 import getProductById from "../../Api/GetProductById";
 import editProductById from "../../Api/EditProductById";
 
-
-
 const notifySuccess = () => toast.success(".محصول با موفقیت ویرایش شد");
 const notifyUnsuccess = () => toast.error(".ویرایش محصول با مشکل مواجه شد");
 
 function EditProductModal({ id }) {
   const [openModal, setOpenModal] = useState(false);
   const [productID, setProductID] = useState();
-
-  const queryClient = useQueryClient();
 
   const [formValues, setFormValues] = useState({
     images: null,
@@ -82,8 +78,8 @@ function EditProductModal({ id }) {
     },
     onSuccess: () => {
       notifySuccess();
-      queryClient.invalidateQueries({
-        queryKey: ["products"],
+      QueryClient.invalidateQueries({
+        queryKey: ["products", { page }],
       });
       setFormValues({
         images: null,
@@ -123,7 +119,7 @@ function EditProductModal({ id }) {
   return (
     <>
       <button
-        className="text-blue-700"
+        className="text-blue-700 hover:underline"
         onClick={() => {
           setProductID(id);
           setOpenModal(true);
@@ -131,7 +127,7 @@ function EditProductModal({ id }) {
         {textContent.products_editBtn}
       </button>
       <Modal size={"xl"} show={openModal} onClose={() => setOpenModal(false)}>
-        <div className="flex items-start justify-between rounded-t border-b p-5">
+        <div className="flex items-center justify-between rounded-t border-b p-5">
           <h3 className="text-xl font-medium text-gray-900 dark:text-white">
             افزودن کالا
           </h3>

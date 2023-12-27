@@ -1,7 +1,7 @@
 import { Modal, Spinner } from "flowbite-react";
 import { useState, useEffect } from "react";
 import ReactQuill from "react-quill";
-import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
+import { QueryClient, useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import "react-quill/dist/quill.snow.css";
 import "../../index.css";
 import SearchDropDownBtn from "../SearchBox/SearchDropDownBtn";
@@ -12,12 +12,12 @@ import getAllCategorie from "../../Api/GetAllCategorie";
 import getAllSubcategoriesByCategoriesId from "../../Api/GetAllSubcategoriesByCategoriesId";
 
 const notifySuccess = () => toast.success(".محصول با موفقیت افزوده شد");
-const notifyUnsuccess = () => toast.error(".افزودن محصول با مشکل مواحه شد");
+const notifyUnsuccess = () => toast.error(".افزودن محصول با مشکل مواجه شد");
 
 function DefulltModal({ title }) {
   const [openModal, setOpenModal] = useState(false);
   const [subcategories, setSubcategories] = useState([]);
-  const queryClient = useQueryClient();
+
   const [formValues, setFormValues] = useState({
     images: null,
     name: "",
@@ -73,8 +73,8 @@ function DefulltModal({ title }) {
     },
     onSuccess: () => {
       notifySuccess();
-      queryClient.invalidateQueries({
-        queryKey: ["products"],
+      QueryClient.invalidateQueries({
+        queryKey: ["products", { page }],
       });
       setFormValues({
         images: null,
@@ -123,7 +123,7 @@ function DefulltModal({ title }) {
         {title}
       </button>
       <Modal size={"xl"} show={openModal} onClose={() => setOpenModal(false)}>
-        <div className="flex items-start justify-between rounded-t border-b p-5">
+        <div className="flex items-center justify-between rounded-t border-b p-5">
           <h3 className="text-xl font-medium text-gray-900 dark:text-white">
             افزودن کالا
           </h3>

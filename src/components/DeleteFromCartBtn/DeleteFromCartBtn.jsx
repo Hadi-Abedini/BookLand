@@ -1,31 +1,22 @@
-import { Modal } from "flowbite-react";
-import React, { useState } from "react";
-import toast, { Toaster } from "react-hot-toast";
+import React, { useState, useContext } from "react";
 import textContent from "../../constants/string";
-import { QueryClient, useMutation, useQueryClient } from "@tanstack/react-query";
-import deleteProductById from "../../Api/DeleteProductByID";
+import { Modal } from "flowbite-react";
+import CartContext from "../../Context/CartContext";
+import toast, { Toaster } from "react-hot-toast";
 
-const notifySuccess = () => toast.success(".محصول با موفقیت حذف شد");
-const notifyUnsuccess = () => toast.error(".حذف محصول با مشکل مواحه شد");
+const notifySuccess = () => toast.success("محصول با موفقیت از سبدخرید حذف شد.");
 
-function PopUpModal({ id, name }) {
+function DeleteFromCartBtn({ productID }) {
   const [openModal, setOpenModal] = useState(false);
+  const { cart, setCart } = useContext(CartContext);
 
-  const { mutate } = useMutation({
-    mutationFn: (id) => {
-      deleteProductById(id);
-      setOpenModal(false);
-    },
-    onSuccess: () => {
-      notifySuccess();
-      QueryClient.invalidateQueries({
-        queryKey: ["products", { page }],
-      });
-    },
-    onError: () => {
-      notifyUnsuccess();
-    },
-  });
+  function deleteItem() {
+    const temp = cart.filter((item) => item.productId !== productID);
+    setCart(temp);
+    setOpenModal(false);
+    notifySuccess();
+  }
+
   return (
     <>
       <button className="text-blue-700 hover:underline" onClick={() => setOpenModal(true)}>
@@ -40,13 +31,12 @@ function PopUpModal({ id, name }) {
         <Modal.Body>
           <div className="text-center">
             <h3 className="mb-5 text-lg font-normal text-gray-500 dark:text-gray-400">
-              آیا از حذف این محصول مطمئن هستید؟
-              <br /> <span className="text-sm">{name}</span>
+              آیا از حذف این محصول از سبد خرید مطمئن هستید؟
             </h3>
             <div className="flex justify-center gap-4">
               <button
                 className="px-7 py-2 rounded-lg text-white bg-[#4B429F] "
-                onClick={() => mutate(id)}>
+                onClick={deleteItem}>
                 بله
               </button>
               <button
@@ -63,4 +53,4 @@ function PopUpModal({ id, name }) {
   );
 }
 
-export default PopUpModal;
+export default DeleteFromCartBtn;

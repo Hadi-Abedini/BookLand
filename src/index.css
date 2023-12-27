@@ -37,9 +37,6 @@
 * {
     scroll-behavior: smooth;
     font-family: sans-regular;
-    -webkit-user-select: none;
-    -ms-user-select: none;
-    user-select: none;
 }
 
 ::-webkit-scrollbar {
@@ -66,20 +63,15 @@
 }
 
 input[type="radio"] {
-    /* تغییر رنگ پس زمینه */
     background-color: #d0aaf8;
-
-    /* تغییر رنگ دکمه */
     border-color: #d0aaf8;
 }
 
 input[type="radio"]:checked {
-    /* تغییر رنگ پس زمینه */
     background-color: #4B429F;
-
-    /* تغییر رنگ دکمه */
     border-color: #4B429F;
 }
+
 .ql-picker-label {
     cursor: pointer;
     display: inline-block;
@@ -89,15 +81,17 @@ input[type="radio"]:checked {
     position: relative;
     width: 100%;
     direction: initial;
-  }
- .ql-container{
-    height: fit-content;
- }
+}
 
- @layer base {
+.ql-container {
+    height: fit-content;
+}
+
+@layer base {
+
     input[type="number"]::-webkit-inner-spin-button,
     input[type="number"]::-webkit-outer-spin-button {
-      -webkit-appearance: none;
-      margin: 0;
+        -webkit-appearance: none;
+        margin: 0;
     }
-  }
+}
