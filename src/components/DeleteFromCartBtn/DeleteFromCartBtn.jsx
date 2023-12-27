@@ -4,7 +4,7 @@ import { Modal } from "flowbite-react";
 import CartContext from "../../Context/CartContext";
 import toast, { Toaster } from "react-hot-toast";
 
-const notifySuccess = () => toast.success(".محصول با موفقیت از سبدخرید حذف شد");
+const notifySuccess = () => toast.success("محصول با موفقیت از سبدخرید حذف شد.");
 
 function DeleteFromCartBtn({ productID }) {
   const [openModal, setOpenModal] = useState(false);

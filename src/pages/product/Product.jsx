@@ -78,8 +78,8 @@ function Product() {
               </p>
               <p className="text-lg">
                 قیمت:
-                <span className="text-sm">
-                  {addCommasToNumber(productInfo.price)} ریال
+                <span className="text-sm"> {" "}
+                  {addCommasToNumber(productInfo.price/10)} تومان
                 </span>
               </p>
             </div>
@@ -90,7 +90,7 @@ function Product() {
                   count={count}
                   setCount={setCount}
                 />
-                <div className="w-full flex items-center gap-4 justify-between">
+                <div className="w-full flex items-center gap-5">
                   <Tooltip content="افزودن به سبد خرید">
                     <button
                       onClick={() => {
@@ -113,12 +113,12 @@ function Product() {
                         setCart(temp);
                         notifySuccess();
                       }}
-                      className="flex flex-col items-center px-6 py-2 text-sm bg-[#4B429F] text-white rounded-lg">
+                      className="flex flex-col items-center px-[30px] py-2 text-sm bg-[#4B429F] text-white rounded-lg">
                       <span>افزودن</span>
                     </button>
                   </Tooltip>
                   <span className="">
-                    {addCommasToNumber(productInfo.price * count)}ریال
+                    {addCommasToNumber((productInfo.price * count)/10)} تومان
                   </span>
                 </div>
               </>

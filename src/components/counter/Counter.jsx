@@ -2,9 +2,9 @@ import React from "react";
 
 function Counter({ count, setCount, max }) {
   return (
-    <div className="flex flex-col">
+    <div className="flex flex-col gap-1">
       <label
-        className="w-full text-gray-700 text-sm font-semibold">
+        className="w-full text-lg">
         تعداد:
       </label>
       <div className="flex flex-row ">
