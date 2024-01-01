@@ -4,18 +4,26 @@ import * as Yup from "yup";
 import { Link } from "react-router-dom";
 
 import textContent from "../../constants/string";
+import axios from "axios";
+import isTokenExpired from "../../utils/isTokenExpired";
+import { jwtDecode } from "jwt-decode";
+import toast, { Toaster } from "react-hot-toast";
 
 const validationSchema = Yup.object().shape({
-  username: Yup.string()
-    .matches(/^[a-zA-Z]/, "نام کاربری باید با یک حرف شروع شود")
-    .min(4, "نام کاربری باید حداقل 4 کاراکتر باشد")
-    .required("نام کاربری الزامی است"),
-  password: Yup.string()
-    .min(8, "رمز عبور باید حداقل 8 کاراکتر باشد")
-    .required("رمز عبور الزامی است"),
+  username: Yup.string().required("نام کاربری الزامی است"),
+  password: Yup.string().required("رمز عبور الزامی است"),
 });
 
+const notifySuccess = () => toast.success("با موففقیت وارد شدید.");
+const notifyUnsuccess = () => toast.error("نام کاربری یا رمز عبور اشتباه است");
+
 function Login() {
+  const storedToken = localStorage.getItem("token");
+  const decodedToken = storedToken ? jwtDecode(storedToken) : "";
+  if (!isTokenExpired(decodedToken.exp)) {
+    window.location.href = "/control-panel/order";
+    return null;
+  }
   return (
     <div className="flex justify-center items-center w-full h-[100vh] bg-[#E8E8F4]">
       <div className="w-[350px] flex gap-2 flex-col justify-start p-5 rounded-lg bg-[#4B429F]">
@@ -42,10 +50,29 @@ function Login() {
         <Formik
           initialValues={{ username: "", password: "" }}
           validationSchema={validationSchema}
-          onSubmit={(values, { setSubmitting }) => {
-            alert(JSON.stringify(values, null, 2));
+          onSubmit={async (values, { setSubmitting }) => {
+            try {
+              const { username, password } = values;
+
+              const response = await axios.post(
+                "http://localhost:8000/api/auth/login",
+                {
+                  username: username,
+                  password: password,
+                }
+              );
+
+              if (response.status === 200) {
+                const { accessToken } = response.data.token;
+                localStorage.setItem("token", accessToken);
+                notifySuccess();
+                window.location.href = "/control-panel/order";
+              }
+            } catch (error) {
+              notifyUnsuccess();
+            }
+
             setSubmitting(false);
-            window.location.href = "/control-panel/order";
           }}>
           {({ isSubmitting }) => (
             <Form className="flex flex-col justify-center items-center gap-3">
@@ -77,6 +104,7 @@ function Login() {
                 disabled={isSubmitting}>
                 ورود
               </button>
+              <Toaster position="top-right" reverseOrder={false} />
             </Form>
           )}
         </Formik>

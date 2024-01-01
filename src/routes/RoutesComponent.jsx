@@ -1,5 +1,5 @@
 import React from "react";
-import { createBrowserRouter, useNavigate } from "react-router-dom";
+import { Navigate, createBrowserRouter, useNavigate } from "react-router-dom";
 import { Helmet } from "react-helmet";
 
 import Home from "../pages/home/Home";
@@ -15,21 +15,29 @@ import Orders from "../pages/controlPanel/orders/Orders";
 import Products from "../pages/controlPanel/products/Products";
 import UserLayout from "../pages/userLayout/UserLayout";
 import PaymentStatus from "../pages/payment/PaymentStatus";
+import { jwtDecode } from "jwt-decode";
+import isTokenExpired from "../utils/isTokenExpired";
 
-const isAuthenticated = true;
-const PrivateRoute = ({ element, path, children }) => {
-  const navigate = useNavigate();
 
-  React.useEffect(() => {
-    if (!isAuthenticated) {
-      navigate("/login");
-    }
-  }, [isAuthenticated, navigate]);
+const PrivateRoute = ({ element}) => {
+  const storedToken = localStorage.getItem("token");
 
-  return (
-    <React.Suspense fallback={<>...</>}>{element || children}</React.Suspense>
-  );
+  if (!storedToken) {
+    return <Navigate to="/login" replace />;
+  }
+
+  try {
+    const decodedToken = jwtDecode(storedToken);
+
+    const isValidToken = !isTokenExpired(decodedToken.exp);
+
+    return isValidToken ? <React.Suspense fallback={<>...</>}>{element}</React.Suspense> : <Navigate to="/login" replace />;
+  } catch (error) {
+    console.error("Error decoding token:", error);
+    return <Navigate to="/login" replace />;
+  }
 };
+
 
 const routes = createBrowserRouter([
   {

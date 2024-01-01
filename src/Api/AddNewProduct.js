@@ -1,10 +1,12 @@
 import axios from "axios";
 
 const addNewProduct = async (formData) => {
+    const storedToken = localStorage.getItem("token");
     try {
         const response = await axios.post(`http://localhost:8000/api/products`, formData, {
             headers: {
                 'Content-Type': 'multipart/form-data',
+                'Authorization': `Bearer ${storedToken}`,
             },
         });
         if (response.status === 201) {
