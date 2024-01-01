@@ -5,9 +5,9 @@ import AdminTable from "../../../components/Admin/AdminTable";
 import textContent from "../../../constants/string";
 import getAllProduct from "../../../Api/GetAllProduct";
 import Pagination from "../../../components/Pagination/Pagination";
-import PopUpModal from "../../../components/Modal/DeleteModal";
+import DeleteModal from "../../../components/Modal/DeleteModal";
 import { useQuery, useQueryClient } from "@tanstack/react-query";
-import DefulltModal from "../../../components/Modal/AddModal";
+import AddModal from "../../../components/Modal/AddModal";
 import EditProductModal from "../../../components/Modal/EditProductModal";
 import { useEffect } from "react";
 
@@ -38,6 +38,7 @@ function Products() {
     data: products,
     error,
     isSuccess,
+    refetch,
   } = useQuery({
     queryKey: ["products", { page }],
     queryFn: () => getAllProduct(page),
@@ -49,6 +50,10 @@ function Products() {
       queryClient.invalidateQueries(["products", { page }]);
     }
   }, [products]);
+
+  const refetchProducts = async () => {
+    await refetch();
+  };
 
   const totallPages = isSuccess ? products.data.total_pages : 0;
   const data = isSuccess
@@ -64,13 +69,16 @@ function Products() {
         col3: `${product.category.name}/${product.subcategory.name}`,
         col4: (
           <div className="flex gap-2">
-            <EditProductModal id={product._id} />
-            <PopUpModal name={product.name} id={product._id} />
+            <EditProductModal id={product._id} refetchFn={refetchProducts} />
+            <DeleteModal
+              name={product.name}
+              id={product._id}
+              refetchFn={refetchProducts}
+            />
           </div>
         ),
       }))
     : [];
-
   if (isLoading) {
     return <Spinner color="purple" aria-label="Purple spinner example" />;
   }
@@ -81,7 +89,10 @@ function Products() {
         <span className="text-2xl font-[rokh-bold]">
           {textContent.products_title}
         </span>
-        <DefulltModal title={textContent.products_addBtn}></DefulltModal>
+        <AddModal
+          title={textContent.products_addBtn}
+          refetchFn={refetchProducts}
+        />
       </div>
       <AdminTable columns={columns} data={data} />
       <Pagination

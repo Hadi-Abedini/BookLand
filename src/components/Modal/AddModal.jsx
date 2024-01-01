@@ -1,7 +1,12 @@
 import { Modal, Spinner } from "flowbite-react";
 import { useState, useEffect } from "react";
 import ReactQuill from "react-quill";
-import { QueryClient, useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
+import {
+  QueryClient,
+  useMutation,
+  useQuery,
+  useQueryClient,
+} from "@tanstack/react-query";
 import "react-quill/dist/quill.snow.css";
 import "../../index.css";
 import SearchDropDownBtn from "../SearchBox/SearchDropDownBtn";
@@ -14,7 +19,7 @@ import getAllSubcategoriesByCategoriesId from "../../Api/GetAllSubcategoriesByCa
 const notifySuccess = () => toast.success(".محصول با موفقیت افزوده شد");
 const notifyUnsuccess = () => toast.error(".افزودن محصول با مشکل مواجه شد");
 
-function DefulltModal({ title }) {
+function AddModal({ title, refetchFn }) {
   const [openModal, setOpenModal] = useState(false);
   const [subcategories, setSubcategories] = useState([]);
 
@@ -67,15 +72,18 @@ function DefulltModal({ title }) {
   };
 
   const { mutate } = useMutation({
-    mutationFn: (formData) => {
-      AddNewProduct(formData);
-      setOpenModal(false);
+    mutationFn: async (formData) => {
+      try {
+        await AddNewProduct(formData);
+        setOpenModal(false);
+      } catch (error) {
+        console.error("Error adding new product", error);
+        throw error;
+      }
     },
     onSuccess: () => {
       notifySuccess();
-      QueryClient.invalidateQueries({
-        queryKey: ["products", { page }],
-      });
+      refetchFn();
       setFormValues({
         images: null,
         name: "",
@@ -89,7 +97,8 @@ function DefulltModal({ title }) {
         rating: 3.6,
       });
     },
-    onError: () => {
+    onError: (error) => {
+      console.error("Error adding new product", error);
       notifyUnsuccess();
     },
   });
@@ -256,4 +265,4 @@ function DefulltModal({ title }) {
   );
 }
 
-export default DefulltModal;
+export default AddModal;

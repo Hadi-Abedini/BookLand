@@ -2,33 +2,44 @@ import { Modal } from "flowbite-react";
 import React, { useState } from "react";
 import toast, { Toaster } from "react-hot-toast";
 import textContent from "../../constants/string";
-import { QueryClient, useMutation, useQueryClient } from "@tanstack/react-query";
+import {
+  QueryClient,
+  useMutation,
+  useQueryClient,
+} from "@tanstack/react-query";
 import deleteProductById from "../../Api/DeleteProductByID";
 
 const notifySuccess = () => toast.success(".محصول با موفقیت حذف شد");
 const notifyUnsuccess = () => toast.error(".حذف محصول با مشکل مواحه شد");
 
-function PopUpModal({ id, name }) {
+function DeleteModal({ id, name, refetchFn }) {
   const [openModal, setOpenModal] = useState(false);
 
   const { mutate } = useMutation({
-    mutationFn: (id) => {
-      deleteProductById(id);
-      setOpenModal(false);
+    mutationFn: async (id) => {
+      try {
+        await deleteProductById(id);
+        setOpenModal(false);
+      } catch (error) {
+        console.error("Error deleting product", error);
+        throw error;
+      }
     },
     onSuccess: () => {
       notifySuccess();
-      QueryClient.invalidateQueries({
-        queryKey: ["products", { page }],
-      });
+      refetchFn();
     },
-    onError: () => {
+    onError: (error) => {
+      console.error("Error deleting product", error);
       notifyUnsuccess();
     },
   });
+
   return (
     <>
-      <button className="text-blue-700 hover:underline" onClick={() => setOpenModal(true)}>
+      <button
+        className="text-blue-700 hover:underline"
+        onClick={() => setOpenModal(true)}>
         {textContent.products_deleteBtn}
       </button>
       <Modal
@@ -63,4 +74,4 @@ function PopUpModal({ id, name }) {
   );
 }
 
-export default PopUpModal;
+export default DeleteModal;

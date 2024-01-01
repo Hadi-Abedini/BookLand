@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { Modal, Spinner } from "flowbite-react";
-import { useQueryClient, useQuery, useMutation, QueryClient } from "@tanstack/react-query";
+import { useQuery, useMutation, QueryClient } from "@tanstack/react-query";
 import toast from "react-hot-toast";
 import ReactQuill from "react-quill";
 import "react-quill/dist/quill.snow.css";
@@ -14,7 +14,7 @@ import editProductById from "../../Api/EditProductById";
 const notifySuccess = () => toast.success(".محصول با موفقیت ویرایش شد");
 const notifyUnsuccess = () => toast.error(".ویرایش محصول با مشکل مواجه شد");
 
-function EditProductModal({ id }) {
+function EditProductModal({ id, refetchFn }) {
   const [openModal, setOpenModal] = useState(false);
   const [productID, setProductID] = useState();
 
@@ -72,15 +72,17 @@ function EditProductModal({ id }) {
 
   const { mutate } = useMutation({
     mutationKey: "editProductMutation",
-    mutationFn: (formData) => {
-      editProductById(formData, id);
-      setOpenModal(false);
+    mutationFn: async (formData) => {
+      try {
+        await editProductById(formData, id);
+        setOpenModal(false);
+      } catch (error) {
+        console.error("Error editing product", error);
+      }
     },
     onSuccess: () => {
       notifySuccess();
-      QueryClient.invalidateQueries({
-        queryKey: ["products", { page }],
-      });
+      refetchFn();
       setFormValues({
         images: null,
         name: "",

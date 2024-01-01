@@ -7,7 +7,6 @@ const addNewProduct = async (formData) => {
                 'Content-Type': 'multipart/form-data',
             },
         });
-
         if (response.status === 201) {
             console.log(response.data);
         } else {
