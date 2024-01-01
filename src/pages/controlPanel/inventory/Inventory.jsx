@@ -82,20 +82,19 @@ function Inventory() {
             {textContent.inventory_title}
           </span>
           <button
+            disabled={!changeList.length}
             onClick={() => {
-              if (changeList.length) {
-                changeList.map((change) => {
-                  const formData = new FormData();
-                  formData.append(change.type, change.value);
-                  mutate({
-                    formData,
-                    productId: change.id,
-                  });
+              changeList.map((change) => {
+                const formData = new FormData();
+                formData.append(change.type, change.value);
+                mutate({
+                  formData,
+                  productId: change.id,
                 });
-                window.location.reload();
-              }
+              });
+              window.location.reload();
             }}
-            className="px-6 py-2 text-sm bg-[#4B429F] text-white rounded-lg">
+            className="px-6 py-2 text-sm bg-[#4B429F] text-white rounded-lg  cursor-pointer disabled:bg-[#9088da] disabled:cursor-not-allowed">
             {textContent.inventory_saveBtn}
           </button>
         </div>
