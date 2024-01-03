@@ -55,7 +55,7 @@ function Login() {
               const { username, password } = values;
 
               const response = await axios.post(
-                "http://localhost:8000/api/auth/login",
+                "https://clean-bat-cape.cyclic.app/api/auth/login",
                 {
                   username: username,
                   password: password,
