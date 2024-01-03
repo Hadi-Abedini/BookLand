@@ -2,7 +2,7 @@ import axios from "axios";
 
 const getUserByID = async (userId) => {
     try {
-        const response = await axios.get(`http://localhost:8000/api/users/${userId}`);
+        const response = await axios.get(`https://clean-bat-cape.cyclic.app/api/users/${userId}`);
 
         if (response.status === 200) {
             const user = response;

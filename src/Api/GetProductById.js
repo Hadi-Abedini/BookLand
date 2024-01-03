@@ -2,7 +2,7 @@ import axios from "axios";
 
 const getProductById = async (productId) => {
     try {
-        const response = await axios.get(`http://localhost:8000/api/products/${productId}`);
+        const response = await axios.get(`https://clean-bat-cape.cyclic.app/api/products/${productId}`);
 
         if (response.status === 200) {
             const product = response;

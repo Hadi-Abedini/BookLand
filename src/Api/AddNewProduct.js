@@ -3,7 +3,7 @@ import axios from "axios";
 const addNewProduct = async (formData) => {
     const storedToken = localStorage.getItem("token");
     try {
-        const response = await axios.post(`http://localhost:8000/api/products`, formData, {
+        const response = await axios.post(`https://clean-bat-cape.cyclic.app/api/products`, formData, {
             headers: {
                 'Content-Type': 'multipart/form-data',
                 'Authorization': `Bearer ${storedToken}`,

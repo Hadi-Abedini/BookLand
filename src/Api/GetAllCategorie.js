@@ -2,7 +2,7 @@ import axios from "axios";
 
 const getAllCategorie = async () => {
     try {
-        const response = await axios.get("http://localhost:8000/api/categories");
+        const response = await axios.get("https://clean-bat-cape.cyclic.app/api/categories");
 
         if (response.status === 200) {
             const categories = response;

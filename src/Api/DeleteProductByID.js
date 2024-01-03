@@ -3,7 +3,7 @@ import axios from "axios";
 const deleteProductById = async (productId) => {
     const storedToken = localStorage.getItem("token");
     try {
-        const response = await axios.delete(`http://localhost:8000/api/products/${productId}`, {
+        const response = await axios.delete(`https://clean-bat-cape.cyclic.app/api/products/${productId}`, {
             headers: {
                 'Authorization': `Bearer ${storedToken}`,
             }

@@ -1,7 +1,7 @@
 import axios from "axios";
 
 const getAllProduct = async (page = 1, limit = 4, filter = undefined, filterID = undefined) => {
-  const url = filter ? `http://localhost:8000/api/products?${filter}=${filterID}` : `http://localhost:8000/api/products`;
+  const url = filter ? `https://clean-bat-cape.cyclic.app/api/products?${filter}=${filterID}` : `http://localhost:8000/api/products`;
   try {
     const response = await axios.get(url, {
       params: {

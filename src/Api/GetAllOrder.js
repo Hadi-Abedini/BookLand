@@ -2,7 +2,7 @@ import axios from "axios";
 
 const getAllOrder = async (sort = "-createdAt", deliveryStatus = true, limit = 5, page = 1) => {
     try {
-        const response = await axios.get("http://localhost:8000/api/orders", {
+        const response = await axios.get("https://clean-bat-cape.cyclic.app/api/orders", {
             params: {
                 sort: sort,
                 limit: limit,

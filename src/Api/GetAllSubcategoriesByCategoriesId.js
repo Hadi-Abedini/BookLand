@@ -2,7 +2,7 @@ import axios from "axios";
 
 const getAllSubcategoriesByCategoriesId = async (categoriesId) => {
     try {
-        const response = await axios.get("http://localhost:8000/api/subcategories", {
+        const response = await axios.get("https://clean-bat-cape.cyclic.app/api/subcategories", {
             params: {
                 category: categoriesId
             }
