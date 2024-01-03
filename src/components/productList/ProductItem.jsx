@@ -11,7 +11,7 @@ function ProductItem({ title, writer, price, cover, id }) {
         className="bg-[#F5F5F5] flex justify-center items-center px-6 py-3 rounded-sm">
         <img
           className="w-[150px] aspect-auto h-[222px]"
-          src={`http://localhost:8000/images/products/images/${cover}`}
+          src={`https://project-server-source.vercel.app/images/products/images/${cover}`}
           alt="cover"
         />
       </div>
