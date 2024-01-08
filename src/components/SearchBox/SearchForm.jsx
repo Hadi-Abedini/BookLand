@@ -7,12 +7,6 @@ import SearchBtn from "./SearchBtn";
 
 const category = [
   "رمان",
-  "داستان علمی تخیلی",
-  "رازنگار",
-  "رمان تاریخی",
-  "رمان عاشقانه",
-  "داستان کودکانه",
-  "فانتزی",
 ];
 
 function SearchForm() {

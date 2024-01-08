@@ -6,7 +6,7 @@ function ProductItem({ title, writer, price, cover, id }) {
   return (
     <Link
       to={`/product/${id}`}
-      className=" flex flex-col bg-white p-3 gap-2 rounded-lg hover:drop-shadow-2xl">
+      className="w-1/5 flex flex-col bg-white p-3 gap-2 rounded-lg hover:drop-shadow-2xl">
       <div
         className="bg-[#F5F5F5] flex justify-center items-center px-6 py-3 rounded-sm">
         <img

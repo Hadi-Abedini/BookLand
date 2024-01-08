@@ -38,9 +38,7 @@ function Product() {
     return (
       <div className="flex flex-col w-full h-auto p-6">
         <Breadcrumb aria-label="Default breadcrumb example">
-          <Breadcrumb.Item href="/" icon={HiHome}>
-            خانه
-          </Breadcrumb.Item>
+          <Breadcrumb.Item href="/">بوک لند</Breadcrumb.Item>
           <Breadcrumb.Item
             href={`/categorie/${productInfo.category._id}/category`}>
             {productInfo.category.name}
@@ -49,7 +47,9 @@ function Product() {
             href={`/categorie/${productInfo.subcategory._id}/subcategory`}>
             {productInfo.subcategory.name}
           </Breadcrumb.Item>
-          <Breadcrumb.Item>{productInfo.name}</Breadcrumb.Item>
+          <Breadcrumb.Item href={`/product/${productID}`}>
+            {productInfo.name}
+          </Breadcrumb.Item>
         </Breadcrumb>
         <div className="w-full pt-7 flex gap-7 mb-4">
           <img
@@ -78,8 +78,9 @@ function Product() {
               </p>
               <p className="text-lg">
                 قیمت:
-                <span className="text-sm"> {" "}
-                  {addCommasToNumber(productInfo.price/10)} تومان
+                <span className="text-sm">
+                  {" "}
+                  {addCommasToNumber(productInfo.price / 10)} تومان
                 </span>
               </p>
             </div>
@@ -118,7 +119,7 @@ function Product() {
                     </button>
                   </Tooltip>
                   <span className="">
-                    {addCommasToNumber((productInfo.price * count)/10)} تومان
+                    {addCommasToNumber((productInfo.price * count) / 10)} تومان
                   </span>
                 </div>
               </>

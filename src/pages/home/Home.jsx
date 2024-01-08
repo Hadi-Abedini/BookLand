@@ -26,7 +26,7 @@ function Home() {
   } else if (isSuccess && categoriesFetch) {
     return (
       <div className="h-full w-full flex flex-col bg-[#E8E8F4]">
-        <Link to={`categorie/ALL`}>
+        <Link to={`categorie/658dd29dfdc301945469fc54/category`}>
           <img
             className="w-full"
             src="src/assets/banner/poster.png"
@@ -35,6 +35,7 @@ function Home() {
         </Link>
         <div className="w-full flex flex-col justify-center px-[8.25%] gap-10 py-10">
           <HomeInfo />
+          {/* <SearchBox /> */}
           {categories.data.data.categories.map((category) => {
             const temp = products.data.data.products.filter(
               (product) => product.category._id === category._id

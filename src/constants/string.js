@@ -1,6 +1,6 @@
 const textContent = {
     //header
-    header_btn: "ورود/ثبت نام",
+    header_btn: "پنل کاربری",
     header_title: "بــــوک لــــند",
     header_subtitle: "سرزمین کتاب های خاص",
     //footer

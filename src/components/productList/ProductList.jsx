@@ -12,8 +12,8 @@ function ProductList({ category, title, books = [] }) {
         <div className="flex flex-col mb-3">
           <Link
             to={`/categorie/${category}/category`}
-            className="text-[#303842] text-[22px] font-[rokh-bold] text-right">
-            {title}
+            className="text-[#303842] text-[22px] flex gap-2 items-center font-[rokh-bold] text-right">
+           <i class="fa fa-book"></i> {title}
           </Link>
         </div>
         <div className="w-full overflow-x-scroll flex justify-start items-center gap-5">

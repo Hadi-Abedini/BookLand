@@ -47,7 +47,8 @@ function Categorie() {
               <NavLink
                 to={`/categorie/${category._id}/category`}
                 key={category._id + "1"}
-                className="text-lg px-4 py-1 w-fit text-black rounded">
+                className="text-lg px-4 py-1 w-fit flex gap-2 items-center font-[sans-bold] text-black rounded">
+                  <i class="fa fa-book"></i>
                 {category.name}
               </NavLink>
               <div className="flex flex-col">
