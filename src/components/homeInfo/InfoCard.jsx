@@ -3,7 +3,7 @@ import React from "react";
 function InfoCard({ title, subtitle, iconSrc }) {
   return (
     <div className="w-full flex gap-2 rounded-lg hover:bg-white hover:cursor-pointer justify-center items-center p-3 ">
-      <div className="bg-[#D7D4EE] rounded-full p-4">
+      <div className="bg-[#D4EED7] rounded-full p-4">
         <img className="w-10" src={iconSrc} alt="" />
       </div>
       <div className="flex flex-col gap-2">

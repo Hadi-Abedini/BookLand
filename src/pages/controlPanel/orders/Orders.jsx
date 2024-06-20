@@ -80,7 +80,7 @@ function Orders() {
           <div className="flex items-center gap-2">
             <Label htmlFor="finish">{textContent.orders_checkbox[0]}</Label>
             <Radio
-              className="focus:ring-[#4B429F]"
+              className="focus:ring-[#429F4B]"
               name="order_status"
               value={true}
               onChange={handleRadioChange}
@@ -90,7 +90,7 @@ function Orders() {
           <div className="flex items-center gap-2">
             <Label htmlFor="wait">{textContent.orders_checkbox[1]}</Label>
             <Radio
-              className="focus:ring-[#4B429F]"
+              className="focus:ring-[#429F4B]"
               name="order_status"
               value={false}
               onChange={handleRadioChange}

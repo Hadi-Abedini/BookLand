@@ -9,16 +9,16 @@ import {
 } from "@tanstack/react-query";
 import deleteProductById from "../../Api/DeleteProductByID";
 
-const notifySuccess = () => toast.success(".محصول با موفقیت حذف شد");
-const notifyUnsuccess = () => toast.error(".حذف محصول با مشکل مواحه شد");
+const notifySuccess = () => toast.success(".با موفقیت حذف شد");
+const notifyUnsuccess = () => toast.error(".حذف با مشکل مواجه شد");
 
-function DeleteModal({ id, name, refetchFn }) {
+function DeleteModal({ id, name, title, refetchFn, deleteFn }) {
   const [openModal, setOpenModal] = useState(false);
 
   const { mutate } = useMutation({
     mutationFn: async (id) => {
       try {
-        await deleteProductById(id);
+        await deleteFn(id);
         setOpenModal(false);
       } catch (error) {
         console.error("Error deleting product", error);
@@ -38,31 +38,35 @@ function DeleteModal({ id, name, refetchFn }) {
   return (
     <>
       <button
-        className="text-blue-700 hover:underline"
-        onClick={() => setOpenModal(true)}>
+        className="text-[#054118] hover:underline"
+        onClick={() => setOpenModal(true)}
+      >
         {textContent.products_deleteBtn}
       </button>
       <Modal
         show={openModal}
         size="md"
         onClose={() => setOpenModal(false)}
-        popup>
+        popup
+      >
         <Modal.Header />
         <Modal.Body>
           <div className="text-center">
             <h3 className="mb-5 text-lg font-normal text-gray-500 dark:text-gray-400">
-              آیا از حذف این محصول مطمئن هستید؟
+              آیا از حذف این {title} مطمئن هستید؟
               <br /> <span className="text-sm">{name}</span>
             </h3>
             <div className="flex justify-center gap-4">
               <button
-                className="px-7 py-2 rounded-lg text-white bg-[#4B429F] "
-                onClick={() => mutate(id)}>
+                className="px-7 py-2 rounded-lg text-white bg-[#429F4B] "
+                onClick={() => mutate(id)}
+              >
                 بله
               </button>
               <button
-                className="px-7 py-2 rounded-lg text-black bg-[#E5D1FA]"
-                onClick={() => setOpenModal(false)}>
+                className="px-7 py-2 rounded-lg text-black bg-[#A2DFA2]"
+                onClick={() => setOpenModal(false)}
+              >
                 خیر
               </button>
             </div>

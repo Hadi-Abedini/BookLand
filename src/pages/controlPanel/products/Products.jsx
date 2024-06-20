@@ -10,6 +10,7 @@ import { useQuery, useQueryClient } from "@tanstack/react-query";
 import AddModal from "../../../components/Modal/AddModal";
 import EditProductModal from "../../../components/Modal/EditProductModal";
 import { useEffect } from "react";
+import deleteProductById from "../../../Api/DeleteProductByID";
 
 function Products() {
   const columns = [
@@ -74,6 +75,8 @@ function Products() {
               name={product.name}
               id={product._id}
               refetchFn={refetchProducts}
+              title={"محصول"}
+              deleteFn={deleteProductById}
             />
           </div>
         ),

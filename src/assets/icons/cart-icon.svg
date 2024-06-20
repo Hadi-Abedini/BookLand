@@ -1,7 +1,7 @@
 <svg width="38" height="38" viewBox="0 0 38 38" fill="none" xmlns="http://www.w3.org/2000/svg">
 <g id="Iconsax/Linear/bag">
-<path id="Vector" d="M13.949 3.16663L8.21729 8.91413M24.0506 3.16663L29.7823 8.91413" stroke="#E5D1FA" stroke-width="3.5" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
-<path id="Vector_2" d="M3.1665 12.4291C3.1665 9.49995 4.734 9.26245 6.6815 9.26245H31.3182C33.2657 9.26245 34.8332 9.49995 34.8332 12.4291C34.8332 15.8333 33.2657 15.5958 31.3182 15.5958H6.6815C4.734 15.5958 3.1665 15.8333 3.1665 12.4291Z" stroke="#E5D1FA" stroke-width="3.5"/>
-<path id="Vector_3" d="M15.4532 22.1667V27.7875M22.7365 22.1667V27.7875M5.5415 15.8334L7.774 29.5134C8.28067 32.585 9.49984 34.8334 14.0282 34.8334H23.5757C28.4998 34.8334 29.2282 32.68 29.7982 29.7034L32.4582 15.8334" stroke="#E5D1FA" stroke-width="3.5" stroke-linecap="round"/>
+<path id="Vector" d="M13.949 3.16663L8.21729 8.91413M24.0506 3.16663L29.7823 8.91413" stroke="#A2DFA2" stroke-width="3.5" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
+<path id="Vector_2" d="M3.1665 12.4291C3.1665 9.49995 4.734 9.26245 6.6815 9.26245H31.3182C33.2657 9.26245 34.8332 9.49995 34.8332 12.4291C34.8332 15.8333 33.2657 15.5958 31.3182 15.5958H6.6815C4.734 15.5958 3.1665 15.8333 3.1665 12.4291Z" stroke="#A2DFA2" stroke-width="3.5"/>
+<path id="Vector_3" d="M15.4532 22.1667V27.7875M22.7365 22.1667V27.7875M5.5415 15.8334L7.774 29.5134C8.28067 32.585 9.49984 34.8334 14.0282 34.8334H23.5757C28.4998 34.8334 29.2282 32.68 29.7982 29.7034L32.4582 15.8334" stroke="#A2DFA2" stroke-width="3.5" stroke-linecap="round"/>
 </g>
 </svg>

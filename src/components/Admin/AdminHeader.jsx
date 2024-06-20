@@ -4,7 +4,8 @@ import textContent from "../../constants/string";
 function AdminHeader() {
   return (
     <div
-      className={`w-full text-white flex justify-between items-center px-6 py-3 bg-[#4B429F]`}>
+      className={`w-full text-white flex justify-between items-center px-6 py-3 bg-[#429F4B]`}
+    >
       <div className="w-fit flex items-center gap-1">
         <span className="w-fit text-[#FF9619] text-[22px] font-[rokh-bold]">
           {textContent.header_title}
@@ -19,28 +20,41 @@ function AdminHeader() {
           <li>
             <NavLink
               className={
-                "w-fit flex text-sm items-center gap-2 bg-[#E5D1FA] px-4 py-2 rounded-lg text-[#303842] font-[sans-semibold]"
+                "w-fit flex text-sm items-center gap-2 bg-[#A2DFA2] px-4 py-2 rounded-lg text-[#303842] font-[sans-semibold]"
               }
-              to="/control-panel/products">
+              to="/control-panel/products"
+            >
               {textContent.adminHeader_navbar[0]}
             </NavLink>
           </li>
           <li>
             <NavLink
               className={
-                "w-fit flex text-sm items-center gap-2 bg-[#E5D1FA] px-4 py-2 rounded-lg text-[#303842] font-[sans-semibold]"
+                "w-fit flex text-sm items-center gap-2 bg-[#A2DFA2] px-4 py-2 rounded-lg text-[#303842] font-[sans-semibold]"
               }
-              to="/control-panel/inventory">
+              to="/control-panel/category"
+            >
               {textContent.adminHeader_navbar[1]}
             </NavLink>
           </li>
           <li>
             <NavLink
               className={
-                "w-fit flex text-sm items-center gap-2 bg-[#E5D1FA] px-4 py-2 rounded-lg text-[#303842] font-[sans-semibold]"
+                "w-fit flex text-sm items-center gap-2 bg-[#A2DFA2] px-4 py-2 rounded-lg text-[#303842] font-[sans-semibold]"
               }
-              to="/control-panel/order">
+              to="/control-panel/inventory"
+            >
               {textContent.adminHeader_navbar[2]}
+            </NavLink>
+          </li>{" "}
+          <li>
+            <NavLink
+              className={
+                "w-fit flex text-sm items-center gap-2 bg-[#A2DFA2] px-4 py-2 rounded-lg text-[#303842] font-[sans-semibold]"
+              }
+              to="/control-panel/order"
+            >
+              {textContent.adminHeader_navbar[3]}
             </NavLink>
           </li>
         </ul>
@@ -48,8 +62,9 @@ function AdminHeader() {
       <Link
         to={"/"}
         className={
-          "w-fit flex text-sm items-center gap-2 bg-[#ff4a4a] hover:bg-[#ff2020] px-6 py-3 rounded-lg text-white font-[sans-semibold]"
-        }>
+          "w-fit flex text-sm items-center gap-2 bg-[#ff4a4a] hover:bg-[#ff2020] px-4 py-2 rounded-lg text-white font-[sans-semibold]"
+        }
+      >
         {textContent.adminHeader_logout}
       </Link>
     </div>

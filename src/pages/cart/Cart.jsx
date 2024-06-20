@@ -50,7 +50,7 @@ function Cart() {
     col2: (
       <Link
         to={`/product/${item.productId}`}
-        className="text-blue-700 hover:underline">
+        className="text-[#054118] hover:underline">
         {item.name}
       </Link>
     ),
@@ -84,7 +84,7 @@ function Cart() {
           </p>
           <Link
             to={"/shipping"}
-            className="w-fit flex items-center gap-2 bg-[#4B429F] text-white hover:bg-[#E5D1FA] hover:text-black px-4 py-2 rounded-lg ">
+            className="w-fit flex items-center gap-2 bg-[#429F4B] text-white hover:bg-[#A2DFA2] hover:text-black px-4 py-2 rounded-lg ">
             نهایی کردن خرید
           </Link>
         </div>

@@ -11,7 +11,7 @@ function PaymentStatus() {
           style={{ fontSize: 100 + "px", color: "green" }}></i>
         <p className="text-lg">پرداخت با موفقیت انجام شد منتظر تماس ما باشید</p>
       </div>
-      <Link to={"/"} className="text-blue-700 hover:underline">
+      <Link to={"/"} className="text-[#054118] hover:underline">
         رفتن به صفحه اصلی
       </Link>
     </div>
@@ -26,7 +26,7 @@ function PaymentStatus() {
           پرداخت با شکست مواجه شد سفارش شما در انتظار پرداخت است
         </p>
       </div>
-      <Link to={"/"} className="text-blue-700 hover:underline">
+      <Link to={"/"} className="text-[#054118] hover:underline">
         رفتن به صفحه اصلی
       </Link>
     </div>

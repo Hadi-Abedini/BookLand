@@ -81,7 +81,7 @@ function Shipping() {
           />
         </div>
         <button
-          className="w-fit flex items-center gap-2 bg-[#4B429F] text-white hover:bg-[#E5D1FA] hover:text-black px-4 py-2 rounded-lg "
+          className="w-fit flex items-center gap-2 bg-[#429F4B] text-white hover:bg-[#A2DFA2] hover:text-black px-4 py-2 rounded-lg "
           type="submit">
           ثبت
         </button>

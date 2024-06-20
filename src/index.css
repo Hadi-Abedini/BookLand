@@ -44,32 +44,32 @@
 }
 
 ::-webkit-scrollbar-track {
-    background: #E8E8F4;
+    background: #E8F4E8;
 }
 
 ::-webkit-scrollbar-thumb {
-    background: #6c66a7;
+    background: #66A76C;
     border-radius: 1px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-    background: #4B429F;
+    background: #429F4B;
 }
 
 .active {
-    background-color: #d0aaf8;
+    background-color: #00e46f;
     color: white;
     font-family: sans-bold;
 }
 
 input[type="radio"] {
-    background-color: #d0aaf8;
-    border-color: #d0aaf8;
+    background-color: #00e46f;
+    border-color: #00e46f;
 }
 
 input[type="radio"]:checked {
-    background-color: #4B429F;
-    border-color: #4B429F;
+    background-color: #429F4B;
+    border-color: #429F4B;
 }
 
 .ql-picker-label {

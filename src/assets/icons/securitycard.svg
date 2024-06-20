@@ -1,8 +1,8 @@
 <svg width="61" height="61" viewBox="0 0 61 61" fill="none" xmlns="http://www.w3.org/2000/svg">
 <g id="Iconsax/TwoTone/securitycard">
 <path id="Vector" opacity="0.4" d="M29.8391 45.1146H44.8857C44.657 45.3179 44.4282 45.4958 44.1995 45.6992L33.3466 53.8325C29.7628 56.5013 23.917 56.5013 20.3078 53.8325L9.4295 45.6992C7.04034 43.92 5.08325 39.9804 5.08325 37.0067V18.1729C5.08325 15.0721 7.447 11.6408 10.3445 10.5479L23.002 5.79498C25.0862 5.00706 28.5428 5.00706 30.627 5.79498L43.2591 10.5479C45.6737 11.4629 47.7324 14.0046 48.3678 16.5971H29.8137C29.2545 16.5971 28.7462 16.6225 28.2633 16.6225C23.5612 16.9021 22.3412 18.605 22.3412 23.9679V37.7692C22.3666 43.615 23.8662 45.1146 29.8391 45.1146Z" stroke="#9996B6" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"/>
-<path id="Vector_2" d="M22.3667 28.515H55.9167" stroke="#4B429F" stroke-width="3.5" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
-<path id="Vector_3" d="M55.9167 23.9476V38.0538C55.8658 43.6963 54.3154 45.0942 48.4442 45.0942H29.8392C23.8663 45.0942 22.3667 43.5947 22.3667 37.7234V23.9222C22.3667 18.5847 23.5867 16.8817 28.2888 16.5767C28.7717 16.5767 29.28 16.5513 29.8392 16.5513H48.4442C54.4171 16.5767 55.9167 18.0509 55.9167 23.9476Z" stroke="#4B429F" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"/>
-<path id="Vector_4" d="M28.7717 38.7909H32.1521M37.4896 38.7909H45.8009" stroke="#4B429F" stroke-width="3.5" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
+<path id="Vector_2" d="M22.3667 28.515H55.9167" stroke="#429F4B" stroke-width="3.5" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
+<path id="Vector_3" d="M55.9167 23.9476V38.0538C55.8658 43.6963 54.3154 45.0942 48.4442 45.0942H29.8392C23.8663 45.0942 22.3667 43.5947 22.3667 37.7234V23.9222C22.3667 18.5847 23.5867 16.8817 28.2888 16.5767C28.7717 16.5767 29.28 16.5513 29.8392 16.5513H48.4442C54.4171 16.5767 55.9167 18.0509 55.9167 23.9476Z" stroke="#429F4B" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"/>
+<path id="Vector_4" d="M28.7717 38.7909H32.1521M37.4896 38.7909H45.8009" stroke="#429F4B" stroke-width="3.5" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
 </g>
 </svg>

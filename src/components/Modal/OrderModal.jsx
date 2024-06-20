@@ -95,7 +95,7 @@ function OrderModal({ orderId }) {
           col1: (
             <Link
               to={`/product/${product.id}`}
-              className="text-blue-700 hover:underline">
+              className="text-[#054118] hover:underline">
               {product.name}
             </Link>
           ),
@@ -107,7 +107,7 @@ function OrderModal({ orderId }) {
   return (
     <>
       <button
-        className="text-blue-700 hover:underline"
+        className="text-[#054118] hover:underline"
         onClick={() => setOpenModal(true)}>
         برسی سفارش
       </button>
@@ -156,7 +156,7 @@ function OrderModal({ orderId }) {
               {!order.data.data.order.deliveryStatus ? (
                 <button
                   onClick={handleDelivery}
-                  className="w-fit bg-[#4B429F] py-3 px-5 rounded-lg text-white hover:bg-purple-500">
+                  className="w-fit bg-[#429F4B] py-3 px-5 rounded-lg text-white hover:bg-purple-500">
                   تحویل شد
                 </button>
               ) : (

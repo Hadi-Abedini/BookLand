@@ -38,13 +38,15 @@ function Product() {
     return (
       <div className="flex flex-col w-full h-auto p-6">
         <Breadcrumb aria-label="Default breadcrumb example">
-          <Breadcrumb.Item href="/">بوک لند</Breadcrumb.Item>
+          <Breadcrumb.Item href="/">گل‌ستان</Breadcrumb.Item>
           <Breadcrumb.Item
-            href={`/categorie/${productInfo.category._id}/category`}>
+            href={`/categorie/${productInfo.category._id}/category`}
+          >
             {productInfo.category.name}
           </Breadcrumb.Item>
           <Breadcrumb.Item
-            href={`/categorie/${productInfo.subcategory._id}/subcategory`}>
+            href={`/categorie/${productInfo.subcategory._id}/subcategory`}
+          >
             {productInfo.subcategory.name}
           </Breadcrumb.Item>
           <Breadcrumb.Item href={`/product/${productID}`}>
@@ -63,18 +65,20 @@ function Product() {
                 <p className="w-full text-lg font-[sans-semibold]">
                   {productInfo.name}
                 </p>
-                <Rating className="flex fle gap-1">
-                  <Rating.Star />
-                  <p className="ml-2 text-sm font-bold text-gray-900 dark:text-white">
-                    {productInfo.rating}
-                  </p>
-                </Rating>
+                {productInfo.rating && (
+                  <Rating className="flex fle gap-1">
+                    <Rating.Star />
+                    <p className="ml-2 text-sm font-bold text-gray-900 dark:text-white">
+                      {productInfo.rating}
+                    </p>
+                  </Rating>
+                )}
               </div>
               <p className="text-lg">
-                نویسنده: <span className="text-sm">{productInfo.writer}</span>
+                عرض: <span className="text-sm">{productInfo.width}</span>
               </p>
               <p className="text-lg">
-                ناشر: <span className="text-sm">{productInfo.publisher}</span>
+                ارتفاع: <span className="text-sm">{productInfo.height}</span>
               </p>
               <p className="text-lg">
                 قیمت:
@@ -114,7 +118,8 @@ function Product() {
                         setCart(temp);
                         notifySuccess();
                       }}
-                      className="flex flex-col items-center px-[30px] py-2 text-sm bg-[#4B429F] text-white rounded-lg">
+                      className="flex flex-col items-center px-[30px] py-2 text-sm bg-[#429F4B] text-white rounded-lg"
+                    >
                       <span>افزودن</span>
                     </button>
                   </Tooltip>

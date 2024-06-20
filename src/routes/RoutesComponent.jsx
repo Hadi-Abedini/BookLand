@@ -17,6 +17,7 @@ import UserLayout from "../pages/userLayout/UserLayout";
 import PaymentStatus from "../pages/payment/PaymentStatus";
 import { jwtDecode } from "jwt-decode";
 import isTokenExpired from "../utils/isTokenExpired";
+import Category from "../pages/controlPanel/category/Category";
 
 
 const PrivateRoute = ({ element}) => {
@@ -49,7 +50,7 @@ const routes = createBrowserRouter([
         element: (
           <React.Suspense fallback={<>...</>}>
             <Helmet>
-              <title>home</title>
+              <title>گــــل‌ســتان | خانه</title>
             </Helmet>
             <Home />
           </React.Suspense>
@@ -60,18 +61,18 @@ const routes = createBrowserRouter([
         element: (
           <React.Suspense fallback={<>...</>}>
             <Helmet>
-              <title>cart</title>
+              <title>گــــل‌ســتان | سبد خرید</title>
             </Helmet>
             <Cart />
           </React.Suspense>
         ),
       },
       {
-        path: "categorie/:ID?/:type",
+        path: "categorie/:ID?/:type?",
         element: (
           <React.Suspense fallback={<>...</>}>
             <Helmet>
-              <title>categorie</title>
+              <title>گــــل‌ســتان | دسته بندی ها</title>
             </Helmet>
             <Categorie />
           </React.Suspense>
@@ -82,7 +83,7 @@ const routes = createBrowserRouter([
         element: (
           <React.Suspense fallback={<>...</>}>
              <Helmet>
-              <title>shipping</title>
+              <title>گــــل‌ســتان | خرید</title>
             </Helmet>
             <Shipping />
           </React.Suspense>
@@ -93,7 +94,7 @@ const routes = createBrowserRouter([
         element: (
           <React.Suspense fallback={<>...</>}>
             <Helmet>
-              <title>product</title>
+              <title>گــــل‌ســتان | صفحه محصول</title>
             </Helmet>
             <Product />
           </React.Suspense>
@@ -106,7 +107,7 @@ const routes = createBrowserRouter([
     element: (
       <React.Suspense fallback={<>...</>}>
         <Helmet>
-          <title>login</title>
+          <title>گــــل‌ســتان | ورود</title>
         </Helmet>
         <Login />
       </React.Suspense>
@@ -124,6 +125,9 @@ const routes = createBrowserRouter([
     path: "payment-status/:status",
     element: (
       <React.Suspense fallback={<>...</>}>
+         <Helmet>
+          <title>گــــل‌ســتان | پرداخت</title>
+        </Helmet>
         <PaymentStatus />
       </React.Suspense>
     ),
@@ -137,7 +141,7 @@ const routes = createBrowserRouter([
         element: (
           <React.Suspense fallback={<>...</>}>
             <Helmet>
-              <title>control-panel</title>
+              <title>پنل مدیریت گــــل‌ســتان | کالا ها</title>
             </Helmet>
             <Orders />
           </React.Suspense>
@@ -148,9 +152,20 @@ const routes = createBrowserRouter([
         element: (
           <React.Suspense fallback={<>...</>}>
             <Helmet>
-              <title>control-panel</title>
+              <title>پنل مدیریت گــــل‌ســتان | کالا ها</title>
             </Helmet>
             <Products />
+          </React.Suspense>
+        ),
+      },
+      {
+        path: "category",
+        element: (
+          <React.Suspense fallback={<>...</>}>
+            <Helmet>
+              <title>پنل مدیریت گــــل‌ســتان | دسته بندی ها</title>
+            </Helmet>
+            <Category />
           </React.Suspense>
         ),
       },
@@ -159,7 +174,7 @@ const routes = createBrowserRouter([
         element: (
           <React.Suspense fallback={<>...</>}>
             <Helmet>
-              <title>control-panel</title>
+              <title>پنل مدیریت گــــل‌ســتان | انبار</title>
             </Helmet>
             <Inventory />
           </React.Suspense>
@@ -170,7 +185,7 @@ const routes = createBrowserRouter([
         element: (
           <React.Suspense fallback={<>...</>}>
             <Helmet>
-              <title>control-panel</title>
+              <title>پنل مدیریت گــــل‌ســتان | سفارش ها</title>
             </Helmet>
             <Orders />
           </React.Suspense>

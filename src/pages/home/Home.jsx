@@ -25,8 +25,8 @@ function Home() {
     return <Spinner color="purple" aria-label="Purple spinner example" />;
   } else if (isSuccess && categoriesFetch) {
     return (
-      <div className="h-full w-full flex flex-col bg-[#E8E8F4]">
-        <Link to={`categorie/658dd29dfdc301945469fc54/category`}>
+      <div className="h-full w-full flex flex-col bg-[#E8F4E8]">
+        <Link to={`categorie/`}>
           <img
             className="w-full"
             src="src/assets/banner/poster.png"

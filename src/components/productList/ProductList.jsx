@@ -13,7 +13,7 @@ function ProductList({ category, title, books = [] }) {
           <Link
             to={`/categorie/${category}/category`}
             className="text-[#303842] text-[22px] flex gap-2 items-center font-[rokh-bold] text-right">
-           <i class="fa fa-book"></i> {title}
+           <i class="fa fa-leaf"></i> {title}
           </Link>
         </div>
         <div className="w-full overflow-x-scroll flex justify-start items-center gap-5">
@@ -24,7 +24,6 @@ function ProductList({ category, title, books = [] }) {
                 .substring(2, 4 + 2)}
               id={book._id}
               title={book.name}
-              writer={book.writer}
               price={book.price}
               cover={book.images[0]}
             />

@@ -22,11 +22,10 @@ function EditProductModal({ id, refetchFn }) {
     images: null,
     name: "",
     description: "",
-    writer: "",
-    publisher: "",
+    height: "",
+    width: "",
     price: "",
     quantity: "",
-    rating: 3.6,
   });
   const { data: product, isLoading } = useQuery({
     queryKey: ["product", productID],
@@ -47,11 +46,10 @@ function EditProductModal({ id, refetchFn }) {
         category: temp.category._id,
         subcategory: temp.subcategory._id,
         description: temp.description,
-        writer: temp.writer,
-        publisher: temp.publisher,
+        height: temp.height,
+        width: temp.width,
         price: temp.price,
         quantity: temp.quantity,
-        rating: temp.rating,
       });
     }
   }, [formValues.category, product]);
@@ -87,11 +85,10 @@ function EditProductModal({ id, refetchFn }) {
         images: null,
         name: "",
         description: "",
-        writer: "",
-        publisher: "",
+        width: "",
+        height: "",
         price: "",
         quantity: "",
-        rating: 3.6,
       });
     },
     onError: () => {
@@ -107,8 +104,8 @@ function EditProductModal({ id, refetchFn }) {
       formData.append("images", formValues.images);
     }
     formData.append("name", formValues.name);
-    formData.append("publisher", formValues.publisher);
-    formData.append("writer", formValues.writer);
+    formData.append("height", formValues.height);
+    formData.append("width", formValues.width);
     formData.append("quantity", formValues.quantity);
     formData.append("price", formValues.price);
     formData.append("description", formValues.description);
@@ -121,7 +118,7 @@ function EditProductModal({ id, refetchFn }) {
   return (
     <>
       <button
-        className="text-blue-700 hover:underline"
+        className="text-[#054118] hover:underline"
         onClick={() => {
           setProductID(id);
           setOpenModal(true);
@@ -131,7 +128,7 @@ function EditProductModal({ id, refetchFn }) {
       <Modal size={"xl"} show={openModal} onClose={() => setOpenModal(false)}>
         <div className="flex items-center justify-between rounded-t border-b p-5">
           <h3 className="text-xl font-medium text-gray-900 dark:text-white">
-            افزودن کالا
+            ویرایش کالا
           </h3>
           <Modal.Header style={{ padding: "0", border: "none" }} />
         </div>
@@ -143,7 +140,7 @@ function EditProductModal({ id, refetchFn }) {
             <div className="w-full flex flex-col gap-1">
               <span>تصویر کالا:</span>
               <input
-                className="block w-full text-[13px] bg-[#E8E8F4]  rounded-lg cursor-pointer dark:text-gray-400 focus:outline-none"
+                className="block w-full text-[13px] bg-[#E8F4E8]  rounded-lg cursor-pointer dark:text-gray-400 focus:outline-none"
                 name="images"
                 type="file"
                 accept=".jpg,.png"
@@ -156,27 +153,29 @@ function EditProductModal({ id, refetchFn }) {
                 <SearchInput
                   id={"name"}
                   value={formValues.name}
-                  placeholder={"نام کتاب"}
+                  placeholder={"نام گیاه"}
                   onChange={(e) => handleInputChange("name", e.target.value)}
                 />
               </div>
               <div className="w-full flex flex-col gap-1">
-                <span>نویسنده:</span>
+                <span>ارتفاع:</span>
                 <SearchInput
-                  id={"writer"}
-                  value={formValues.writer}
-                  placeholder={"نویسنده"}
-                  onChange={(e) => handleInputChange("writer", e.target.value)}
+                  id={"height"}
+                  value={formValues.height}
+                  type="number"
+                  placeholder={"ارتفاع(سانتی متر)"}
+                  onChange={(e) => handleInputChange("height", e.target.value)}
                 />
               </div>
               <div className="w-full flex flex-col gap-1">
-                <span>ناشر:</span>
+                <span>عرض:</span>
                 <SearchInput
-                  id={"publisher"}
-                  value={formValues.publisher}
-                  placeholder={"ناشر"}
+                  id={"width"}
+                  type="number"
+                  value={formValues.width}
+                  placeholder={"عرض(سانتی متر)"}
                   onChange={(e) =>
-                    handleInputChange("publisher", e.target.value)
+                    handleInputChange("width", e.target.value)
                   }
                 />
               </div>
@@ -199,7 +198,7 @@ function EditProductModal({ id, refetchFn }) {
                   id={"quantity"}
                   type="number"
                   value={formValues.quantity}
-                  placeholder={"تعداد کتاب"}
+                  placeholder={"تعداد"}
                   onChange={(e) =>
                     handleInputChange("quantity", e.target.value)
                   }
@@ -230,7 +229,7 @@ function EditProductModal({ id, refetchFn }) {
             </div>
             <button
               type="submit"
-              className="w-fit px-7 py-2 rounded-lg text-white bg-[#4B429F]">
+              className="w-fit px-7 py-2 rounded-lg text-white bg-[#429F4B]">
               ویرایش
             </button>
           </form>

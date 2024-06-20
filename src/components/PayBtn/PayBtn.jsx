@@ -11,6 +11,7 @@ function PayBtn() {
     const cart = JSON.parse(localStorage.getItem("cart"));
 
     const data = {
+      //TODO
       user: "658dd3ddfdc301945469fcdd",
       products: cart.map((item) => ({
         product: item.productId,
@@ -27,7 +28,8 @@ function PayBtn() {
     <button
       onClick={handlePayment}
       to={"/payment-status/success"}
-      className="bg-green-500 py-3 px-7 rounded-lg text-white hover:bg-green-400">
+      className="bg-green-500 py-3 px-7 rounded-lg text-white hover:bg-green-400"
+    >
       پرداخت
     </button>
   );

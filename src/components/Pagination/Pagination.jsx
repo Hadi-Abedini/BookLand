@@ -9,8 +9,8 @@ function Pagination({ currentPage, totalPages, setPage }) {
         <button
           className={`${
             i === currentPage
-              ? "bg-[#4B429F] text-white"
-              : "hover:outline hover:outline-2  hover:outline-[#4B429F]"
+              ? "bg-[#429F4B] text-white"
+              : "hover:outline hover:outline-2  hover:outline-[#429F4B]"
           } flex justify-center items-center w-9 h-9 rounded-full`}
           key={i}
           value={i}

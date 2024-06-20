@@ -25,8 +25,8 @@ function Login() {
     return null;
   }
   return (
-    <div className="flex justify-center items-center w-full h-[100vh] bg-[#E8E8F4]">
-      <div className="w-[350px] flex gap-2 flex-col justify-start p-5 rounded-lg bg-[#4B429F]">
+    <div className="flex justify-center items-center w-full h-[100vh] bg-[#E8F4E8]">
+      <div className="w-[350px] flex gap-2 flex-col justify-start p-5 rounded-lg bg-[#429F4B]">
         <Link
           to={"/"}
           className="flex flex-col justify-center items-center text-right">
@@ -79,7 +79,7 @@ function Login() {
               <Field
                 type="text"
                 name="username"
-                className="w-full text-left placeholder:text-right text-sm font-[sans-regular] bg-[#E8E8F4] rounded-lg p-2 border-0 focus:border-0 focus:ring-0 placeholder:text-[#8F8F8F]"
+                className="w-full text-left placeholder:text-right text-sm font-[sans-regular] bg-[#E8F4E8] rounded-lg p-2 border-0 focus:border-0 focus:ring-0 placeholder:text-[#8F8F8F]"
                 placeholder="نام کاربری"
               />
               <ErrorMessage
@@ -90,7 +90,7 @@ function Login() {
               <Field
                 type="password"
                 name="password"
-                className="w-full text-left placeholder:text-right text-sm font-[sans-regular] bg-[#E8E8F4] rounded-lg p-2 border-0 focus:border-0 focus:ring-0 placeholder:text-[#8F8F8F]"
+                className="w-full text-left placeholder:text-right text-sm font-[sans-regular] bg-[#E8F4E8] rounded-lg p-2 border-0 focus:border-0 focus:ring-0 placeholder:text-[#8F8F8F]"
                 placeholder="رمز عبور"
               />
               <ErrorMessage
@@ -99,7 +99,7 @@ function Login() {
                 component="div"
               />
               <button
-                className="w-full text-center text-base gap-2 bg-[#E5D1FA] p-2 mt-3 rounded-lg text-[#303842] font-[sans-semibold] "
+                className="w-full text-center text-base gap-2 bg-[#A2DFA2] p-2 mt-3 rounded-lg text-[#303842] font-[sans-semibold] "
                 type="submit"
                 disabled={isSubmitting}>
                 ورود

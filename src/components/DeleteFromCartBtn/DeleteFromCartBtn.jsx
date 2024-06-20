@@ -19,7 +19,7 @@ function DeleteFromCartBtn({ productID }) {
 
   return (
     <>
-      <button className="text-blue-700 hover:underline" onClick={() => setOpenModal(true)}>
+      <button className="text-[#054118] hover:underline" onClick={() => setOpenModal(true)}>
         {textContent.products_deleteBtn}
       </button>
       <Modal
@@ -35,12 +35,12 @@ function DeleteFromCartBtn({ productID }) {
             </h3>
             <div className="flex justify-center gap-4">
               <button
-                className="px-7 py-2 rounded-lg text-white bg-[#4B429F] "
+                className="px-7 py-2 rounded-lg text-white bg-[#429F4B] "
                 onClick={deleteItem}>
                 بله
               </button>
               <button
-                className="px-7 py-2 rounded-lg text-black bg-[#E5D1FA]"
+                className="px-7 py-2 rounded-lg text-black bg-[#A2DFA2]"
                 onClick={() => setOpenModal(false)}>
                 خیر
               </button>

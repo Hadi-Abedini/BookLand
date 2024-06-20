@@ -94,7 +94,7 @@ function Inventory() {
               });
               window.location.reload();
             }}
-            className="px-6 py-2 text-sm bg-[#4B429F] text-white rounded-lg  cursor-pointer disabled:bg-[#9088da] disabled:cursor-not-allowed">
+            className="px-6 py-2 text-sm bg-[#429F4B] text-white rounded-lg  cursor-pointer disabled:bg-[#88DA90] disabled:cursor-not-allowed">
             {textContent.inventory_saveBtn}
           </button>
         </div>

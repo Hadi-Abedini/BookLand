@@ -22,7 +22,7 @@ function AdminTable({ columns, data }) {
             <tr {...headerGroup.getHeaderGroupProps()}>
               {headerGroup.headers.map((column) => (
                 <th
-                  className=" text-right text-white font-[sans-semibold] bg-[#4B429F] p-3"
+                  className=" text-right text-white font-[sans-semibold] bg-[#429F4B] p-3"
                   {...column.getHeaderProps()}>
                   {column.render("Header")}
                 </th>
@@ -36,7 +36,7 @@ function AdminTable({ columns, data }) {
             return (
               <tr
                 className={`w-full hover:bg-transparent ${
-                  index % 2 === 0 ? "bg-[#4b429f7c]" : "bg-[#90909036]"
+                  index % 2 === 0 ? "bg-[#429F4B7c]" : "bg-[#90909036]"
                 }`}
                 {...row.getRowProps()}>
                 {row.cells.map((cell) => {

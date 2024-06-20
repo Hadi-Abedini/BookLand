@@ -29,11 +29,10 @@ function AddModal({ title, refetchFn }) {
     category: "",
     subcategory: "",
     description: "",
-    writer: "",
-    publisher: "",
+    height: "",
+    width: "",
     price: "",
     quantity: "",
-    rating: 3.6,
   });
 
   const { isLoading, data: categories } = useQuery({
@@ -90,11 +89,10 @@ function AddModal({ title, refetchFn }) {
         category: "",
         subcategory: "",
         description: "",
-        writer: "",
-        publisher: "",
+        height: 0,
+        width: 0,
         price: "",
         quantity: "",
-        rating: 3.6,
       });
     },
     onError: (error) => {
@@ -108,13 +106,12 @@ function AddModal({ title, refetchFn }) {
     const formData = new FormData();
     formData.append("images", formValues.images);
     formData.append("name", formValues.name);
-    formData.append("publisher", formValues.publisher);
-    formData.append("writer", formValues.writer);
+    formData.append("height", formValues.height);
+    formData.append("width", formValues.width);
     formData.append("category", formValues.category);
     formData.append("subcategory", formValues.subcategory);
     formData.append("quantity", formValues.quantity);
     formData.append("price", formValues.price);
-    formData.append("rating", 3.6);
     formData.append("description", formValues.description);
 
     mutate(formData);
@@ -127,7 +124,7 @@ function AddModal({ title, refetchFn }) {
   return (
     <>
       <button
-        className="px-6 py-2 text-sm bg-[#4B429F] text-white rounded-lg"
+        className="px-6 py-2 text-sm bg-[#429F4B] text-white rounded-lg"
         onClick={() => setOpenModal(true)}>
         {title}
       </button>
@@ -146,7 +143,7 @@ function AddModal({ title, refetchFn }) {
             <div className="w-full flex flex-col gap-1">
               <span>تصویر کالا:</span>
               <input
-                className="block w-full text-[13px] bg-[#E8E8F4]  rounded-lg cursor-pointer dark:text-gray-400 focus:outline-none"
+                className="block w-full text-[13px] bg-[#E8F4E8]  rounded-lg cursor-pointer dark:text-gray-400 focus:outline-none"
                 name="images"
                 type="file"
                 accept=".jpg,.png"
@@ -159,26 +156,26 @@ function AddModal({ title, refetchFn }) {
                 <span>نام کالا:</span>
                 <SearchInput
                   id={"name"}
-                  placeholder={"نام کتاب"}
+                  placeholder={"نام گیاه"}
                   onChange={(e) => handleInputChange("name", e.target.value)}
                 />
               </div>
               <div className="w-full flex flex-col gap-1">
-                <span>نویسنده:</span>
+                <span>ارتفاع:</span>
                 <SearchInput
-                  id={"writer"}
-                  placeholder={"نویسنده"}
-                  onChange={(e) => handleInputChange("writer", e.target.value)}
+                  id={"height"}
+                  placeholder={"ارتفاع(سانتی متر)"}
+                  type="number"
+                  onChange={(e) => handleInputChange("height", e.target.value)}
                 />
               </div>
               <div className="w-full flex flex-col gap-1">
-                <span>ناشر:</span>
+                <span>عرض:</span>
                 <SearchInput
                   id={"publisher"}
-                  placeholder={"ناشر"}
-                  onChange={(e) =>
-                    handleInputChange("publisher", e.target.value)
-                  }
+                  placeholder={"عرض(سانتی متر)"}
+                  type="number"
+                  onChange={(e) => handleInputChange("width", e.target.value)}
                 />
               </div>
             </div>
@@ -198,7 +195,7 @@ function AddModal({ title, refetchFn }) {
                 <SearchInput
                   id={"quantity"}
                   type="number"
-                  placeholder={"تعداد کتاب"}
+                  placeholder={"تعداد"}
                   onChange={(e) =>
                     handleInputChange("quantity", e.target.value)
                   }
@@ -255,7 +252,7 @@ function AddModal({ title, refetchFn }) {
             </div>
             <button
               type="submit"
-              className="w-fit px-7 py-2 rounded-lg text-white bg-[#4B429F]">
+              className="w-fit px-7 py-2 rounded-lg text-white bg-[#429F4B]">
               افزودن
             </button>
           </form>
