@@ -2,7 +2,7 @@ import React, { useContext, useState } from "react";
 import { useParams } from "react-router-dom";
 import { useQuery } from "@tanstack/react-query";
 import parse from "html-react-parser";
-import { Rating, Spinner, Tooltip } from "flowbite-react";
+import { Spinner, Tooltip, Rating } from "flowbite-react";
 import { Breadcrumb } from "flowbite-react";
 import { HiHome } from "react-icons/hi";
 import "react-quill/dist/quill.snow.css";
@@ -13,6 +13,7 @@ import addCommasToNumber from "../../utils/AddCommasToNumber";
 import Counter from "../../components/counter/Counter";
 import CartContext from "../../Context/CartContext";
 import toast, { Toaster } from "react-hot-toast";
+import Comment from "../../components/comment/Comment";
 const notifySuccess = () =>
   toast.success("محصول با موفقیت به سبد خرید افزوده شد.");
 
@@ -69,16 +70,16 @@ function Product() {
                   <Rating className="flex fle gap-1">
                     <Rating.Star />
                     <p className="ml-2 text-sm font-bold text-gray-900 dark:text-white">
-                      {productInfo.rating}
+                      {productInfo.rating.toFixed(2)}
                     </p>
                   </Rating>
                 )}
               </div>
               <p className="text-lg">
-                عرض: <span className="text-sm">{productInfo.width}</span>
+                عرض: <span className="text-sm">{`${productInfo.width} سانتی متر`}</span>
               </p>
               <p className="text-lg">
-                ارتفاع: <span className="text-sm">{productInfo.height}</span>
+                ارتفاع: <span className="text-sm">{`${productInfo.height} سانتی متر`}</span>
               </p>
               <p className="text-lg">
                 قیمت:
@@ -137,6 +138,10 @@ function Product() {
         <p className="w-full leading-8 text-sm">
           {parse(product.data.data.product.description)}
         </p>
+        <div className="w-full mt-10">
+          <Comment id={productID} />
+        </div>
+
         <Toaster position="top-right" reverseOrder={false} />
       </div>
     );
