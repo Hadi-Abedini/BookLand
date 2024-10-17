@@ -70,7 +70,7 @@ function Category() {
       <DeleteModal
         id={category._id}
         name={category.name}
-        title={isCategory === "true" ?"دسته":'زیردسته'}
+        title={isCategory === "true" ? "دسته" : "زیردسته"}
         refetchFn={refetchProducts}
         deleteFn={
           isCategory === "true" ? deleteCategoryById : deleteSubCategoryById
@@ -88,7 +88,9 @@ function Category() {
     <div className="w-3/5 flex flex-col gap-6">
       <div className="w-full flex justify-between">
         <span className="text-2xl font-[rokh-bold]">
-          {textContent.category_title}
+          {isCategory === "true"
+            ? textContent.category_title[0]
+            : textContent.category_title[1]}
         </span>
         <fieldset className="flex gap-4">
           <div className="flex items-center gap-2">

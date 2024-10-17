@@ -47,7 +47,7 @@ const textContent = {
     orders_table_header: ["نام کاربر", "مجموع مبلغ", "زمان ثبت سفارش"],
 
     //category
-    category_title: "دسته بندی",
+    category_title: ["دسته بندی","زیردسته بندی"],
     category_checkbox: ["دسته ها", "زیردسته ها"],
     category_table_header: [ "نام","آیدی","تاریخ ایجاد","دسته"],
     category_addBtn: 'افزودن',
