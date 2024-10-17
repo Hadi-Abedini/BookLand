@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import Rating from "../rating/Rating";
 import SearchInput from "../SearchBox/SearchInput";
-import { useMutation, useQuery } from "@tanstack/react-query";
+import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import addNewComment from "../../Api/AddNewComment";
 import toast from "react-hot-toast";
 import getAllComment from "../../Api/GetAllComment";
@@ -13,6 +13,9 @@ const notifySuccess = () => toast.success(".نظر شما با موفقیت ثب
 const notifyUnsuccess = () => toast.error(".ثبت نظر با مشکل مواجه شد");
 
 function Comment({ id }) {
+
+  const queryClient = useQueryClient();
+
   const [rating, setRating] = useState(0);
 
   const [formValues, setFormValues] = useState({
@@ -38,6 +41,9 @@ function Comment({ id }) {
     mutationFn: async (formData) => {
       try {
         await addNewComment(formData);
+        queryClient.invalidateQueries({
+          queryKey: ['product'],
+        });
       } catch (error) {
         console.error("Error adding new comment", error);
         throw error;
